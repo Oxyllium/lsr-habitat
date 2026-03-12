@@ -316,7 +316,7 @@ a { color:inherit; }
   font-size:.78rem; font-weight:600;
   transition:all var(--ease);
 }
-.zone-tag:hover { border-color:var(--orange); color:var(--orange); }
+.zone-tag:hover { border-color:#ddd; color:var(--dark); }
 .zone-tag--hl { background:var(--teal); color:var(--white); border-color:var(--teal); }
 
 /* ========== REVIEWS ========== */
