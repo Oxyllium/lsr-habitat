@@ -171,7 +171,7 @@ a { color:inherit; }
 .form-group textarea:focus {
   outline:none; border-color:var(--teal); background:var(--white);
 }
-.form-group textarea { resize:vertical; min-height:60px; }
+.form-group textarea { resize:vertical; min-height:100px; }
 .form-card .btn { width:100%; justify-content:center; padding:13px; font-size:1rem; }
 .form-card__trust {
   display:flex; align-items:center; gap:6px;
@@ -316,7 +316,7 @@ a { color:inherit; }
   font-size:.78rem; font-weight:600;
   transition:all var(--ease);
 }
-.zone-tag:hover { border-color:var(--teal); color:var(--teal); }
+.zone-tag:hover { border-color:var(--orange); color:var(--orange); }
 .zone-tag--hl { background:var(--teal); color:var(--white); border-color:var(--teal); }
 
 /* ========== REVIEWS ========== */
