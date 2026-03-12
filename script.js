@@ -19,7 +19,7 @@
       }
 
       function update(pct) {
-        afterImg.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+        afterImg.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
         handle.style.left = pct + '%';
       }
 

@@ -58,6 +58,9 @@ a { color:inherit; }
   display:flex; align-items:center; overflow:hidden;
   background:var(--dark);
 }
+@media(max-width:960px){
+  .hero { min-height:auto; }
+}
 .hero__bg {
   position:absolute; inset:0;
   background-size:cover; background-position:center;
@@ -71,6 +74,9 @@ a { color:inherit; }
   position:relative; z-index:2;
   max-width:1200px; margin:0 auto; width:100%;
   padding:48px 24px 40px;
+}
+@media(max-width:960px){
+  .hero__inner { padding:28px 16px 24px; }
 }
 .hero__logo { height:50px; margin-bottom:16px; filter:brightness(0) invert(1); }
 .hero h1 {
@@ -129,8 +135,9 @@ a { color:inherit; }
 
 @media(max-width:960px){
   .page-body { grid-template-columns:1fr; gap:0; padding:0; }
+  .page-body .sidebar { order:-1; }
   .main-content { padding:24px 16px; }
-  .sidebar { position:static; padding:0 16px 24px; }
+  .sidebar { position:static; padding:12px 16px 24px; }
 }
 
 /* ========== FORM CARD ========== */
@@ -230,7 +237,7 @@ a { color:inherit; }
   position:absolute; inset:0; width:100%; height:100%;
   object-fit:cover; pointer-events:none;
 }
-.ba-slider__after { clip-path:inset(0 50% 0 0); }
+.ba-slider__after { clip-path:inset(0 0 0 50%); }
 .ba-slider__handle {
   position:absolute; top:0; bottom:0; left:50%;
   width:3px; background:var(--white);
@@ -257,8 +264,8 @@ a { color:inherit; }
   font-size:.7rem; font-weight:700;
   text-transform:uppercase; letter-spacing:.08em;
 }
-.ba-label--before { right:10px; }
-.ba-label--after { left:10px; }
+.ba-label--before { left:10px; }
+.ba-label--after { right:10px; }
 
 /* ========== SERVICE DETAIL ========== */
 .service-detail { line-height:1.65; }
@@ -321,6 +328,7 @@ a { color:inherit; }
 .reviews-header__stars { color:#FFD700; font-size:1.2rem; }
 .reviews-header__count { font-size:.85rem; color:var(--gray); }
 .reviews-header__google { height:22px; }
+.google-g { display:inline-flex; align-items:center; margin-left:2px; }
 .reviews-grid {
   display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
 }
