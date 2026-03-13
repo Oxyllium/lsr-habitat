@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LSR Habitat | Toiture en Nouvelle-Aquitaine — Nettoyage, Démoussage, Étanchéité, Rénovation</title>
+  <meta name="description" content="LSR Habitat, spécialiste toiture en Nouvelle-Aquitaine. Nettoyage, démoussage, étanchéité et rénovation de toiture. Devis gratuit au 07 62 39 78 96.">
+  <link rel="icon" type="image/png" href="images/logo-lsr-habitat.png">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "LSR Habitat",
+    "image": "https://lsr-habitat.com/images/logo-lsr-habitat.png",
+    "telephone": "+33762397896",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "81 Rte de Compostelle",
+      "addressLocality": "Salles",
+      "postalCode": "33770",
+      "addressCountry": "FR"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "19"
+    },
+    "areaServed": "Nouvelle-Aquitaine"
+  }
+  </script>
+  <style>
+    .home-hero {
+      position:relative; text-align:center;
+      padding:56px 24px 40px;
+      background:linear-gradient(135deg,rgba(26,26,46,.93),rgba(79,173,181,.65)),
+                  url('images/demoussage-apres.jpg') center/cover no-repeat;
+      color:var(--white);
+    }
+    .home-hero__logo { height:60px; margin:0 auto 20px; filter:brightness(0) invert(1); }
+    .home-hero h1 {
+      font-size:clamp(1.6rem,4vw,2.5rem); font-weight:900;
+      line-height:1.12; margin-bottom:10px; letter-spacing:-.02em;
+    }
+    .home-hero h1 span { color:var(--orange); }
+    .home-hero p {
+      font-size:clamp(.92rem,2vw,1.1rem); opacity:.85;
+      max-width:560px; margin:0 auto 20px;
+    }
+    .home-hero__badge {
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(255,255,255,.12); backdrop-filter:blur(6px);
+      border:1px solid rgba(255,255,255,.2); border-radius:50px;
+      padding:7px 14px; color:var(--white);
+      font-size:.82rem; font-weight:600;
+    }
+    .home-hero__badge .stars { color:#FFD700; }
+
+    .services-grid {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:16px; max-width:1200px; margin:0 auto;
+      padding:0 24px;
+    }
+    .service-card {
+      background:var(--white); border-radius:var(--radius);
+      box-shadow:var(--shadow); overflow:hidden;
+      transition:transform var(--ease), box-shadow var(--ease);
+      text-decoration:none; color:inherit; display:flex; flex-direction:column;
+      border:1px solid rgba(0,0,0,.04);
+    }
+    .service-card:hover {
+      transform:translateY(-4px); box-shadow:var(--shadow-lg);
+    }
+    .service-card__img {
+      width:100%; height:180px; object-fit:cover;
+    }
+    .service-card__body { padding:18px 16px 20px; flex:1; display:flex; flex-direction:column; }
+    .service-card__tag {
+      display:inline-block; background:var(--teal-light); color:var(--teal-dark);
+      padding:3px 10px; border-radius:50px; font-size:.68rem;
+      font-weight:700; text-transform:uppercase; letter-spacing:.05em;
+      margin-bottom:8px; width:fit-content;
+    }
+    .service-card__body h2 {
+      font-size:1.05rem; font-weight:800; margin-bottom:6px;
+      letter-spacing:-.01em;
+    }
+    .service-card__body p {
+      font-size:.82rem; color:var(--gray); line-height:1.5;
+      margin-bottom:14px; flex:1;
+    }
+    .service-card__cta {
+      display:inline-flex; align-items:center; gap:6px;
+      font-size:.82rem; font-weight:700; color:var(--red);
+    }
+    .service-card__cta svg { width:14px; height:14px; transition:transform var(--ease); }
+    .service-card:hover .service-card__cta svg { transform:translateX(3px); }
+
+    .contact-bar {
+      max-width:1200px; margin:0 auto; padding:0 24px;
+      display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+    }
+    .contact-item {
+      display:flex; align-items:center; gap:14px;
+      padding:18px 16px; background:var(--white);
+      border-radius:var(--radius); box-shadow:var(--shadow);
+      border:1px solid rgba(0,0,0,.04);
+      text-decoration:none; color:inherit;
+      transition:transform var(--ease);
+    }
+    .contact-item:hover { transform:translateY(-2px); }
+    .contact-item__icon {
+      width:46px; height:46px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0;
+    }
+    .contact-item__icon--phone { background:var(--red); color:var(--white); }
+    .contact-item__icon--pin { background:var(--teal); color:var(--white); }
+    .contact-item__icon--star { background:var(--orange); color:var(--white); }
+    .contact-item__icon svg { width:22px; height:22px; }
+    .contact-item__text strong { display:block; font-size:.82rem; font-weight:700; }
+    .contact-item__text span { font-size:.78rem; color:var(--gray); }
+
+    @media(max-width:960px){
+      .services-grid { grid-template-columns:repeat(2,1fr); padding:0 16px; }
+      .contact-bar { grid-template-columns:1fr; padding:0 16px; }
+    }
+    @media(max-width:500px){
+      .services-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="home-hero">
+  <img src="images/logo-lsr-habitat.png" alt="LSR Habitat" class="home-hero__logo">
+  <h1>Spécialiste <span>Toiture</span> en Nouvelle-Aquitaine</h1>
+  <p>Nettoyage, démoussage, étanchéité et rénovation de toiture. Entreprise familiale, réactive et sans sous-traitance.</p>
+  <div class="home-hero__badge">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#fff"/><path d="M24.27 11.8l-.27-.03c-1.83 0-3.5.5-4.97 1.32l-.05.03c-.77.45-1.48.98-2.12 1.6l-.02.02C14.84 16.73 13.5 19.5 13.5 22.57c0 1.56.32 3.04.9 4.38l.04.09c.27.6.58 1.18.93 1.72l8.63 13.1 8.54-13.1c.35-.54.66-1.12.93-1.72l.04-.09c.58-1.34.9-2.82.9-4.38 0-3.07-1.34-5.84-3.34-7.83l-.02-.02c-.64-.62-1.35-1.15-2.12-1.6l-.05-.03c-1.47-.82-3.14-1.32-4.97-1.32l-.27.03h.27-.27z" fill="#EA4335"/><circle cx="24" cy="22.5" r="4.5" fill="#fff"/></svg>
+    <span class="stars">★★★★★</span> 5,0/5 — 19 avis Google
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section section--gray">
+  <div class="section-wrap" style="margin-bottom:10px;">
+    <h2 class="section__title section__title--center">Nos Services</h2>
+  </div>
+  <div class="services-grid">
+    <a href="nettoyage-toiture.html" class="service-card">
+      <img src="images/demoussage-avant.jpg" alt="Nettoyage de toiture" class="service-card__img">
+      <div class="service-card__body">
+        <span class="service-card__tag">Nettoyage</span>
+        <h2>Nettoyage de Toiture</h2>
+        <p>Haute pression, basse pression, nettoyage de gouttières. Redonnez éclat et longévité à votre toit.</p>
+        <span class="service-card__cta">Voir le service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+    <a href="demoussage-toiture.html" class="service-card">
+      <img src="images/demoussage-apres.jpg" alt="Démoussage de toiture" class="service-card__img">
+      <div class="service-card__body">
+        <span class="service-card__tag">Démoussage</span>
+        <h2>Démoussage de Toiture</h2>
+        <p>Traitement anti-mousse et application de biocide certifié Certibiocide pour une protection durable.</p>
+        <span class="service-card__cta">Voir le service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+    <a href="etancheite-toiture.html" class="service-card">
+      <img src="images/hydrofugation-toiture.jpg" alt="Étanchéité de toiture" class="service-card__img">
+      <div class="service-card__body">
+        <span class="service-card__tag">Étanchéité</span>
+        <h2>Étanchéité de Toiture</h2>
+        <p>Hydrofugation, réparation de faîtage et rives, détection et traitement des infiltrations.</p>
+        <span class="service-card__cta">Voir le service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+    <a href="renovation-toiture.html" class="service-card">
+      <img src="images/demoussage-apres.jpg" alt="Rénovation de toiture" class="service-card__img">
+      <div class="service-card__body">
+        <span class="service-card__tag">Rénovation</span>
+        <h2>Rénovation de Toiture</h2>
+        <p>Service complet : nettoyage, démoussage, étanchéité et réparations. Une toiture comme neuve.</p>
+        <span class="service-card__cta">Voir le service <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section">
+  <div class="section-wrap" style="margin-bottom:14px;">
+    <h2 class="section__title section__title--center">Contactez-nous</h2>
+  </div>
+  <div class="contact-bar">
+    <a href="tel:0762397896" class="contact-item">
+      <div class="contact-item__icon contact-item__icon--phone">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+      </div>
+      <div class="contact-item__text">
+        <strong>07 62 39 78 96</strong>
+        <span>Appelez-nous directement</span>
+      </div>
+    </a>
+    <div class="contact-item">
+      <div class="contact-item__icon contact-item__icon--pin">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+      </div>
+      <div class="contact-item__text">
+        <strong>81 Rte de Compostelle</strong>
+        <span>33770 Salles</span>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-item__icon contact-item__icon--star">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="contact-item__text">
+        <strong>5,0/5 — 19 avis Google</strong>
+        <span>Satisfaction garantie</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Un projet de toiture ?</h2>
+  <p>Demandez votre devis gratuit et sans engagement</p>
+  <a href="tel:0762397896" class="cta-phone">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+    07 62 39 78 96
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  LSR Habitat — 81 Rte de Compostelle, 33770 Salles
+  <div class="footer__links">
+    <a href="tel:0762397896">07 62 39 78 96</a>
+  </div>
+</footer>
+
+<!-- PHONE BAR MOBILE -->
+<a href="tel:0762397896" class="phone-bar">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+  Appelez-nous : 07 62 39 78 96
+</a>
+
+</body>
+</html>
