@@ -31,6 +31,21 @@
         'currency': 'EUR'
     });
   </script>
+  <!-- Event snippet for Appels site lsr-habitat.fr conversion page -->
+  <script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-17145009177/d1iMCLPO04ccEJmosO8_',
+        'event_callback': callback
+    });
+    return false;
+  }
+  </script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -47,7 +62,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h1>Merci, votre demande a bien été envoyée !</h1>
     <p>Nous vous recontacterons dans les plus brefs délais pour établir votre devis gratuit.</p>
     <p style="font-weight:600;color:var(--dark);">Besoin d'une réponse immédiate ?</p>
-    <a href="tel:0762397896" class="btn btn--primary" style="margin-bottom:12px;">
+    <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="btn btn--primary" style="margin-bottom:12px;">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
       07 62 39 78 96
     </a>
