@@ -137,6 +137,52 @@
     @media(max-width:500px){
       .services-grid { grid-template-columns:1fr; }
     }
+
+    /* NAV */
+    .home-nav {
+      display:flex; align-items:center; justify-content:space-between;
+      max-width:1200px; margin:0 auto; padding:12px 24px;
+    }
+    .home-nav__logo { height:38px; }
+    .home-nav__links {
+      display:flex; align-items:center; gap:24px;
+      list-style:none;
+    }
+    .home-nav__links a {
+      font-size:.85rem; font-weight:600; color:var(--dark);
+      text-decoration:none; transition:color var(--ease);
+    }
+    .home-nav__links a:hover { color:var(--teal); }
+    .home-nav__links .nav-cta {
+      background:var(--red); color:var(--white); padding:8px 18px;
+      border-radius:6px; font-weight:700;
+    }
+    .home-nav__links .nav-cta:hover { background:var(--red-hover); color:var(--white); }
+
+    /* Mobile hamburger */
+    .home-nav__toggle {
+      display:none; background:none; border:none; cursor:pointer; padding:4px;
+    }
+    .home-nav__toggle svg { width:28px; height:28px; color:var(--dark); }
+
+    @media(max-width:768px){
+      .home-nav { padding:10px 16px; }
+      .home-nav__toggle { display:block; }
+      .home-nav__links {
+        display:none; flex-direction:column; gap:0;
+        position:absolute; top:100%; left:0; right:0;
+        background:var(--white); box-shadow:var(--shadow-lg);
+        z-index:100;
+      }
+      .home-nav__links.open { display:flex; }
+      .home-nav__links a {
+        padding:14px 20px; width:100%;
+        border-bottom:1px solid rgba(0,0,0,.06);
+      }
+      .home-nav__links .nav-cta {
+        border-radius:0; text-align:center;
+      }
+    }
   </style>
   <!-- Event snippet for Appels site lsr-habitat.fr conversion page -->
   <script>
@@ -163,6 +209,22 @@
   </script>
 </head>
 <body>
+
+<!-- NAV -->
+<nav class="home-nav" style="position:relative;">
+  <a href="index.html"><img src="images/logo-lsr-habitat.png" alt="LSR Habitat" class="home-nav__logo"></a>
+  <button class="home-nav__toggle" aria-label="Menu" onclick="document.querySelector('.home-nav__links').classList.toggle('open')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+  <ul class="home-nav__links">
+    <li><a href="nos-prestations.html">Nos prestations</a></li>
+    <li><a href="nettoyage-toiture.html">Nettoyage</a></li>
+    <li><a href="demoussage-toiture.html">Démoussage</a></li>
+    <li><a href="etancheite-toiture.html">Étanchéité</a></li>
+    <li><a href="renovation-toiture.html">Rénovation</a></li>
+    <li><a href="demande-de-devis.html" class="nav-cta">Devis gratuit</a></li>
+  </ul>
+</nav>
 
 <!-- HERO -->
 <section class="home-hero">
