@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demande de Devis Gratuit | LSR Habitat — Toiture & Habitat</title>
+  <meta name="description" content="Demandez votre devis gratuit pour vos travaux de toiture, traitement d'humidité ou nuisibles en Nouvelle-Aquitaine. LSR Habitat vous répond sous 24h.">
+  <link rel="icon" type="image/png" href="images/logo-lsr-habitat.png">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR71B09K4M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QR71B09K4M');
+    gtag('config', 'AW-17145009177');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"LSR Habitat",
+    "image":"https://lsr-habitat.fr/images/logo-lsr-habitat.png",
+    "address":{"@type":"PostalAddress","streetAddress":"81 Rte de Compostelle","addressLocality":"Salles","postalCode":"33770","addressCountry":"FR"},
+    "telephone":"+33762397896",
+    "url":"https://lsr-habitat.fr",
+    "aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"19"}
+  }
+  </script>
+  <style>
+    .devis-page {
+      max-width:680px; margin:0 auto; padding:32px 24px 48px;
+    }
+    .devis-page__header {
+      text-align:center; margin-bottom:28px;
+    }
+    .devis-page__header img {
+      height:50px; margin:0 auto 16px;
+    }
+    .devis-page__header h1 {
+      font-size:clamp(1.5rem,3.5vw,2rem); font-weight:900;
+      margin-bottom:8px; letter-spacing:-.02em;
+    }
+    .devis-page__header h1 span { color:var(--orange); }
+    .devis-page__header p {
+      color:var(--gray); font-size:.92rem;
+    }
+    .devis-form-card {
+      background:var(--white); border-radius:var(--radius);
+      box-shadow:var(--shadow-lg); overflow:hidden;
+      border:1px solid rgba(0,0,0,.06);
+    }
+    .devis-form-card .form-card__header {
+      padding:18px 24px;
+    }
+    .devis-form-card .form-card__body {
+      padding:20px 24px 24px;
+    }
+    .form-row {
+      display:grid; grid-template-columns:1fr 1fr; gap:12px;
+    }
+    @media(max-width:500px){
+      .form-row { grid-template-columns:1fr; }
+      .devis-page { padding:20px 16px 40px; }
+    }
+    .devis-reassurance {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+      margin-top:24px; text-align:center;
+    }
+    .devis-reassurance__item {
+      padding:14px 8px;
+    }
+    .devis-reassurance__item svg {
+      width:28px; height:28px; color:var(--teal); margin-bottom:6px;
+    }
+    .devis-reassurance__item strong {
+      display:block; font-size:.78rem; font-weight:700; margin-bottom:2px;
+    }
+    .devis-reassurance__item span {
+      font-size:.72rem; color:var(--gray-light);
+    }
+    @media(max-width:500px){
+      .devis-reassurance { grid-template-columns:1fr; gap:0; }
+    }
+  </style>
+  <!-- Event snippet for Appels site lsr-habitat.fr conversion page -->
+  <script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-17145009177/d1iMCLPO04ccEJmosO8_',
+        'event_callback': callback
+    });
+    return false;
+  }
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vwp8i1p1jt");
+  </script>
+</head>
+<body>
+
+<div class="devis-page">
+
+  <div class="devis-page__header">
+    <a href="index.html"><img src="images/logo-lsr-habitat.png" alt="LSR Habitat"></a>
+    <h1>Demande de <span>Devis Gratuit</span></h1>
+    <p>Remplissez le formulaire ci-dessous, nous vous répondons sous 24h.</p>
+  </div>
+
+  <div class="devis-form-card">
+    <div class="form-card__header">
+      <h3>Décrivez votre projet</h3>
+      <p>Devis 100% gratuit et sans engagement</p>
+    </div>
+    <div class="form-card__body">
+      <form name="devis" method="POST" action="/demande-envoyee.html" data-netlify="true">
+        <input type="hidden" name="form-name" value="devis">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+          </div>
+          <div class="form-group">
+            <label for="prenom">Prénom</label>
+            <input type="text" id="prenom" name="prenom" placeholder="Votre prénom">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="tel">Téléphone *</label>
+            <input type="tel" id="tel" name="telephone" required placeholder="06 XX XX XX XX">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="votre@email.fr">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ville">Ville</label>
+          <input type="text" id="ville" name="ville" placeholder="Votre commune">
+        </div>
+        <div class="form-group">
+          <label for="service">Type de prestation *</label>
+          <select id="service" name="service" required>
+            <option value="" disabled selected>Choisir une prestation</option>
+            <option value="Nettoyage de toiture">Nettoyage de toiture</option>
+            <option value="Démoussage de toiture">Démoussage de toiture</option>
+            <option value="Étanchéité / Hydrofugation">Étanchéité / Hydrofugation</option>
+            <option value="Rénovation de toiture">Rénovation de toiture</option>
+            <option value="Peinture thermique toiture">Peinture thermique toiture</option>
+            <option value="Traitement d'humidité">Traitement d'humidité</option>
+            <option value="Assèchement des murs">Assèchement des murs</option>
+            <option value="Ventilation VMI / VMC">Ventilation VMI / VMC</option>
+            <option value="Traitement nuisibles">Traitement nuisibles (termites, capricornes, fourmis)</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Description du projet</label>
+          <textarea id="message" name="message" placeholder="Décrivez votre besoin, l'état de votre toiture, la surface approximative..."></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary">Envoyer ma demande de devis</button>
+        <div class="form-card__trust">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Vos données sont protégées et ne seront jamais partagées.
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="devis-reassurance">
+    <div class="devis-reassurance__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <strong>Réponse sous 24h</strong>
+      <span>Rapide et réactif</span>
+    </div>
+    <div class="devis-reassurance__item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <strong>Devis 100% gratuit</strong>
+      <span>Sans engagement</span>
+    </div>
+    <div class="devis-reassurance__item">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <strong>5,0/5 sur Google</strong>
+      <span>19 avis clients</span>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin-top:24px;">
+    <p style="color:var(--gray); font-size:.88rem; margin-bottom:8px;">Vous préférez nous appeler ?</p>
+    <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="cta-phone" style="color:var(--dark);">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+      07 62 39 78 96
+    </a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  LSR Habitat — 81 Rte de Compostelle, 33770 Salles
+  <div class="footer__links">
+    <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');">07 62 39 78 96</a> |
+    <a href="index.html">Accueil</a> |
+    <a href="nos-prestations.html">Nos prestations</a>
+  </div>
+</footer>
+
+<!-- PHONE BAR MOBILE -->
+<a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="phone-bar">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+  Appelez-nous : 07 62 39 78 96
+</a>
+
+</body>
+</html>
