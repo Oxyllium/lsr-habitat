@@ -88,25 +88,72 @@
       <span class="ba-label ba-label--before">Avant</span>
       <span class="ba-label ba-label--after">Après</span>
     </div>
-    <div style="margin-top:24px;">
-      <div class="reviews-header" style="justify-content:center;">
-        <span class="google-g"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.77-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg></span>
-        <span class="reviews-header__score">5,0</span>
-        <span class="reviews-header__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="reviews-header__count">19 avis Google</span>
+  </div>
+</section>
+
+<!-- DEVIS FORM -->
+<section class="full-width-section" id="devis">
+  <div class="section-wrap" style="max-width:500px;">
+    <div class="form-card">
+      <div class="form-card__header">
+        <h3>Devis gratuit</h3>
+        <p>Réponse sous 24h</p>
       </div>
-      <div class="reviews-grid">
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar" style="background:#7B61FF;">M</div><div><div class="review-card__name">Myriam Bain</div><div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><div class="review-card__text">Nettoyage de toiture et réfection du zingage, travail sérieux et bon suivi. Réparation suite à infiltration d'eau. Je recommande.</div></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar" style="background:#E8913A;">K</div><div><div class="review-card__name">Ktie Kate</div><div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><div class="review-card__text">Très heureuse du travail effectué ! Nettoyage de toiture et changement de tuiles, traitement de charpente. Délais respectés, travail de qualité.</div></div>
-        <div class="review-card"><div class="review-card__top"><div class="review-card__avatar" style="background:#4FADB5;">L</div><div><div class="review-card__name">Lola Alvarez</div><div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><div class="review-card__text">Réalisation de ma couverture de toiture, entièrement satisfaite. Travail réalisé avec sérieux et professionnalisme. Équipe réactive et agréable.</div></div>
+      <div class="form-card__body">
+        <form name="nettoyage" method="POST" data-netlify="true" action="/demande-envoyee.html">
+          <input type="hidden" name="form-name" value="nettoyage">
+          <input type="hidden" name="service" value="Nettoyage de toiture">
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+          </div>
+          <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="votre@email.fr">
+          </div>
+          <div class="form-group">
+            <label for="ville">Ville</label>
+            <input type="text" id="ville" name="ville" placeholder="Ex : Bordeaux, Arcachon...">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Décrivez votre besoin..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Envoyer ma demande</button>
+          <div class="form-card__trust">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Vos données restent confidentielles
+          </div>
+        </form>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PAGE BODY -->
-<div class="page-body">
-  <div class="main-content">
+<!-- AVIS GOOGLE -->
+<section class="full-width-section section--gray">
+  <div class="section-wrap">
+    <div class="reviews-header" style="justify-content:center;">
+      <span class="google-g"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.77-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg></span>
+      <span class="reviews-header__score">5,0</span>
+      <span class="reviews-header__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="reviews-header__count">19 avis Google</span>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card"><div class="review-card__top"><div class="review-card__avatar" style="background:#7B61FF;">M</div><div><div class="review-card__name">Myriam Bain</div><div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><div class="review-card__text">Nettoyage de toiture et réfection du zingage, travail sérieux et bon suivi. Réparation suite à infiltration d'eau. Je recommande.</div></div>
+      <div class="review-card"><div class="review-card__top"><div class="review-card__avatar" style="background:#E8913A;">K</div><div><div class="review-card__name">Ktie Kate</div><div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><div class="review-card__text">Très heureuse du travail effectué ! Nettoyage de toiture et changement de tuiles, traitement de charpente. Délais respectés, travail de qualité.</div></div>
+      <div class="review-card"><div class="review-card__top"><div class="review-card__avatar" style="background:#4FADB5;">L</div><div><div class="review-card__name">Lola Alvarez</div><div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><div class="review-card__text">Réalisation de ma couverture de toiture, entièrement satisfaite. Travail réalisé avec sérieux et professionnalisme. Équipe réactive et agréable.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENU -->
+<section class="full-width-section">
+  <div class="section-wrap">
 
     <!-- ARGUMENTS -->
     <div class="arguments fade-in">
@@ -163,48 +210,7 @@
     </div>
 
   </div>
-
-  <!-- SIDEBAR FORM -->
-  <div class="sidebar" id="devis">
-    <div class="form-card">
-      <div class="form-card__header">
-        <h3>Devis gratuit</h3>
-        <p>Réponse sous 24h</p>
-      </div>
-      <div class="form-card__body">
-        <form name="nettoyage" method="POST" data-netlify="true" action="/demande-envoyee.html">
-          <input type="hidden" name="form-name" value="nettoyage">
-          <input type="hidden" name="service" value="Nettoyage de toiture">
-          <div class="form-group">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
-          </div>
-          <div class="form-group">
-            <label for="telephone">Téléphone</label>
-            <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00">
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="votre@email.fr">
-          </div>
-          <div class="form-group">
-            <label for="ville">Ville</label>
-            <input type="text" id="ville" name="ville" placeholder="Ex : Bordeaux, Arcachon...">
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Décrivez votre besoin..."></textarea>
-          </div>
-          <button type="submit" class="btn btn--primary">Envoyer ma demande</button>
-          <div class="form-card__trust">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Vos données restent confidentielles
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+</section>
 
 <!-- ZONE D'INTERVENTION -->
 <section class="full-width-section section--gray">
