@@ -272,7 +272,7 @@
 <!-- CALCULATEUR -->
 <section class="full-width-section">
   <div class="section-wrap">
-    <div class="calculator">
+    <div class="calculator" id="devis">
       <h2>Estimez le coût de votre toiture</h2>
       <p class="calculator__sub">Renseignez la surface de votre toiture pour obtenir une estimation instantanée.</p>
       <div class="calculator__input-row">
@@ -291,6 +291,41 @@
           <div class="calculator__result-price" id="price-antimousse">4 800 €</div>
         </div>
       </div>
+      <p style="font-size:.75rem;color:var(--gray-light);margin-top:12px;line-height:1.4;">* Estimation indicative. Le tarif définitif est établi par un technicien LSR Habitat après étude personnalisée de votre toiture.</p>
+
+      <hr style="border:none;border-top:1px solid #E0E0E0;margin:20px 0;">
+      <h3 style="font-size:1rem;font-weight:800;margin-bottom:4px;">Recevez votre devis personnalisé</h3>
+      <p style="font-size:.82rem;color:var(--gray);margin-bottom:16px;">Un technicien vous recontacte sous 24h</p>
+      <form name="tarif-nettoyage" method="POST" data-netlify="true" action="/demande-envoyee.html" style="text-align:left;">
+        <input type="hidden" name="form-name" value="tarif-nettoyage">
+        <input type="hidden" name="service" value="Tarif nettoyage/démoussage toiture">
+        <input type="hidden" name="surface-estimee" id="surface-hidden" value="80 m²">
+        <div class="form-group">
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+        </div>
+        <div class="form-group">
+          <label for="telephone">Téléphone</label>
+          <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="votre@email.fr">
+        </div>
+        <div class="form-group">
+          <label for="ville">Ville</label>
+          <input type="text" id="ville" name="ville" placeholder="Ex : Bordeaux, Arcachon...">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Type de toiture, prestation souhaitée..."></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center;">Envoyer ma demande</button>
+        <div class="form-card__trust" style="margin-top:10px;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Vos données restent confidentielles
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -318,49 +353,6 @@
       <div class="argument">
         <div class="argument__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
         <div class="argument__text">Bilan gratuit</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DEVIS FORM -->
-<section class="full-width-section" id="devis">
-  <div class="section-wrap" style="max-width:500px;">
-    <div class="form-card">
-      <div class="form-card__header">
-        <h3>Devis gratuit personnalisé</h3>
-        <p>Réponse sous 24h</p>
-      </div>
-      <div class="form-card__body">
-        <form name="tarif-nettoyage" method="POST" data-netlify="true" action="/demande-envoyee.html">
-          <input type="hidden" name="form-name" value="tarif-nettoyage">
-          <input type="hidden" name="service" value="Tarif nettoyage/démoussage toiture">
-          <div class="form-group">
-            <label for="nom">Nom</label>
-            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
-          </div>
-          <div class="form-group">
-            <label for="telephone">Téléphone</label>
-            <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00">
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="votre@email.fr">
-          </div>
-          <div class="form-group">
-            <label for="ville">Ville</label>
-            <input type="text" id="ville" name="ville" placeholder="Ex : Bordeaux, Arcachon...">
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Surface, type de toiture, prestation souhaitée..."></textarea>
-          </div>
-          <button type="submit" class="btn btn--primary">Envoyer ma demande</button>
-          <div class="form-card__trust">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Vos données restent confidentielles
-          </div>
-        </form>
       </div>
     </div>
   </div>
@@ -507,10 +499,13 @@
     return n.toLocaleString('fr-FR') + ' €';
   }
 
+  var surfaceHidden = document.getElementById('surface-hidden');
+
   function updatePrices() {
     var m2 = parseInt(surfaceInput.value) || 80;
     priceNettoyage.textContent = formatPrice(m2 * 50);
     priceAntimousse.textContent = formatPrice(m2 * 60);
+    surfaceHidden.value = m2 + ' m²';
   }
 
   surfaceInput.addEventListener('input', function() {
