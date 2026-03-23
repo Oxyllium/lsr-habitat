@@ -109,6 +109,46 @@
   </div>
 </section>
 
+<!-- PHOTO APPLICATION -->
+<section class="full-width-section section--gray">
+  <div class="section-wrap" style="max-width:900px;">
+    <h2 class="section__title section__title--center">Application du traitement antimousse</h2>
+    <p style="color:var(--gray);font-size:.88rem;margin:6px auto 16px;text-align:center;">Cliquez sur la photo pour agrandir.</p>
+    <img src="images/application-antimousse.jpg" alt="Application traitement antimousse sur toiture - LSR Habitat" id="photo-zoom-trigger" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow-lg);cursor:zoom-in;">
+  </div>
+</section>
+
+<!-- PHOTO ZOOM OVERLAY -->
+<div id="photo-zoom-overlay" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.85);backdrop-filter:blur(3px);padding:16px;overflow-y:auto;">
+  <div style="max-width:900px;margin:0 auto;position:relative;">
+    <button id="photo-zoom-close" style="position:absolute;top:8px;right:8px;z-index:2;background:rgba(0,0,0,.5);border:none;color:#fff;font-size:1.8rem;cursor:pointer;width:40px;height:40px;border-radius:50%;line-height:1;display:flex;align-items:center;justify-content:center;">&times;</button>
+    <img src="images/application-antimousse.jpg" alt="Application traitement antimousse sur toiture" style="width:100%;border-radius:var(--radius);margin-bottom:20px;">
+    <div style="background:var(--white);border-radius:var(--radius);padding:24px;max-width:480px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:16px;">
+        <div style="width:48px;height:48px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24" height="24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+        </div>
+        <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:4px;">Une question ? Besoin de conseils ?</h3>
+        <p style="font-size:.82rem;color:var(--gray);">Un technicien LSR Habitat vous rappelle sous 24h !</p>
+      </div>
+      <form name="rappel-photo" method="POST" data-netlify="true" action="/rappel-confirme.html">
+        <input type="hidden" name="form-name" value="rappel-photo">
+        <input type="hidden" name="page" value="demoussage-toiture">
+        <div class="form-group">
+          <label for="zoom-nom">Nom</label>
+          <input type="text" id="zoom-nom" name="nom" required placeholder="Votre nom">
+        </div>
+        <div class="form-group">
+          <label for="zoom-tel">Téléphone</label>
+          <input type="tel" id="zoom-tel" name="telephone" required placeholder="06 00 00 00 00">
+        </div>
+        <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center;">Demander un rappel</button>
+        <p style="text-align:center;font-size:.73rem;color:var(--gray-light);margin-top:8px;">Gratuit et sans engagement</p>
+      </form>
+    </div>
+  </div>
+</div>
+
 <!-- ARGUMENTS -->
 <section class="full-width-section">
   <div class="section-wrap">
@@ -369,40 +409,21 @@
   calc();
 })();
 </script>
+<script>
+(function() {
+  var trigger = document.getElementById('photo-zoom-trigger');
+  var overlay = document.getElementById('photo-zoom-overlay');
+  var closeBtn = document.getElementById('photo-zoom-close');
+  trigger.addEventListener('click', function() { overlay.style.display = 'block'; document.body.style.overflow = 'hidden'; });
+  closeBtn.addEventListener('click', function() { overlay.style.display = 'none'; document.body.style.overflow = ''; });
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) { overlay.style.display = 'none'; document.body.style.overflow = ''; } });
+})();
+</script>
 <style>
 #dm-range::-webkit-slider-thumb { -webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--teal);cursor:pointer;border:3px solid var(--white);box-shadow:0 2px 6px rgba(0,0,0,.2); }
 #dm-range::-moz-range-thumb { width:24px;height:24px;border-radius:50%;background:var(--teal);cursor:pointer;border:3px solid var(--white);box-shadow:0 2px 6px rgba(0,0,0,.2); }
 @media(max-width:600px){ #devis .section-wrap > div > div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns:1fr !important; } }
 </style>
-<!-- POPUP RAPPEL -->
-<div class="popup-overlay">
-  <div class="popup">
-    <button class="popup__close" aria-label="Fermer">&times;</button>
-    <div class="popup__header">
-      <div class="popup__icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
-      </div>
-      <h3>Une question ? Besoin de conseils ?</h3>
-      <p>Un technicien LSR Habitat vous rappelle sous 24h !</p>
-    </div>
-    <div class="popup__body">
-      <form name="rappel" method="POST" data-netlify="true" action="/rappel-confirme.html">
-        <input type="hidden" name="form-name" value="rappel">
-        <input type="hidden" name="page" value="demoussage-toiture">
-        <div class="form-group">
-          <label for="rappel-nom">Nom</label>
-          <input type="text" id="rappel-nom" name="nom" required placeholder="Votre nom">
-        </div>
-        <div class="form-group">
-          <label for="rappel-tel">Téléphone</label>
-          <input type="tel" id="rappel-tel" name="telephone" required placeholder="06 00 00 00 00">
-        </div>
-        <button type="submit" class="btn btn--primary">Demander un rappel</button>
-      </form>
-      <div class="popup__trust">Gratuit et sans engagement</div>
-    </div>
-  </div>
-</div>
 
 </body>
 </html>
