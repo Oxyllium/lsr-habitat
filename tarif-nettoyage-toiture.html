@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarif Nettoyage & Démoussage Toiture | LSR Habitat — Prix au m²</title>
+  <meta name="description" content="Tarif nettoyage de toiture : 50€/m² TTC. Nettoyage + traitement antimousse : 60€/m² TTC. LSR Habitat, prix transparents en Nouvelle-Aquitaine. Devis gratuit.">
+  <link rel="icon" type="image/png" href="images/logo-lsr-habitat.png">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR71B09K4M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QR71B09K4M');
+    gtag('config', 'AW-17145009177');
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"LocalBusiness",
+    "name":"LSR Habitat",
+    "image":"https://lsr-habitat.fr/images/logo-lsr-habitat.png",
+    "address":{"@type":"PostalAddress","streetAddress":"81 Rte de Compostelle","addressLocality":"Salles","postalCode":"33770","addressCountry":"FR"},
+    "telephone":"+33762397896",
+    "url":"https://lsr-habitat.fr",
+    "aggregateRating":{"@type":"AggregateRating","ratingValue":"5","reviewCount":"19"}
+  }
+  </script>
+  <style>
+    /* PRICING HERO */
+    .pricing-hero {
+      position:relative; text-align:center;
+      padding:40px 24px 32px;
+      background:linear-gradient(135deg,rgba(26,26,46,.93),rgba(79,173,181,.65)),
+                  url('images/demoussage-apres.jpg') center/cover no-repeat;
+      color:var(--white);
+    }
+    .pricing-hero__logo { height:50px; margin:0 auto 16px; filter:brightness(0) invert(1); }
+    .pricing-hero h1 {
+      font-size:clamp(1.5rem,4vw,2.4rem); font-weight:900;
+      line-height:1.12; margin-bottom:8px; letter-spacing:-.02em;
+    }
+    .pricing-hero h1 span { color:var(--orange); }
+    .pricing-hero__sub {
+      font-size:clamp(.88rem,2vw,1.05rem); opacity:.85;
+      max-width:520px; margin:0 auto 20px;
+    }
+    .pricing-hero__phone {
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:1.2rem; font-weight:800; color:var(--white);
+      text-decoration:none; background:var(--red);
+      padding:12px 28px; border-radius:6px;
+      box-shadow:0 4px 15px rgba(193,75,75,.3);
+      transition:all var(--ease);
+    }
+    .pricing-hero__phone:hover { background:var(--red-hover); transform:translateY(-2px); }
+    .pricing-hero__phone svg { width:20px; height:20px; }
+
+    /* PRICING CARDS */
+    .pricing-cards {
+      display:grid; grid-template-columns:repeat(2,1fr);
+      gap:20px; max-width:700px; margin:0 auto;
+    }
+    .pricing-card {
+      background:var(--white); border-radius:var(--radius);
+      box-shadow:var(--shadow-lg); overflow:hidden;
+      text-align:center; position:relative;
+      border:2px solid transparent;
+      transition:transform var(--ease);
+    }
+    .pricing-card:hover { transform:translateY(-4px); }
+    .pricing-card--popular { border-color:var(--orange); }
+    .pricing-card__badge {
+      position:absolute; top:0; right:0;
+      background:var(--orange); color:var(--white);
+      padding:4px 14px; border-radius:0 0 0 8px;
+      font-size:.7rem; font-weight:700; text-transform:uppercase;
+    }
+    .pricing-card__header {
+      padding:24px 20px 16px;
+    }
+    .pricing-card__header h3 {
+      font-size:.95rem; font-weight:700; color:var(--gray);
+      text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;
+    }
+    .pricing-card__price {
+      font-size:2.8rem; font-weight:900; color:var(--dark);
+      line-height:1;
+    }
+    .pricing-card__price small {
+      font-size:.9rem; font-weight:600; color:var(--gray);
+    }
+    .pricing-card__unit {
+      font-size:.82rem; color:var(--gray-light); margin-top:4px;
+    }
+    .pricing-card__features {
+      list-style:none; padding:0 20px 20px; text-align:left;
+    }
+    .pricing-card__features li {
+      position:relative; padding:6px 0 6px 24px;
+      font-size:.82rem; color:var(--gray);
+      border-bottom:1px solid rgba(0,0,0,.05);
+    }
+    .pricing-card__features li:last-child { border:none; }
+    .pricing-card__features li::before {
+      content:'✓'; position:absolute; left:0; top:6px;
+      color:var(--teal); font-weight:700;
+    }
+
+    /* CALCULATOR */
+    .calculator {
+      background:var(--white); border-radius:var(--radius);
+      box-shadow:var(--shadow-lg); max-width:700px;
+      margin:0 auto; padding:28px 24px; text-align:center;
+    }
+    .calculator h2 {
+      font-size:1.15rem; font-weight:800; margin-bottom:4px;
+    }
+    .calculator__sub {
+      font-size:.82rem; color:var(--gray); margin-bottom:20px;
+    }
+    .calculator__input-row {
+      display:flex; align-items:center; justify-content:center;
+      gap:12px; margin-bottom:16px; flex-wrap:wrap;
+    }
+    .calculator__input-row label {
+      font-size:.85rem; font-weight:700;
+    }
+    .calculator__input-row input[type="number"] {
+      width:100px; padding:10px 12px; border:2px solid #E0E0E0;
+      border-radius:5px; font-family:inherit; font-size:1.1rem;
+      font-weight:700; text-align:center; background:var(--bg);
+      transition:border-color var(--ease);
+    }
+    .calculator__input-row input[type="number"]:focus {
+      outline:none; border-color:var(--teal); background:var(--white);
+    }
+    .calculator__range {
+      width:100%; max-width:400px; margin:0 auto 20px;
+      -webkit-appearance:none; appearance:none;
+      height:6px; border-radius:3px; background:#E0E0E0;
+      outline:none;
+    }
+    .calculator__range::-webkit-slider-thumb {
+      -webkit-appearance:none; width:24px; height:24px;
+      border-radius:50%; background:var(--teal);
+      cursor:pointer; border:3px solid var(--white);
+      box-shadow:0 2px 6px rgba(0,0,0,.2);
+    }
+    .calculator__range::-moz-range-thumb {
+      width:24px; height:24px; border-radius:50%;
+      background:var(--teal); cursor:pointer;
+      border:3px solid var(--white);
+      box-shadow:0 2px 6px rgba(0,0,0,.2);
+    }
+    .calculator__results {
+      display:grid; grid-template-columns:1fr 1fr; gap:12px;
+      margin-top:16px;
+    }
+    .calculator__result {
+      background:var(--bg); border-radius:var(--radius);
+      padding:16px 12px;
+    }
+    .calculator__result-label {
+      font-size:.72rem; font-weight:700; color:var(--gray);
+      text-transform:uppercase; letter-spacing:.05em; margin-bottom:4px;
+    }
+    .calculator__result-price {
+      font-size:1.6rem; font-weight:900; color:var(--dark);
+    }
+    .calculator__result--popular {
+      background:var(--teal-light); border:2px solid var(--teal);
+    }
+
+    /* PHOTOS GRID */
+    .photos-grid {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:12px; max-width:900px; margin:0 auto;
+    }
+    .photos-grid img {
+      width:100%; height:200px; object-fit:cover;
+      border-radius:var(--radius); box-shadow:var(--shadow);
+    }
+
+    @media(max-width:600px){
+      .pricing-cards { grid-template-columns:1fr; max-width:340px; }
+      .calculator__results { grid-template-columns:1fr; }
+      .photos-grid { grid-template-columns:1fr; }
+      .photos-grid img { height:220px; }
+    }
+  </style>
+  <!-- Event snippet for Appels site lsr-habitat.fr conversion page -->
+  <script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-17145009177/d1iMCLPO04ccEJmosO8_',
+        'event_callback': callback
+    });
+    return false;
+  }
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vwp8i1p1jt");
+  </script>
+</head>
+<body>
+
+<!-- PHONE BAR MOBILE -->
+<a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="phone-bar">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+  Appelez-nous : 07 62 39 78 96
+</a>
+
+<!-- HERO TARIFS -->
+<section class="pricing-hero">
+  <img src="images/logo-lsr-habitat.png" alt="LSR Habitat" class="pricing-hero__logo">
+  <h1>Tarif Nettoyage & Démoussage de <span>Toiture</span></h1>
+  <p class="pricing-hero__sub">Prix transparents, sans surprise. Devis gratuit et sans engagement.</p>
+
+  <!-- PRICING CARDS in hero -->
+  <div class="pricing-cards" style="margin-bottom:24px;">
+    <div class="pricing-card">
+      <div class="pricing-card__header">
+        <h3>Nettoyage</h3>
+        <div class="pricing-card__price">50€ <small>TTC</small></div>
+        <div class="pricing-card__unit">par m²</div>
+      </div>
+      <ul class="pricing-card__features">
+        <li>Nettoyage haute ou basse pression</li>
+        <li>Élimination mousses et salissures</li>
+        <li>Nettoyage des gouttières inclus</li>
+        <li>Résultat visible immédiatement</li>
+      </ul>
+    </div>
+    <div class="pricing-card pricing-card--popular">
+      <span class="pricing-card__badge">Recommandé</span>
+      <div class="pricing-card__header">
+        <h3>Nettoyage + Antimousse</h3>
+        <div class="pricing-card__price">60€ <small>TTC</small></div>
+        <div class="pricing-card__unit">par m²</div>
+      </div>
+      <ul class="pricing-card__features">
+        <li>Nettoyage complet de la toiture</li>
+        <li>Traitement antimousse certifié</li>
+        <li>Protection longue durée (2-4 ans)</li>
+        <li>Produit certifié Certibiocide</li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="pricing-hero__phone">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+    07 62 39 78 96
+  </a>
+  <div style="margin-top:10px;">
+    <span class="hero__badge"><span class="google-g"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.77-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg></span> <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5 — 19 avis</span>
+  </div>
+</section>
+
+<!-- CALCULATEUR -->
+<section class="full-width-section">
+  <div class="section-wrap">
+    <div class="calculator">
+      <h2>Estimez le coût de votre toiture</h2>
+      <p class="calculator__sub">Renseignez la surface de votre toiture pour obtenir une estimation instantanée.</p>
+      <div class="calculator__input-row">
+        <label for="surface">Surface :</label>
+        <input type="number" id="surface" min="10" max="500" value="80" step="5">
+        <span style="font-weight:700;">m²</span>
+      </div>
+      <input type="range" class="calculator__range" id="surface-range" min="10" max="500" value="80" step="5">
+      <div class="calculator__results">
+        <div class="calculator__result">
+          <div class="calculator__result-label">Nettoyage seul</div>
+          <div class="calculator__result-price" id="price-nettoyage">4 000 €</div>
+        </div>
+        <div class="calculator__result calculator__result--popular">
+          <div class="calculator__result-label">Nettoyage + Antimousse</div>
+          <div class="calculator__result-price" id="price-antimousse">4 800 €</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARGUMENTS -->
+<section class="full-width-section section--gray">
+  <div class="section-wrap">
+    <div class="arguments fade-in">
+      <div class="argument">
+        <div class="argument__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="argument__text">Réactivité</div>
+      </div>
+      <div class="argument">
+        <div class="argument__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg></div>
+        <div class="argument__text">Pas de sous-traitance</div>
+      </div>
+      <div class="argument">
+        <div class="argument__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="argument__text">Équipe jeune et dynamique</div>
+      </div>
+      <div class="argument">
+        <div class="argument__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="argument__text">Entreprise familiale</div>
+      </div>
+      <div class="argument">
+        <div class="argument__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <div class="argument__text">Bilan gratuit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVIS FORM -->
+<section class="full-width-section" id="devis">
+  <div class="section-wrap" style="max-width:500px;">
+    <div class="form-card">
+      <div class="form-card__header">
+        <h3>Devis gratuit personnalisé</h3>
+        <p>Réponse sous 24h</p>
+      </div>
+      <div class="form-card__body">
+        <form name="tarif-nettoyage" method="POST" data-netlify="true" action="/demande-envoyee.html">
+          <input type="hidden" name="form-name" value="tarif-nettoyage">
+          <input type="hidden" name="service" value="Tarif nettoyage/démoussage toiture">
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+          </div>
+          <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="votre@email.fr">
+          </div>
+          <div class="form-group">
+            <label for="ville">Ville</label>
+            <input type="text" id="ville" name="ville" placeholder="Ex : Bordeaux, Arcachon...">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Surface, type de toiture, prestation souhaitée..."></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary">Envoyer ma demande</button>
+          <div class="form-card__trust">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Vos données restent confidentielles
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS GOOGLE -->
+<section class="full-width-section section--gray">
+  <div class="section-wrap">
+    <div class="reviews-header" style="justify-content:center;">
+      <span class="google-g"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.77-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg></span>
+      <span class="reviews-header__score">5,0</span>
+      <span class="reviews-header__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="reviews-header__count">19 avis Google</span>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card"><div class="review-card__top"><div class="review-card__avatar" style="background:#7B61FF;">M</div><div><div class="review-card__name">Myriam Bain</div><div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><div class="review-card__text">Nettoyage de toiture et réfection du zingage, travail sérieux et bon suivi. Réparation suite à infiltration d'eau. Je recommande.</div></div>
+      <div class="review-card"><div class="review-card__top"><div class="review-card__avatar" style="background:#E8913A;">K</div><div><div class="review-card__name">Ktie Kate</div><div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><div class="review-card__text">Très heureuse du travail effectué ! Nettoyage de toiture et changement de tuiles, traitement de charpente. Délais respectés, travail de qualité.</div></div>
+      <div class="review-card"><div class="review-card__top"><div class="review-card__avatar" style="background:#4FADB5;">L</div><div><div class="review-card__name">Lola Alvarez</div><div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><div class="review-card__text">Réalisation de ma couverture de toiture, entièrement satisfaite. Travail réalisé avec sérieux et professionnalisme. Équipe réactive et agréable.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVANT / APRES -->
+<section class="full-width-section">
+  <div class="section-wrap">
+    <h2 class="section__title section__title--center">Avant / Après</h2>
+    <p style="color:var(--gray);font-size:.88rem;margin:6px auto 12px;text-align:center;">Faites glisser la barre pour comparer le résultat.</p>
+    <div class="ba-slider">
+      <img src="images/demoussage-avant.jpg" alt="Toiture avant nettoyage" class="ba-slider__before">
+      <img src="images/demoussage-apres.jpg" alt="Toiture après nettoyage" class="ba-slider__after">
+      <div class="ba-slider__handle"></div>
+      <span class="ba-label ba-label--before">Avant</span>
+      <span class="ba-label ba-label--after">Après</span>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section class="full-width-section section--gray">
+  <div class="section-wrap">
+    <h2 class="section__title section__title--center">Nos réalisations</h2>
+    <div class="photos-grid" style="margin-top:16px;">
+      <img src="images/demoussage-avant.jpg" alt="Toiture avant nettoyage">
+      <img src="images/demoussage-apres.jpg" alt="Toiture après nettoyage">
+      <img src="images/hydrofugation-toiture.jpg" alt="Traitement hydrofuge toiture">
+    </div>
+  </div>
+</section>
+
+<!-- CONTENU SEO -->
+<section class="full-width-section">
+  <div class="section-wrap">
+    <div class="service-detail">
+      <h2 class="section__title">Combien coûte un nettoyage de toiture ?</h2>
+      <p>Le tarif d'un nettoyage de toiture dépend de plusieurs facteurs : la surface, le type de couverture, l'état général et l'accessibilité du toit. Chez LSR Habitat, nous pratiquons des prix clairs et transparents pour vous permettre de budgétiser sereinement l'entretien de votre toiture.</p>
+
+      <h3>Nos tarifs en détail</h3>
+      <ul>
+        <li><strong>Nettoyage seul à 50€/m² TTC</strong> — Élimination des mousses, lichens et salissures par nettoyage haute ou basse pression selon le type de tuiles. Nettoyage des gouttières inclus.</li>
+        <li><strong>Nettoyage + traitement antimousse à 60€/m² TTC</strong> — En plus du nettoyage complet, application d'un traitement biocide certifié Certibiocide qui empêche la repousse pendant 2 à 4 ans.</li>
+      </ul>
+
+      <div class="service-highlight">
+        <p><strong>Pourquoi choisir le traitement antimousse ?</strong> Sans traitement, la mousse revient en quelques mois. Le traitement antimousse certifié protège votre toiture sur la durée et vous évite un nettoyage annuel. C'est l'option la plus rentable à long terme.</p>
+      </div>
+
+      <h3>Ce qui est inclus dans nos tarifs</h3>
+      <ul>
+        <li>Déplacement et inspection de la toiture</li>
+        <li>Protection des abords (terrasse, plantes, façade)</li>
+        <li>Nettoyage complet du toit et des gouttières</li>
+        <li>Évacuation des déchets</li>
+        <li>Conseil personnalisé sur l'entretien futur</li>
+      </ul>
+
+      <h3>Pourquoi choisir LSR Habitat ?</h3>
+      <ul>
+        <li>Prix transparents, devis gratuit et sans engagement</li>
+        <li>Entreprise familiale, aucune sous-traitance</li>
+        <li>Certification Certibiocide pour les traitements antimousse</li>
+        <li>Intervention rapide sur toute la Nouvelle-Aquitaine</li>
+        <li>5/5 sur Google — 19 avis de clients satisfaits</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ZONE D'INTERVENTION -->
+<section class="full-width-section section--gray">
+  <div class="section-wrap fade-in">
+    <h2 class="section__title">Zone d'intervention</h2>
+    <p style="color:var(--gray);font-size:.88rem;margin:4px 0 0;">Nous intervenons sur tout le Bassin d'Arcachon et la Nouvelle-Aquitaine.</p>
+    <div class="zone-grid">
+      <span class="zone-tag zone-tag--hl">Bassin d'Arcachon</span>
+      <span class="zone-tag">Bordeaux</span>
+      <span class="zone-tag">Mérignac</span>
+      <span class="zone-tag">Pessac</span>
+      <span class="zone-tag">Libourne</span>
+      <span class="zone-tag">Arcachon</span>
+      <span class="zone-tag">La Teste-de-Buch</span>
+      <span class="zone-tag">Gujan-Mestras</span>
+      <span class="zone-tag">Biganos</span>
+      <span class="zone-tag">Audenge</span>
+      <span class="zone-tag">Lanton</span>
+      <span class="zone-tag">Salles</span>
+      <span class="zone-tag">La Brède</span>
+      <span class="zone-tag">Médoc</span>
+      <span class="zone-tag zone-tag--hl">Toute la Nouvelle-Aquitaine</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <h2>Un devis gratuit en 2 minutes</h2>
+  <p>Appelez-nous ou remplissez le formulaire, on vous répond sous 24h.</p>
+  <a href="#devis" class="btn btn--primary">Demander un devis</a>
+  <br>
+  <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="cta-phone">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+    07 62 39 78 96
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div>LSR Habitat — 81 Rte de Compostelle, 33770 Salles — 07 62 39 78 96</div>
+  <div class="footer__links">
+    <a href="index.html">Accueil</a> |
+    <a href="nos-prestations.html">Nos prestations</a> |
+    <a href="demande-de-devis.html">Demander un devis</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(function() {
+  var surfaceInput = document.getElementById('surface');
+  var surfaceRange = document.getElementById('surface-range');
+  var priceNettoyage = document.getElementById('price-nettoyage');
+  var priceAntimousse = document.getElementById('price-antimousse');
+
+  function formatPrice(n) {
+    return n.toLocaleString('fr-FR') + ' €';
+  }
+
+  function updatePrices() {
+    var m2 = parseInt(surfaceInput.value) || 80;
+    priceNettoyage.textContent = formatPrice(m2 * 50);
+    priceAntimousse.textContent = formatPrice(m2 * 60);
+  }
+
+  surfaceInput.addEventListener('input', function() {
+    surfaceRange.value = this.value;
+    updatePrices();
+  });
+
+  surfaceRange.addEventListener('input', function() {
+    surfaceInput.value = this.value;
+    updatePrices();
+  });
+
+  updatePrices();
+})();
+</script>
+
+<!-- POPUP RAPPEL -->
+<div class="popup-overlay">
+  <div class="popup">
+    <button class="popup__close" aria-label="Fermer">&times;</button>
+    <div class="popup__header">
+      <div class="popup__icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
+      </div>
+      <h3>Une question ? Besoin de conseils ?</h3>
+      <p>Un technicien LSR Habitat vous rappelle sous 24h !</p>
+    </div>
+    <div class="popup__body">
+      <form name="rappel" method="POST" data-netlify="true" action="/rappel-confirme.html">
+        <input type="hidden" name="form-name" value="rappel">
+        <input type="hidden" name="page" value="tarif-nettoyage-toiture">
+        <div class="form-group">
+          <label for="rappel-nom">Nom</label>
+          <input type="text" id="rappel-nom" name="nom" required placeholder="Votre nom">
+        </div>
+        <div class="form-group">
+          <label for="rappel-tel">Téléphone</label>
+          <input type="tel" id="rappel-tel" name="telephone" required placeholder="06 00 00 00 00">
+        </div>
+        <button type="submit" class="btn btn--primary">Demander un rappel</button>
+      </form>
+      <div class="popup__trust">Gratuit et sans engagement</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
