@@ -388,7 +388,7 @@
 <style>
 .promo-grid { display:grid;grid-template-columns:1fr 280px;gap:14px;max-width:800px;margin:0 auto;align-items:stretch; }
 .promo-grid__cards { display:grid;grid-template-columns:1fr;gap:14px; }
-.promo-grid__photo { border-radius:var(--radius);overflow:hidden;min-height:200px; }
+.promo-grid__photo { border-radius:var(--radius);overflow:hidden;min-height:200px;z-index:3;position:relative; }
 @media(max-width:768px){
   .promo-grid { grid-template-columns:1fr;max-width:400px; }
   .promo-grid__cards { grid-template-columns:repeat(2,1fr); }
