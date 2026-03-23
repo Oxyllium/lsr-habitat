@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tarif Nettoyage & Démoussage Toiture | LSR Habitat — Prix au m²</title>
-  <meta name="description" content="Tarif nettoyage de toiture : 50€/m² TTC. Nettoyage + traitement antimousse : 60€/m² TTC. LSR Habitat, prix transparents en Nouvelle-Aquitaine. Devis gratuit.">
+  <meta name="description" content="Tarif nettoyage de toiture en promo : 10€/m² TTC au lieu de 14€. Nettoyage + antimousse : 20€/m² au lieu de 25€. LSR Habitat, Nouvelle-Aquitaine. Devis gratuit.">
   <link rel="icon" type="image/png" href="images/logo-lsr-habitat.png">
   <link rel="stylesheet" href="styles.css">
   <!-- Google tag (gtag.js) -->
@@ -29,72 +29,7 @@
   }
   </script>
   <style>
-    /* PRICING HERO */
-    .pricing-hero {
-      position:relative; text-align:center;
-      padding:40px 24px 32px;
-      background:linear-gradient(135deg,rgba(26,26,46,.93),rgba(79,173,181,.65)),
-                  url('images/demoussage-apres.jpg') center/cover no-repeat;
-      color:var(--white);
-    }
-    .pricing-hero__logo { height:50px; margin:0 auto 16px; filter:brightness(0) invert(1); }
-    .pricing-hero h1 {
-      font-size:clamp(1.5rem,4vw,2.4rem); font-weight:900;
-      line-height:1.12; margin-bottom:8px; letter-spacing:-.02em;
-    }
-    .pricing-hero h1 span { color:var(--orange); }
-    .pricing-hero__sub {
-      font-size:clamp(.88rem,2vw,1.05rem); opacity:.85;
-      max-width:520px; margin:0 auto 20px;
-    }
-    .pricing-hero__phone {
-      display:inline-flex; align-items:center; gap:8px;
-      font-size:1.2rem; font-weight:800; color:var(--white);
-      text-decoration:none; background:var(--red);
-      padding:12px 28px; border-radius:6px;
-      box-shadow:0 4px 15px rgba(193,75,75,.3);
-      transition:all var(--ease);
-    }
-    .pricing-hero__phone:hover { background:var(--red-hover); transform:translateY(-2px); }
-    .pricing-hero__phone svg { width:20px; height:20px; }
-
-    /* PRICING CARDS */
-    .pricing-cards {
-      display:grid; grid-template-columns:repeat(2,1fr);
-      gap:20px; max-width:700px; margin:0 auto;
-    }
-    .pricing-card {
-      background:var(--white); border-radius:var(--radius);
-      box-shadow:var(--shadow-lg); overflow:hidden;
-      text-align:center; position:relative;
-      border:2px solid transparent;
-      transition:transform var(--ease);
-    }
-    .pricing-card:hover { transform:translateY(-4px); }
-    .pricing-card--popular { border-color:var(--orange); }
-    .pricing-card__badge {
-      position:absolute; top:0; right:0;
-      background:var(--orange); color:var(--white);
-      padding:4px 14px; border-radius:0 0 0 8px;
-      font-size:.7rem; font-weight:700; text-transform:uppercase;
-    }
-    .pricing-card__header {
-      padding:24px 20px 16px;
-    }
-    .pricing-card__header h3 {
-      font-size:.95rem; font-weight:700; color:var(--gray);
-      text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px;
-    }
-    .pricing-card__price {
-      font-size:2.8rem; font-weight:900; color:var(--dark);
-      line-height:1;
-    }
-    .pricing-card__price small {
-      font-size:.9rem; font-weight:600; color:var(--gray);
-    }
-    .pricing-card__unit {
-      font-size:.82rem; color:var(--gray-light); margin-top:4px;
-    }
+    /* PRICING CARDS (unused, kept minimal) */
     .pricing-card__features {
       list-style:none; padding:0 20px 20px; text-align:left;
     }
@@ -224,48 +159,56 @@
 </a>
 
 <!-- HERO TARIFS -->
-<section class="pricing-hero">
-  <img src="images/logo-lsr-habitat.png" alt="LSR Habitat" class="pricing-hero__logo">
-  <h1>Tarif Nettoyage & Démoussage de <span>Toiture</span></h1>
-  <p class="pricing-hero__sub">Prix transparents, sans surprise. Devis gratuit et sans engagement.</p>
+<section class="hero">
+  <div class="hero__bg" style="background-image:url('images/nettoyage-toiture-direct.jpg')"></div>
+  <div class="hero__overlay"></div>
+  <div class="hero__inner">
+    <img src="images/logo-lsr-habitat.png" alt="LSR Habitat" class="hero__logo">
+    <h1>Tarif Nettoyage & Démoussage de <span>Toiture</span></h1>
+    <p class="hero__sub">Prix transparents, offre promo cette semaine. Devis gratuit.</p>
 
-  <!-- PRICING CARDS in hero -->
-  <div class="pricing-cards" style="margin-bottom:24px;">
-    <div class="pricing-card">
-      <div class="pricing-card__header">
-        <h3>Nettoyage</h3>
-        <div class="pricing-card__price">50€ <small>TTC</small></div>
-        <div class="pricing-card__unit">par m²</div>
-      </div>
-      <ul class="pricing-card__features">
-        <li>Nettoyage haute ou basse pression</li>
-        <li>Élimination mousses et salissures</li>
-        <li>Nettoyage des gouttières inclus</li>
-        <li>Résultat visible immédiatement</li>
-      </ul>
+    <!-- PROMO COUNTDOWN -->
+    <div style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--white);padding:8px 18px;border-radius:50px;font-size:.85rem;font-weight:700;margin-bottom:16px;">
+      Offre valable encore <span id="countdown" style="font-variant-numeric:tabular-nums;"></span>
     </div>
-    <div class="pricing-card pricing-card--popular">
-      <span class="pricing-card__badge">Recommandé</span>
-      <div class="pricing-card__header">
-        <h3>Nettoyage + Antimousse</h3>
-        <div class="pricing-card__price">60€ <small>TTC</small></div>
-        <div class="pricing-card__unit">par m²</div>
-      </div>
-      <ul class="pricing-card__features">
-        <li>Nettoyage complet de la toiture</li>
-        <li>Traitement antimousse certifié</li>
-        <li>Protection longue durée (2-4 ans)</li>
-        <li>Produit certifié Certibiocide</li>
-      </ul>
-    </div>
-  </div>
 
-  <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="pricing-hero__phone">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>
-    07 62 39 78 96
-  </a>
-  <div style="margin-top:10px;">
-    <span class="hero__badge"><span class="google-g"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.77-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg></span> <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5 — 19 avis</span>
+    <!-- PRICING + PHOTO GRID -->
+    <div class="promo-grid">
+      <div class="promo-grid__cards">
+        <div style="background:var(--white);border-radius:var(--radius);padding:20px 16px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.15);">
+          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gray);letter-spacing:.05em;margin-bottom:6px;">Nettoyage seul</div>
+          <div style="font-size:1.1rem;color:var(--red);text-decoration:line-through;font-weight:700;">14 € TTC/m²</div>
+          <div style="font-size:2.2rem;font-weight:900;color:var(--dark);line-height:1;">10 € <small style="font-size:.8rem;font-weight:600;color:var(--gray);">TTC/m²</small></div>
+          <div style="display:inline-block;background:var(--red);color:var(--white);padding:3px 12px;border-radius:50px;font-size:.75rem;font-weight:700;margin:8px 0 10px;">PROMO -29%</div>
+          <ul style="list-style:none;text-align:left;font-size:.76rem;color:var(--gray);">
+            <li style="padding:3px 0 3px 18px;position:relative;"><span style="position:absolute;left:0;color:var(--teal);font-weight:700;">&#10003;</span> Haute ou basse pression</li>
+            <li style="padding:3px 0 3px 18px;position:relative;"><span style="position:absolute;left:0;color:var(--teal);font-weight:700;">&#10003;</span> Gouttières incluses</li>
+            <li style="padding:3px 0 3px 18px;position:relative;"><span style="position:absolute;left:0;color:var(--teal);font-weight:700;">&#10003;</span> Résultat immédiat</li>
+          </ul>
+        </div>
+        <div style="background:var(--white);border-radius:var(--radius);padding:20px 16px;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.15);border:2px solid var(--orange);position:relative;">
+          <div style="position:absolute;top:0;right:0;background:var(--orange);color:var(--white);padding:3px 12px;border-radius:0 0 0 8px;font-size:.68rem;font-weight:700;text-transform:uppercase;">Recommandé</div>
+          <div style="font-size:.72rem;font-weight:700;text-transform:uppercase;color:var(--gray);letter-spacing:.05em;margin-bottom:6px;">Nettoyage + Antimousse</div>
+          <div style="font-size:1.1rem;color:var(--red);text-decoration:line-through;font-weight:700;">25 € TTC/m²</div>
+          <div style="font-size:2.2rem;font-weight:900;color:var(--dark);line-height:1;">20 € <small style="font-size:.8rem;font-weight:600;color:var(--gray);">TTC/m²</small></div>
+          <div style="display:inline-block;background:var(--red);color:var(--white);padding:3px 12px;border-radius:50px;font-size:.75rem;font-weight:700;margin:8px 0 10px;">PROMO -20%</div>
+          <ul style="list-style:none;text-align:left;font-size:.76rem;color:var(--gray);">
+            <li style="padding:3px 0 3px 18px;position:relative;"><span style="position:absolute;left:0;color:var(--teal);font-weight:700;">&#10003;</span> Garantie 10 ans</li>
+            <li style="padding:3px 0 3px 18px;position:relative;"><span style="position:absolute;left:0;color:var(--teal);font-weight:700;">&#10003;</span> Suivi annuel</li>
+            <li style="padding:3px 0 3px 18px;position:relative;"><span style="position:absolute;left:0;color:var(--teal);font-weight:700;">&#10003;</span> Protection longue durée</li>
+          </ul>
+        </div>
+      </div>
+      <div class="promo-grid__photo">
+        <img src="images/nettoyage-toiture-direct.jpg" alt="Nettoyage de toiture en cours - LSR Habitat" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);box-shadow:0 8px 30px rgba(0,0,0,.15);">
+      </div>
+    </div>
+
+    <div class="hero__actions" style="justify-content:center;margin-top:18px;">
+      <a href="#devis" class="btn btn--primary">Profiter de l'offre</a>
+      <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="btn btn--outline">07 62 39 78 96</a>
+      <span class="hero__badge"><span class="google-g"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.77-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg></span> <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5 — 19 avis</span>
+    </div>
   </div>
 </section>
 
@@ -284,11 +227,13 @@
       <div class="calculator__results">
         <div class="calculator__result">
           <div class="calculator__result-label">Nettoyage seul</div>
-          <div class="calculator__result-price" id="price-nettoyage">4 000 €</div>
+          <div style="font-size:.9rem;color:var(--red);text-decoration:line-through;font-weight:700;" id="old-nettoyage">1 120 €</div>
+          <div class="calculator__result-price" id="price-nettoyage">800 €</div>
         </div>
         <div class="calculator__result calculator__result--popular">
           <div class="calculator__result-label">Nettoyage + Antimousse</div>
-          <div class="calculator__result-price" id="price-antimousse">4 800 €</div>
+          <div style="font-size:.9rem;color:var(--red);text-decoration:line-through;font-weight:700;" id="old-antimousse">2 000 €</div>
+          <div class="calculator__result-price" id="price-antimousse">1 600 €</div>
         </div>
       </div>
       <p style="font-size:.75rem;color:var(--gray-light);margin-top:12px;line-height:1.4;">* Estimation indicative. Le tarif définitif est établi par un technicien LSR Habitat après étude personnalisée de votre toiture.</p>
@@ -411,8 +356,8 @@
 
       <h3>Nos tarifs en détail</h3>
       <ul>
-        <li><strong>Nettoyage seul à 50€/m² TTC</strong> — Élimination des mousses, lichens et salissures par nettoyage haute ou basse pression selon le type de tuiles. Nettoyage des gouttières inclus.</li>
-        <li><strong>Nettoyage + traitement antimousse à 60€/m² TTC</strong> — En plus du nettoyage complet, application d'un traitement biocide certifié Certibiocide qui empêche la repousse pendant 2 à 4 ans.</li>
+        <li><strong>Nettoyage seul à 10€/m² TTC (au lieu de 14€)</strong> — Élimination des mousses, lichens et salissures par nettoyage haute ou basse pression selon le type de tuiles. Nettoyage des gouttières inclus.</li>
+        <li><strong>Nettoyage + traitement antimousse à 20€/m² TTC (au lieu de 25€)</strong> — En plus du nettoyage complet, application d'un traitement biocide certifié Certibiocide. Garantie 10 ans, suivi annuel.</li>
       </ul>
 
       <div class="service-highlight">
@@ -490,38 +435,78 @@
 <script src="script.js"></script>
 <script>
 (function() {
+  // Countdown
+  function getNextSunday() {
+    var now = new Date();
+    var day = now.getDay();
+    var daysUntilSunday = day === 0 ? 0 : 7 - day;
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilSunday, 23, 59, 59);
+  }
+  var endDate = getNextSunday();
+  var countdownEl = document.getElementById('countdown');
+  function updateCountdown() {
+    var now = new Date();
+    var diff = endDate - now;
+    if (diff <= 0) { endDate = getNextSunday(); diff = endDate - now; }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var parts = [];
+    if (d > 0) parts.push(d + 'j');
+    parts.push(String(h).padStart(2,'0') + 'h');
+    parts.push(String(m).padStart(2,'0') + 'min');
+    parts.push(String(s).padStart(2,'0') + 's');
+    countdownEl.textContent = parts.join(' ');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // Simulator
   var surfaceInput = document.getElementById('surface');
   var surfaceRange = document.getElementById('surface-range');
   var priceNettoyage = document.getElementById('price-nettoyage');
   var priceAntimousse = document.getElementById('price-antimousse');
-
-  function formatPrice(n) {
-    return n.toLocaleString('fr-FR') + ' €';
-  }
-
+  var oldNettoyage = document.getElementById('old-nettoyage');
+  var oldAntimousse = document.getElementById('old-antimousse');
   var surfaceHidden = document.getElementById('surface-hidden');
+
+  function fmt(n) { return n.toLocaleString('fr-FR') + ' \u20AC'; }
 
   function updatePrices() {
     var m2 = parseInt(surfaceInput.value) || 80;
-    priceNettoyage.textContent = formatPrice(m2 * 50);
-    priceAntimousse.textContent = formatPrice(m2 * 60);
-    surfaceHidden.value = m2 + ' m²';
+    priceNettoyage.textContent = fmt(m2 * 10);
+    priceAntimousse.textContent = fmt(m2 * 20);
+    oldNettoyage.textContent = fmt(m2 * 14);
+    oldAntimousse.textContent = fmt(m2 * 25);
+    surfaceHidden.value = m2 + ' m\u00B2';
   }
 
   surfaceInput.addEventListener('input', function() {
     surfaceRange.value = this.value;
     updatePrices();
   });
-
   surfaceRange.addEventListener('input', function() {
     surfaceInput.value = this.value;
     updatePrices();
   });
-
   updatePrices();
 })();
 </script>
-
+<style>
+.promo-grid { display:grid;grid-template-columns:1fr 280px;gap:14px;max-width:800px;margin:0 auto;align-items:stretch; }
+.promo-grid__cards { display:grid;grid-template-columns:1fr;gap:14px; }
+.promo-grid__photo { border-radius:var(--radius);overflow:hidden;min-height:200px; }
+@media(max-width:768px){
+  .promo-grid { grid-template-columns:1fr;max-width:400px; }
+  .promo-grid__cards { grid-template-columns:repeat(2,1fr); }
+  .promo-grid__photo { max-height:220px; }
+  .promo-grid__photo img { height:220px !important; }
+}
+@media(max-width:500px){
+  .promo-grid__cards { grid-template-columns:1fr; }
+}
+</style>
 
 </body>
 </html>
