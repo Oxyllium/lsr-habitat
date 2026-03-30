@@ -108,48 +108,14 @@
       clearTimeout(tipTimer);
     });
 
-    // Find Odoo livechat root (may use shadow DOM in v17+)
-    var odooRoot = null;
-    var odooInnerBtn = null;
-
-    function findOdooChat() {
-      // Look for the Odoo root element
-      var roots = document.querySelectorAll('.o-livechat-root, .o_livechat_button, [class*="o-livechat"], [class*="o_livechat"]');
-      for (var i = 0; i < roots.length; i++) {
-        var el = roots[i];
-        odooRoot = el;
-        // Hide it visually
-        el.style.cssText = 'position:fixed!important;bottom:-9999px!important;right:-9999px!important;opacity:0!important;pointer-events:none!important;';
-        // Check shadow DOM
-        if (el.shadowRoot) {
-          odooInnerBtn = el.shadowRoot.querySelector('button') || el.shadowRoot.querySelector('[class*="button"]');
-        }
-        // Also check for direct button
-        if (!odooInnerBtn) {
-          odooInnerBtn = el.tagName === 'BUTTON' ? el : el.querySelector('button');
-        }
-      }
-    }
-
-    // Poll until Odoo widget loads (it's deferred)
-    var pollCount = 0;
-    var poller = setInterval(function() {
-      findOdooChat();
-      pollCount++;
-      if (odooRoot || pollCount > 30) clearInterval(poller);
-    }, 500);
-
-    // Click handler
+    // Click — open Odoo livechat in popup
     btn.addEventListener('click', function() {
       tip.classList.remove('visible');
-      findOdooChat(); // refresh
-      if (odooInnerBtn) {
-        odooInnerBtn.style.pointerEvents = 'auto';
-        odooInnerBtn.click();
-      } else if (odooRoot) {
-        odooRoot.style.pointerEvents = 'auto';
-        odooRoot.click();
-      }
+      window.open(
+        'https://oxyllium.odoo.com/im_livechat/support/36',
+        'lsr-chat',
+        'width=420,height=520,scrollbars=no,resizable=yes'
+      );
     });
   }
 
