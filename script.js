@@ -108,25 +108,48 @@
       clearTimeout(tipTimer);
     });
 
-    // Click handler — find and trigger Odoo chat
+    // Find Odoo livechat root (may use shadow DOM in v17+)
+    var odooRoot = null;
+    var odooInnerBtn = null;
+
+    function findOdooChat() {
+      // Look for the Odoo root element
+      var roots = document.querySelectorAll('.o-livechat-root, .o_livechat_button, [class*="o-livechat"], [class*="o_livechat"]');
+      for (var i = 0; i < roots.length; i++) {
+        var el = roots[i];
+        odooRoot = el;
+        // Hide it visually
+        el.style.cssText = 'position:fixed!important;bottom:-9999px!important;right:-9999px!important;opacity:0!important;pointer-events:none!important;';
+        // Check shadow DOM
+        if (el.shadowRoot) {
+          odooInnerBtn = el.shadowRoot.querySelector('button') || el.shadowRoot.querySelector('[class*="button"]');
+        }
+        // Also check for direct button
+        if (!odooInnerBtn) {
+          odooInnerBtn = el.tagName === 'BUTTON' ? el : el.querySelector('button');
+        }
+      }
+    }
+
+    // Poll until Odoo widget loads (it's deferred)
+    var pollCount = 0;
+    var poller = setInterval(function() {
+      findOdooChat();
+      pollCount++;
+      if (odooRoot || pollCount > 30) clearInterval(poller);
+    }, 500);
+
+    // Click handler
     btn.addEventListener('click', function() {
       tip.classList.remove('visible');
-      // Try all known Odoo selectors
-      var odooBtn = document.querySelector('.o_livechat_button')
-        || document.querySelector('[class*="o-livechat"] button')
-        || document.querySelector('[class*="o_livechat"] button');
-      if (odooBtn) {
-        odooBtn.style.pointerEvents = 'auto';
-        odooBtn.click();
-        return;
+      findOdooChat(); // refresh
+      if (odooInnerBtn) {
+        odooInnerBtn.style.pointerEvents = 'auto';
+        odooInnerBtn.click();
+      } else if (odooRoot) {
+        odooRoot.style.pointerEvents = 'auto';
+        odooRoot.click();
       }
-      // Fallback: look inside shadow DOM
-      document.querySelectorAll('[class*="o-livechat-root"], [class*="o_livechat"]').forEach(function(root) {
-        if (root.shadowRoot) {
-          var inner = root.shadowRoot.querySelector('button');
-          if (inner) { inner.click(); }
-        }
-      });
     });
   }
 
