@@ -108,15 +108,7 @@
       clearTimeout(tipTimer);
     });
 
-    // Click — open Odoo livechat in popup
-    btn.addEventListener('click', function() {
-      tip.classList.remove('visible');
-      window.open(
-        'https://oxyllium.odoo.com/im_livechat/support/36',
-        'lsr-chat',
-        'width=420,height=520,scrollbars=no,resizable=yes'
-      );
-    });
+    // No click handler needed — invisible Odoo button sits on top and captures clicks directly
   }
 
   /* ---- Init ---- */
