@@ -83,47 +83,10 @@
     });
   }
 
-  /* ---- Resize Odoo livechat button ---- */
-  function styleOdooChat() {
-    var mobile = window.innerWidth <= 960;
-    var roots = document.querySelectorAll('.o-livechat-root, [class*="o-livechat-root"]');
-    roots.forEach(function(root) {
-      // Position the root
-      if (mobile) {
-        root.style.cssText += ';bottom:auto!important;top:50%!important;transform:translateY(-50%)!important;right:0!important;';
-      }
-      // If shadow DOM, inject styles inside
-      if (root.shadowRoot) {
-        var id = 'lsr-chat-style';
-        if (!root.shadowRoot.getElementById(id)) {
-          var s = document.createElement('style');
-          s.id = id;
-          s.textContent =
-            'button, .o-livechat-LivechatButton, [class*="LivechatButton"] {' +
-            '  width:' + (mobile ? '60' : '70') + 'px!important;' +
-            '  height:' + (mobile ? '60' : '70') + 'px!important;' +
-            '  border-radius:50%!important;' +
-            '}' +
-            'button img, button svg, [class*="LivechatButton"] img, [class*="LivechatButton"] svg {' +
-            '  width:36px!important; height:36px!important;' +
-            '}';
-          root.shadowRoot.appendChild(s);
-        }
-      }
-    });
-    if (!roots.length) return false;
-    return true;
-  }
-
   /* ---- Init ---- */
   document.addEventListener('DOMContentLoaded', function() {
     initSliders();
     initScrollAnimations();
     initSmoothScroll();
-    // Poll for Odoo widget (loads deferred)
-    var tries = 0;
-    var poll = setInterval(function() {
-      if (styleOdooChat() || ++tries > 20) clearInterval(poll);
-    }, 500);
   });
 })();
