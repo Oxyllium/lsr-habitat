@@ -84,13 +84,18 @@
   }
 
   /* ---- Move Odoo chat above phone bar on mobile ---- */
-  function nudgeIfChat(el) {
+  function moveOdooUp() {
     if (window.innerWidth > 960) return;
-    if (el.nodeType !== 1) return;
-    if (el.classList && el.classList.contains('phone-bar')) return;
-    var s = window.getComputedStyle(el);
-    if (s.position === 'fixed' && parseInt(s.bottom) < 130) {
-      el.style.setProperty('bottom', '130px', 'important');
+    var all = document.body.getElementsByTagName('*');
+    for (var i = 0; i < all.length; i++) {
+      var el = all[i];
+      if (el.closest('.phone-bar')) continue;
+      if (el.closest('.hero')) continue;
+      if (el.closest('.footer')) continue;
+      var s = window.getComputedStyle(el);
+      if (s.position === 'fixed' && parseInt(s.bottom) >= 0 && parseInt(s.bottom) < 60) {
+        el.style.setProperty('bottom', '130px', 'important');
+      }
     }
   }
 
@@ -99,10 +104,6 @@
     initSliders();
     initScrollAnimations();
     initSmoothScroll();
-    new MutationObserver(function(muts) {
-      muts.forEach(function(m) {
-        m.addedNodes.forEach(nudgeIfChat);
-      });
-    }).observe(document.body, { childList: true });
+    setInterval(moveOdooUp, 1000);
   });
 })();
