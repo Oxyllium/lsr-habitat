@@ -89,8 +89,8 @@
     if (el.nodeType !== 1) return;
     if (el.classList && el.classList.contains('phone-bar')) return;
     var s = window.getComputedStyle(el);
-    if (s.position === 'fixed' && parseInt(s.bottom) < 30) {
-      el.style.setProperty('bottom', '60px', 'important');
+    if (s.position === 'fixed' && parseInt(s.bottom) < 80) {
+      el.style.setProperty('bottom', '70px', 'important');
     }
   }
 
