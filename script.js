@@ -84,18 +84,19 @@
   }
 
   /* ---- Move Odoo chat above phone bar on mobile ---- */
+  var knownTags = ['SCRIPT','LINK','STYLE','META','SECTION','FOOTER','NOSCRIPT'];
   function moveOdooUp() {
     if (window.innerWidth > 960) return;
-    var all = document.body.getElementsByTagName('*');
-    for (var i = 0; i < all.length; i++) {
-      var el = all[i];
-      if (el.closest('.phone-bar')) continue;
-      if (el.closest('.hero')) continue;
-      if (el.closest('.footer')) continue;
-      var s = window.getComputedStyle(el);
-      if (s.position === 'fixed' && parseInt(s.bottom) >= 0 && parseInt(s.bottom) < 60) {
-        el.style.setProperty('bottom', '130px', 'important');
-      }
+    var children = document.body.children;
+    for (var i = 0; i < children.length; i++) {
+      var el = children[i];
+      if (knownTags.indexOf(el.tagName) !== -1) continue;
+      if (el.classList.contains('phone-bar')) continue;
+      if (el.id === 'devis') continue;
+      // Anything else is likely Odoo — force it up
+      el.style.setProperty('bottom', '130px', 'important');
+      el.style.setProperty('position', 'fixed', 'important');
+      el.style.setProperty('z-index', '9998', 'important');
     }
   }
 
