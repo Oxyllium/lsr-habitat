@@ -83,10 +83,47 @@
     });
   }
 
+  /* ---- Custom Chat Button ---- */
+  function initChat() {
+    // Create button
+    var btn = document.createElement('button');
+    btn.className = 'chat-btn';
+    btn.setAttribute('aria-label', 'Ouvrir le chat');
+    btn.innerHTML = '<span class="chat-btn__icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg><span class="chat-btn__dot"></span></span><span class="chat-btn__label">Un conseiller en ligne<small>Reponse immediate</small></span>';
+    document.body.appendChild(btn);
+
+    // Tooltip
+    var tip = document.createElement('div');
+    tip.className = 'chat-tooltip';
+    tip.innerHTML = 'Une question sur nos tarifs&nbsp;? Un conseiller vous repond en direct&nbsp;! <button class="chat-tooltip__close">&times;</button>';
+    document.body.appendChild(tip);
+
+    // Show tooltip after 4s
+    var tipTimer = setTimeout(function() { tip.classList.add('visible'); }, 4000);
+    // Auto-hide after 12s
+    setTimeout(function() { tip.classList.remove('visible'); }, 16000);
+    tip.querySelector('.chat-tooltip__close').addEventListener('click', function(e) {
+      e.stopPropagation();
+      tip.classList.remove('visible');
+      clearTimeout(tipTimer);
+    });
+
+    // Click handler — open Odoo chat
+    btn.addEventListener('click', function() {
+      tip.classList.remove('visible');
+      // Try to open Odoo livechat
+      var odooBtn = document.querySelector('.o_livechat_button');
+      if (odooBtn) {
+        odooBtn.click();
+      }
+    });
+  }
+
   /* ---- Init ---- */
   document.addEventListener('DOMContentLoaded', function() {
     initSliders();
     initScrollAnimations();
     initSmoothScroll();
+    initChat();
   });
 })();
