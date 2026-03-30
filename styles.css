@@ -423,6 +423,11 @@ a { color:inherit; }
 }
 .thankyou__card p { color:var(--gray); margin-bottom:14px; font-size:.92rem; }
 
+/* ========== ODOO LIVECHAT — above phone bar on mobile ========== */
+@media(max-width:960px){
+  .o-livechat-root { bottom:60px !important; }
+}
+
 /* ========== ANIMATIONS ========== */
 .fade-in {
   opacity:0; transform:translateY(16px);
