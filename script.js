@@ -108,13 +108,24 @@
       clearTimeout(tipTimer);
     });
 
+    // Hide Odoo default button whenever it appears
+    function hideOdooBtn() {
+      document.querySelectorAll('.o_livechat_button, .o-livechat-root, [class*="o_livechat"], [class*="o-livechat-root"]').forEach(function(el) {
+        el.style.display = 'none';
+      });
+    }
+    hideOdooBtn();
+    var obs = new MutationObserver(hideOdooBtn);
+    obs.observe(document.body, { childList: true, subtree: true });
+
     // Click handler — open Odoo chat
     btn.addEventListener('click', function() {
       tip.classList.remove('visible');
-      // Try to open Odoo livechat
       var odooBtn = document.querySelector('.o_livechat_button');
       if (odooBtn) {
+        odooBtn.style.display = '';
         odooBtn.click();
+        setTimeout(hideOdooBtn, 500);
       }
     });
   }

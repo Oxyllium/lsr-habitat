@@ -425,7 +425,12 @@ a { color:inherit; }
 
 /* ========== CUSTOM CHAT BUTTON ========== */
 /* Hide default Odoo button */
-.o_livechat_button { display:none !important; }
+.o_livechat_button,
+.o-livechat-root,
+.o_livechat_button_container,
+.openerp .o_livechat_button,
+div[class*="o_livechat"],
+div[class*="o-livechat-root"] { display:none !important; visibility:hidden !important; }
 
 .chat-btn {
   position:fixed; bottom:24px; right:24px; z-index:9998;
