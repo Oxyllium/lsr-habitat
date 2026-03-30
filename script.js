@@ -96,7 +96,7 @@
       if (el.querySelector('section') || el.querySelector('.hero')) continue;
       var s = window.getComputedStyle(el);
       if (s.position === 'fixed' || s.position === 'absolute') {
-        el.style.setProperty('bottom', '80px', 'important');
+        el.style.setProperty('bottom', '120px', 'important');
       }
     }
   }
