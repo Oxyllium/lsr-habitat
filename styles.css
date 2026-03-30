@@ -424,13 +424,15 @@ a { color:inherit; }
 .thankyou__card p { color:var(--gray); margin-bottom:14px; font-size:.92rem; }
 
 /* ========== CUSTOM CHAT BUTTON ========== */
-/* Hide default Odoo button */
+/* Move default Odoo button offscreen (keep functional for click) */
 .o_livechat_button,
 .o-livechat-root,
-.o_livechat_button_container,
-.openerp .o_livechat_button,
 div[class*="o_livechat"],
-div[class*="o-livechat-root"] { display:none !important; visibility:hidden !important; }
+div[class*="o-livechat-root"] {
+  position:fixed !important; bottom:-200px !important; right:-200px !important;
+  opacity:0 !important; width:1px !important; height:1px !important;
+  overflow:hidden !important; pointer-events:none !important;
+}
 
 .chat-btn {
   position:fixed; bottom:24px; right:24px; z-index:9998;
