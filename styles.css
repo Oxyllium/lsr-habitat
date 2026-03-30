@@ -423,6 +423,27 @@ a { color:inherit; }
 }
 .thankyou__card p { color:var(--gray); margin-bottom:14px; font-size:.92rem; }
 
+/* ========== ODOO LIVECHAT BUTTON ========== */
+.o-livechat-root { z-index:9998 !important; }
+.o-livechat-root .o-livechat-LivechatButton {
+  width:70px !important; height:70px !important;
+  border-radius:50% !important;
+}
+.o-livechat-root .o-livechat-LivechatButton img,
+.o-livechat-root .o-livechat-LivechatButton svg {
+  width:36px !important; height:36px !important;
+}
+@media(max-width:960px){
+  .o-livechat-root {
+    bottom:auto !important; top:50% !important;
+    transform:translateY(-50%) !important;
+    right:0 !important;
+  }
+  .o-livechat-root .o-livechat-LivechatButton {
+    width:60px !important; height:60px !important;
+  }
+}
+
 /* ========== ANIMATIONS ========== */
 .fade-in {
   opacity:0; transform:translateY(16px);
