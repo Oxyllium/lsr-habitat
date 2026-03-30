@@ -101,11 +101,24 @@
     }
   }
 
+  /* ---- Auto-open livechat on mobile ---- */
+  function openLivechat() {
+    var btn = document.querySelector('.o_livechat_button');
+    if (btn) {
+      btn.click();
+    } else {
+      setTimeout(openLivechat, 500);
+    }
+  }
+
   /* ---- Init ---- */
   document.addEventListener('DOMContentLoaded', function() {
     initSliders();
     initScrollAnimations();
     initSmoothScroll();
     setInterval(moveOdooUp, 1000);
+    if (window.innerWidth <= 768) {
+      setTimeout(openLivechat, 10000);
+    }
   });
 })();
