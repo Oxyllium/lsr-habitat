@@ -102,13 +102,41 @@
   }
 
   /* ---- Auto-open livechat on mobile ---- */
-  function openLivechat() {
-    var btn = document.querySelector('.o_livechat_button');
-    if (btn) {
-      btn.click();
-    } else {
-      setTimeout(openLivechat, 500);
+  function initAutoLivechat() {
+    if (window.innerWidth > 768) return;
+
+    var selectors = [
+      '.o_livechat_button',
+      '.o-livechat-LivechatButton',
+      'button[aria-label*="chat"]',
+      'button[aria-label*="Chat"]',
+      '.o-mail-ChatHub button',
+      '[class*="livechat" i]',
+      '[class*="LiveChat" i]'
+    ];
+
+    function tryClick() {
+      for (var i = 0; i < selectors.length; i++) {
+        var el = document.querySelector(selectors[i]);
+        if (el) {
+          console.log('Odoo chat found:', selectors[i]);
+          el.click();
+          return true;
+        }
+      }
+      return false;
     }
+
+    var observer = new MutationObserver(function() {
+      if (tryClick()) {
+        observer.disconnect();
+      }
+    });
+
+    setTimeout(function() {
+      observer.observe(document.body, { childList: true, subtree: true });
+      setTimeout(function() { observer.disconnect(); }, 15000);
+    }, 10000);
   }
 
   /* ---- Init ---- */
@@ -117,8 +145,6 @@
     initScrollAnimations();
     initSmoothScroll();
     setInterval(moveOdooUp, 1000);
-    if (window.innerWidth <= 768) {
-      setTimeout(openLivechat, 10000);
-    }
+    initAutoLivechat();
   });
 })();
