@@ -83,10 +83,20 @@
     });
   }
 
+  /* ---- Move Odoo chat above phone bar on mobile ---- */
+  function nudgeOdooChat() {
+    if (window.innerWidth > 960) return;
+    document.querySelectorAll('.o-livechat-root, [class*="o-livechat"]').forEach(function(el) {
+      el.style.setProperty('bottom', '60px', 'important');
+    });
+  }
+
   /* ---- Init ---- */
   document.addEventListener('DOMContentLoaded', function() {
     initSliders();
     initScrollAnimations();
     initSmoothScroll();
+    var t = 0;
+    var p = setInterval(function() { nudgeOdooChat(); if (++t > 20) clearInterval(p); }, 500);
   });
 })();
