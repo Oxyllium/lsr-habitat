@@ -6,6 +6,10 @@
   <title>Démoussage de Toiture en Nouvelle-Aquitaine | LSR Habitat</title>
   <meta name="description" content="Démoussage de toiture professionnel en Nouvelle-Aquitaine. Traitement anti-mousse certifié Certibiocide. LSR Habitat : devis gratuit, 5/5 sur Google.">
   <link rel="icon" type="image/png" href="images/logo-lsr-habitat.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap">
+  <link rel="preload" as="image" href="images/application-antimousse.jpg">
   <link rel="stylesheet" href="styles.css">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR71B09K4M"></script>
@@ -67,7 +71,7 @@
   <div class="hero__bg" style="background-image:url('images/application-antimousse.jpg')"></div>
   <div class="hero__overlay"></div>
   <div class="hero__inner">
-    <img src="images/logo-lsr-habitat.png" alt="LSR Habitat" class="hero__logo">
+    <img src="images/logo-lsr-habitat.png" alt="LSR Habitat" class="hero__logo" fetchpriority="high">
     <h1>Démoussage de <span>Toiture</span> en Nouvelle-Aquitaine</h1>
     <p class="hero__sub">Traitement antimousse sans javel, garanti 10 ans. Offre promo cette semaine.</p>
 
@@ -233,8 +237,8 @@
     <h2 class="section__title section__title--center">Avant / Après démoussage</h2>
     <p style="color:var(--gray);font-size:.88rem;margin:6px auto 12px;text-align:center;">Faites glisser la barre pour voir la différence.</p>
     <div class="ba-slider">
-      <img src="images/demoussage-avant.jpg" alt="Toiture avant démoussage" class="ba-slider__before">
-      <img src="images/demoussage-apres.jpg" alt="Toiture après démoussage" class="ba-slider__after">
+      <img src="images/demoussage-avant.jpg" alt="Toiture avant démoussage" class="ba-slider__before" loading="lazy">
+      <img src="images/demoussage-apres.jpg" alt="Toiture après démoussage" class="ba-slider__after" loading="lazy">
       <div class="ba-slider__handle"></div>
       <span class="ba-label ba-label--before">Avant</span>
       <span class="ba-label ba-label--after">Après</span>
@@ -405,7 +409,7 @@
   <div style="max-width:600px;margin:30px auto;position:relative;">
     <button id="photo-zoom-close" style="position:absolute;top:10px;right:10px;z-index:2;background:rgba(0,0,0,.5);border:none;color:#fff;font-size:1.4rem;cursor:pointer;width:36px;height:36px;border-radius:50%;line-height:1;display:flex;align-items:center;justify-content:center;">&times;</button>
     <div style="position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.3);">
-      <img src="images/application-antimousse.jpg" alt="Application traitement antimousse sur toiture" style="width:100%;display:block;">
+      <img src="images/application-antimousse.jpg" alt="Application traitement antimousse sur toiture" style="width:100%;display:block;" loading="lazy">
       <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.3) 20%,rgba(255,255,255,.97) 20%);padding:0;">
         <div style="background:rgba(255,255,255,.97);padding:16px 20px 20px;backdrop-filter:blur(6px);">
           <div style="text-align:center;margin-bottom:10px;">

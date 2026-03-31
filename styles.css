@@ -1,7 +1,7 @@
 /* ============================================
    LSR HABITAT - Landing Pages
    ============================================ */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+/* Fonts loaded via <link> in HTML for better LCP */
 
 :root {
   --teal: #4FADB5;
