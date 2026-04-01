@@ -34,23 +34,65 @@ body {
 img { max-width:100%; height:auto; display:block; }
 a { color:inherit; }
 
-/* ========== PHONE BAR (mobile sticky) ========== */
-.phone-bar {
+/* ========== RDV BAR (mobile sticky) ========== */
+.rdv-bar {
   display:none; position:fixed; bottom:0; left:0; right:0;
   z-index:9999; background:var(--red); color:var(--white);
   text-align:center; padding:13px 16px;
   font-weight:700; font-size:1rem;
-  text-decoration:none; letter-spacing:.01em;
+  letter-spacing:.01em; border:none; cursor:pointer;
   box-shadow:0 -4px 20px rgba(0,0,0,.25);
   gap:8px; align-items:center; justify-content:center;
 }
-.phone-bar svg { width:20px; height:20px; flex-shrink:0; }
-.phone-bar:active { background:var(--red-dark); }
+.rdv-bar svg { width:20px; height:20px; flex-shrink:0; }
+.rdv-bar:active { background:var(--red-dark); }
 
 @media(max-width:960px){
-  .phone-bar { display:flex; }
+  .rdv-bar { display:flex; }
   body { padding-bottom:52px; }
 }
+
+/* ========== RDV MODAL ========== */
+.rdv-overlay {
+  display:none; position:fixed; inset:0; z-index:10000;
+  background:rgba(0,0,0,.55); align-items:center; justify-content:center;
+  padding:16px;
+}
+.rdv-overlay.active { display:flex; }
+.rdv-modal {
+  background:var(--white); border-radius:12px; width:100%; max-width:420px;
+  padding:28px 24px 24px; position:relative;
+  box-shadow:0 12px 40px rgba(0,0,0,.25);
+}
+.rdv-modal__close {
+  position:absolute; top:12px; right:14px; background:none; border:none;
+  font-size:1.5rem; color:var(--gray); cursor:pointer; line-height:1;
+}
+.rdv-modal h2 {
+  font-size:1.15rem; font-weight:800; margin-bottom:16px; color:var(--dark);
+}
+.rdv-modal label {
+  display:block; font-size:.82rem; font-weight:600; color:var(--dark);
+  margin-bottom:4px;
+}
+.rdv-modal input,
+.rdv-modal textarea {
+  width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:var(--radius);
+  font-family:inherit; font-size:.9rem; margin-bottom:12px;
+  transition:border-color var(--ease);
+}
+.rdv-modal input:focus,
+.rdv-modal textarea:focus {
+  outline:none; border-color:var(--teal);
+}
+.rdv-modal textarea { resize:vertical; min-height:70px; }
+.rdv-modal button[type="submit"] {
+  width:100%; padding:13px; background:var(--red); color:var(--white);
+  border:none; border-radius:var(--radius); font-family:inherit;
+  font-size:1rem; font-weight:700; cursor:pointer;
+  transition:background var(--ease);
+}
+.rdv-modal button[type="submit"]:hover { background:var(--red-dark); }
 
 /* ========== HERO ========== */
 .hero {

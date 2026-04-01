@@ -91,7 +91,7 @@
       var el = children[i];
       var tag = el.tagName;
       if (tag !== 'DIV' && tag !== 'IFRAME') continue;
-      if (el.classList.contains('phone-bar')) continue;
+      if (el.classList.contains('rdv-bar') || el.classList.contains('rdv-overlay')) continue;
       // Check if it looks like a third-party widget (not our sections)
       if (el.querySelector('section') || el.querySelector('.hero')) continue;
       var s = window.getComputedStyle(el);
