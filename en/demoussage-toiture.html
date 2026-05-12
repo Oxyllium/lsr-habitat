@@ -74,7 +74,7 @@
       <label for="rdv-nom">Name</label>
       <input type="text" id="rdv-nom" name="nom" required placeholder="Your name">
       <label for="rdv-tel">Phone number</label>
-      <input type="tel" id="rdv-tel" name="telephone" required placeholder="06 12 34 56 78">
+      <input type="tel" pattern="\d{10}" maxlength="10" inputmode="numeric" title="10-digit number, no spaces (e.g. 0612345678)" id="rdv-tel" name="telephone" required placeholder="0612345678">
       <label for="rdv-msg">Brief description</label>
       <textarea id="rdv-msg" name="description" placeholder="E.g. moss removal 100 sqm, house in Arcachon"></textarea>
       <button type="submit">Send</button>
@@ -178,7 +178,7 @@
         </div>
         <div class="form-group">
           <label for="telephone">Phone</label>
-          <input type="tel" id="telephone" name="telephone" required placeholder="06 00 00 00 00">
+          <input type="tel" pattern="\d{10}" maxlength="10" inputmode="numeric" title="10-digit number, no spaces (e.g. 0612345678)" id="telephone" name="telephone" required placeholder="0612345678">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
@@ -439,7 +439,7 @@
               <input type="text" id="zoom-nom" name="nom" required placeholder="Your name" style="width:100%;padding:9px 12px;border:2px solid #E0E0E0;border-radius:5px;font-family:inherit;font-size:.85rem;background:var(--white);">
             </div>
             <div style="flex:1;min-width:120px;">
-              <input type="tel" id="zoom-tel" name="telephone" required placeholder="06 00 00 00 00" style="width:100%;padding:9px 12px;border:2px solid #E0E0E0;border-radius:5px;font-family:inherit;font-size:.85rem;background:var(--white);">
+              <input type="tel" pattern="\d{10}" maxlength="10" inputmode="numeric" title="10-digit number, no spaces (e.g. 0612345678)" id="zoom-tel" name="telephone" required placeholder="0612345678" style="width:100%;padding:9px 12px;border:2px solid #E0E0E0;border-radius:5px;font-family:inherit;font-size:.85rem;background:var(--white);">
             </div>
             <button type="submit" class="btn btn--primary" style="padding:9px 20px;font-size:.85rem;white-space:nowrap;">Free callback</button>
           </form>

@@ -342,7 +342,7 @@
       <label for="rdv-nom">Nom</label>
       <input type="text" id="rdv-nom" name="nom" required placeholder="Votre nom">
       <label for="rdv-tel">Numéro de téléphone</label>
-      <input type="tel" id="rdv-tel" name="telephone" required placeholder="06 12 34 56 78">
+      <input type="tel" pattern="\d{10}" maxlength="10" inputmode="numeric" title="10 chiffres, sans espaces (ex: 0612345678)" id="rdv-tel" name="telephone" required placeholder="0612345678">
       <label for="rdv-msg">Description rapide</label>
       <textarea id="rdv-msg" name="description" placeholder="Ex : travaux de toiture, maison à Arcachon"></textarea>
       <button type="submit">Envoyer</button>
