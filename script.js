@@ -110,9 +110,10 @@
     var form = document.getElementById('devis');
     var formVisible = false;
     var fieldFocused = false;
+    var viewportAltered = false;
 
     function update() {
-      var hidden = formVisible || fieldFocused;
+      var hidden = formVisible || fieldFocused || viewportAltered;
       bar.classList.toggle('cta-bar--hidden', hidden);
     }
 
@@ -120,7 +121,7 @@
       new IntersectionObserver(function(entries) {
         formVisible = entries[0].isIntersecting;
         update();
-      }, { threshold: 0.15 }).observe(form);
+      }, { rootMargin: '0px 0px 80px 0px', threshold: 0.05 }).observe(form);
     }
 
     document.addEventListener('focusin', function(e) {
@@ -133,6 +134,21 @@
       fieldFocused = false;
       setTimeout(update, 150);
     });
+
+    /* Clavier virtuel ouvert ou pinch-zoom : la barre fixe decroche du bas,
+       on la masque tant que le viewport visuel est altere */
+    if (window.visualViewport) {
+      var vv = window.visualViewport;
+      var checkViewport = function() {
+        var keyboardOpen = vv.height < window.innerHeight * 0.8;
+        var zoomed = vv.scale > 1.1;
+        viewportAltered = keyboardOpen || zoomed;
+        update();
+      };
+      vv.addEventListener('resize', checkViewport);
+      vv.addEventListener('scroll', checkViewport);
+      checkViewport();
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function() {
