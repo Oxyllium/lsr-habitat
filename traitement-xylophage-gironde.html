@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap">
   <link rel="preload" as="image" href="images/hydrofugation-toiture.jpg">
-  <link rel="stylesheet" href="styles.css?v=20260705c">
+  <link rel="stylesheet" href="styles.css?v=20260705e">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR71B09K4M"></script>
   <script>
@@ -174,8 +174,16 @@
   <aside class="sidebar" id="devis">
     <div class="form-card">
       <div class="form-card__header">
-        <h3>Devis gratuit</h3>
-        <p>Réponse sous 24h, sans engagement.</p>
+        <div class="form-card__header-inner">
+          <span class="form-card__avatar-wrap">
+            <img src="images/gregory-quivy.jpg" alt="Grégory Quivy, gérant de LSR Habitat" class="form-card__avatar" width="56" height="56">
+            <span class="presence-dot" data-presence-dot></span>
+          </span>
+          <div>
+            <h3>Devis gratuit</h3>
+            <p data-presence-text>Grégory Quivy, gérant, est en ligne : il vous répond en quelques minutes.</p>
+          </div>
+        </div>
       </div>
       <div class="form-card__body">
         <form name="xylophages" method="POST" data-netlify="true" action="/demande-envoyee.html">
@@ -278,7 +286,7 @@
   </div>
 </footer>
 
-<script src="script.js?v=20260705c"></script>
+<script src="script.js?v=20260705e"></script>
 
 </body>
 </html>

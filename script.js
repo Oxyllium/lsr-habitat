@@ -131,10 +131,25 @@
     }
   }
 
+  /* ---- Indicateur de présence selon les horaires ---- */
+  function initPresence() {
+    var dot = document.querySelector('[data-presence-dot]');
+    var txt = document.querySelector('[data-presence-text]');
+    if (!dot || !txt) return;
+    var now = new Date();
+    var d = now.getDay(), hh = now.getHours();
+    var online = (d >= 1 && d <= 5 && hh >= 8 && hh < 19) || (d === 6 && hh >= 9 && hh < 18);
+    if (!online) {
+      dot.classList.add('presence-dot--off');
+      txt.textContent = "Grégory Quivy, gérant : laissez votre demande, il vous répond dès l'ouverture.";
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     initSliders();
     initScrollAnimations();
     initSmoothScroll();
     initCtaBar();
+    initPresence();
   });
 })();
