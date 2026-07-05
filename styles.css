@@ -594,3 +594,6 @@ a { color:inherit; }
 .form-alt-call a:hover { text-decoration:underline; }
 .symptom-check__actions .btn { white-space:nowrap; display:inline-flex; align-items:center; gap:8px; }
 .symptom-check__actions .btn svg { width:18px; height:18px; flex-shrink:0; }
+
+a.zone-tag { text-decoration:none; }
+a.zone-tag:hover { background:var(--teal-light); color:var(--teal-dark); }
