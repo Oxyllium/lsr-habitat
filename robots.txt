@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /demande-envoyee.html
+Disallow: /rappel-confirme.html
+Disallow: /en/demande-envoyee.html
+Disallow: /en/rappel-confirme.html
+
+Sitemap: https://lsr-habitat.fr/sitemap.xml
