@@ -74,26 +74,10 @@
 </head>
 <body>
 
-<!-- RDV BAR MOBILE -->
-<button class="rdv-bar" onclick="document.getElementById('rdvOverlay').classList.add('active')">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
-  Prendre RDV
-</button>
-<div class="rdv-overlay" id="rdvOverlay" onclick="if(event.target===this)this.classList.remove('active')">
-  <div class="rdv-modal">
-    <button class="rdv-modal__close" onclick="document.getElementById('rdvOverlay').classList.remove('active')">&times;</button>
-    <h2>Prendre rendez-vous</h2>
-    <form name="rdv" method="POST" data-netlify="true" action="/demande-envoyee.html">
-      <input type="hidden" name="form-name" value="rdv">
-      <label for="rdv-nom">Nom</label>
-      <input type="text" id="rdv-nom" name="nom" required placeholder="Votre nom">
-      <label for="rdv-tel">Numéro de téléphone</label>
-      <input type="tel" pattern="0[1-9][0-9]{8}" maxlength="10" inputmode="numeric" title="Numéro à 10 chiffres commençant par 0, sans espaces (ex: 0612345678)" id="rdv-tel" name="telephone" required placeholder="0612345678">
-      <label for="rdv-msg">Description rapide</label>
-      <textarea id="rdv-msg" name="description" placeholder="Ex : suspicion de xylophages, maison à Arcachon"></textarea>
-      <button type="submit">Envoyer</button>
-    </form>
-  </div>
+<!-- CTA BAR MOBILE -->
+<div class="cta-bar">
+  <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="cta-bar__call"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>Appeler</a>
+  <a href="#devis" class="cta-bar__devis"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Devis gratuit</a>
 </div>
 
 <!-- HERO -->
@@ -108,6 +92,11 @@
       <a href="#devis" class="btn btn--primary">Devis gratuit</a>
       <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="btn btn--outline">07 62 39 78 96</a>
       <span class="hero__badge"><span class="google-g"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.77-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg></span> <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5 — 19 avis</span>
+    </div>
+    <div class="hero__trust">
+      <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Diagnostic gratuit sur place</span>
+      <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Sans engagement</span>
+      <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Réponse sous 24h</span>
     </div>
   </div>
 </section>
@@ -140,13 +129,34 @@
   </div>
 </section>
 
+<!-- AUTO-DIAGNOSTIC -->
+<section class="full-width-section">
+  <div class="section-wrap fade-in">
+    <div class="symptom-check">
+      <h2>Faites le test : un de ces signes chez vous ?</h2>
+      <ul>
+        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Des petits trous à la surface du bois</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>De la sciure fine ou des copeaux au sol</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Un bois vermoulu, qui s'effrite ou sonne creux</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Des cordonnets de terre ou des galeries visibles</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Des insectes ailés ou de grandes fourmis à l'intérieur</li>
+      </ul>
+      <p class="symptom-check__note">Un seul de ces signes suffit à justifier une vérification. Elle est gratuite et sans engagement.</p>
+      <div class="symptom-check__actions">
+        <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="btn btn--primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg> 07 62 39 78 96</a>
+        <a href="#devis" class="btn btn--dark">Devis gratuit en ligne</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- DEVIS FORM -->
 <section class="full-width-section" id="devis">
   <div class="section-wrap" style="max-width:500px;">
     <div class="form-card">
       <div class="form-card__header">
         <h3>Devis gratuit</h3>
-        <p>Réponse sous 24h</p>
+        <p>Réponse sous 24h. Gratuit et sans engagement.</p>
       </div>
       <div class="form-card__body">
         <form name="diagnostic-bois" method="POST" data-netlify="true" action="/demande-envoyee.html">
@@ -161,22 +171,24 @@
             <input type="tel" pattern="0[1-9][0-9]{8}" maxlength="10" inputmode="numeric" title="Numéro à 10 chiffres commençant par 0, sans espaces (ex: 0612345678)" id="telephone" name="telephone" required placeholder="0612345678">
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email">Email (facultatif)</label>
             <input type="email" id="email" name="email" placeholder="votre@email.fr">
           </div>
           <div class="form-group">
-            <label for="ville">Ville</label>
+            <label for="ville">Ville (facultatif)</label>
             <input type="text" id="ville" name="ville" placeholder="Ex : Bordeaux, Arcachon...">
           </div>
           <div class="form-group">
-            <label for="message">Message</label>
+            <label for="message">Message (facultatif)</label>
             <textarea id="message" name="message" placeholder="Décrivez votre besoin..."></textarea>
           </div>
-          <button type="submit" class="btn btn--primary">Envoyer ma demande</button>
+          <button type="submit" class="btn btn--primary">Recevoir mon devis gratuit</button>
           <div class="form-card__trust">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Vos données restent confidentielles
+            Vos données restent confidentielles, jamais partagées
           </div>
+          <p class="form-alt-call">Vous préférez en parler de vive voix ? <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');">07 62 39 78 96</a></p>
+
         </form>
       </div>
     </div>
