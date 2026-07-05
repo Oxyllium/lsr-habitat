@@ -350,7 +350,7 @@
       <label for="rdv-nom">Name</label>
       <input type="text" id="rdv-nom" name="nom" required placeholder="Your name">
       <label for="rdv-tel">Phone number</label>
-      <input type="tel" pattern="\d{10}" maxlength="10" inputmode="numeric" title="10-digit number, no spaces (e.g. 0612345678)" id="rdv-tel" name="telephone" required placeholder="0612345678">
+      <input type="tel" pattern="0[1-9][0-9]{8}" maxlength="10" inputmode="numeric" title="10-digit French number starting with 0, no spaces (e.g. 0612345678)" id="rdv-tel" name="telephone" required placeholder="0612345678">
       <label for="rdv-msg">Brief description</label>
       <textarea id="rdv-msg" name="description" placeholder="E.g. roofing work, house in Arcachon"></textarea>
       <button type="submit">Send</button>
