@@ -83,26 +83,6 @@
     });
   }
 
-  /* ---- Move Odoo chat above phone bar on mobile ---- */
-  function moveOdooUp() {
-    if (window.innerWidth > 960) return;
-    var children = document.body.children;
-    for (var i = 0; i < children.length; i++) {
-      var el = children[i];
-      var tag = el.tagName;
-      if (tag !== 'DIV' && tag !== 'IFRAME') continue;
-      if (el.classList.contains('rdv-bar') || el.classList.contains('rdv-overlay')) continue;
-      // Check if it looks like a third-party widget (not our sections)
-      if (el.querySelector('section') || el.querySelector('.hero')) continue;
-      var s = window.getComputedStyle(el);
-      if (s.position === 'fixed' || s.position === 'absolute') {
-        el.style.setProperty('bottom', '120px', 'important');
-      }
-    }
-  }
-
-  /* ---- Auto-open livechat on mobile ---- */
-  /* ---- Init ---- */
   /* ---- Barre CTA mobile : se masque quand le formulaire est visible ou actif ---- */
   function initCtaBar() {
     var bar = document.querySelector('.cta-bar');
@@ -155,7 +135,6 @@
     initSliders();
     initScrollAnimations();
     initSmoothScroll();
-    setInterval(moveOdooUp, 1000);
     initCtaBar();
   });
 })();
