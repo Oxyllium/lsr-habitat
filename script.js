@@ -102,49 +102,44 @@
   }
 
   /* ---- Auto-open livechat on mobile ---- */
-  function initAutoLivechat() {
-    if (window.innerWidth > 768) return;
+  /* ---- Init ---- */
+  /* ---- Barre CTA mobile : se masque quand le formulaire est visible ou actif ---- */
+  function initCtaBar() {
+    var bar = document.querySelector('.cta-bar');
+    if (!bar) return;
+    var form = document.getElementById('devis');
+    var formVisible = false;
+    var fieldFocused = false;
 
-    var selectors = [
-      '.o_livechat_button',
-      '.o-livechat-LivechatButton',
-      'button[aria-label*="chat"]',
-      'button[aria-label*="Chat"]',
-      '.o-mail-ChatHub button',
-      '[class*="livechat" i]',
-      '[class*="LiveChat" i]'
-    ];
-
-    function tryClick() {
-      for (var i = 0; i < selectors.length; i++) {
-        var el = document.querySelector(selectors[i]);
-        if (el) {
-          console.log('Odoo chat found:', selectors[i]);
-          el.click();
-          return true;
-        }
-      }
-      return false;
+    function update() {
+      var hidden = formVisible || fieldFocused;
+      bar.classList.toggle('cta-bar--hidden', hidden);
     }
 
-    var observer = new MutationObserver(function() {
-      if (tryClick()) {
-        observer.disconnect();
+    if (form && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries) {
+        formVisible = entries[0].isIntersecting;
+        update();
+      }, { threshold: 0.15 }).observe(form);
+    }
+
+    document.addEventListener('focusin', function(e) {
+      if (e.target.matches('input, textarea, select')) {
+        fieldFocused = true;
+        update();
       }
     });
-
-    setTimeout(function() {
-      observer.observe(document.body, { childList: true, subtree: true });
-      setTimeout(function() { observer.disconnect(); }, 15000);
-    }, 10000);
+    document.addEventListener('focusout', function() {
+      fieldFocused = false;
+      setTimeout(update, 150);
+    });
   }
 
-  /* ---- Init ---- */
   document.addEventListener('DOMContentLoaded', function() {
     initSliders();
     initScrollAnimations();
     initSmoothScroll();
     setInterval(moveOdooUp, 1000);
-    initAutoLivechat();
+    initCtaBar();
   });
 })();
