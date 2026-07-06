@@ -12,3 +12,13 @@
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[redirects]]
+  from = "/traitement-vrillette"
+  to = "/entreprise-xylophages.html"
+  status = 301
+
+[[redirects]]
+  from = "/traitement-vrillette.html"
+  to = "/entreprise-xylophages.html"
+  status = 301
