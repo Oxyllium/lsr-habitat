@@ -147,6 +147,11 @@ a { color:inherit; }
   font-size:.82rem; font-weight:600;
 }
 .hero__badge .stars { color:#FFD700; }
+.hero__badge--cert {
+  background:var(--white); color:var(--dark);
+  border-color:transparent; font-weight:700;
+}
+.hero__badge--cert img { width:52px; height:auto; }
 
 /* ========== BUTTONS ========== */
 .btn {
