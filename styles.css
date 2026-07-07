@@ -645,3 +645,8 @@ a.zone-tag:hover { background:var(--teal-light); color:var(--teal-dark); }
 @media (prefers-reduced-motion: reduce) {
   .presence-dot { animation:none; }
 }
+
+/* Photos dans le contenu */
+.content-figure { margin:18px 0 10px; }
+.content-figure img { width:100%; height:auto; border-radius:var(--radius); display:block; }
+.content-figure figcaption { font-size:.78rem; color:var(--gray-light); margin-top:7px; }
