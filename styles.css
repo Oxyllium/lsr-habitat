@@ -620,6 +620,11 @@ a.zone-tag:hover { background:var(--teal-light); color:var(--teal-dark); }
 .sidebar-trust__stars { font-weight:800; color:var(--dark); display:flex; align-items:center; gap:6px; }
 .sidebar-trust__stars .reviews-header__stars { font-size:1rem; }
 .sidebar-trust__item { display:flex; align-items:center; gap:7px; line-height:1.4; }
+.sidebar-trust__badge {
+  display:flex; align-items:center; gap:9px;
+  font-weight:700; color:var(--dark); line-height:1.35;
+}
+.sidebar-trust__badge img { width:66px; height:auto; flex-shrink:0; }
 .sidebar-trust__item svg { width:14px; height:14px; color:var(--teal); flex-shrink:0; }
 @media(max-width:960px){
   .main-content .reviews-grid { grid-template-columns:1fr; }
