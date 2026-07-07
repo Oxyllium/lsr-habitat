@@ -147,11 +147,13 @@ a { color:inherit; }
   font-size:.82rem; font-weight:600;
 }
 .hero__badge .stars { color:#FFD700; }
-.hero__badge--cert {
-  background:var(--white); color:var(--dark);
-  border-color:transparent; font-weight:700;
+.hero__logos { display:flex; align-items:center; gap:16px; margin-bottom:10px; }
+.hero__logos .hero__logo { margin-bottom:0; }
+.hero__cert {
+  width:64px; height:64px; border-radius:50%;
+  box-shadow:0 2px 12px rgba(0,0,0,.35);
+  background:var(--white);
 }
-.hero__badge--cert img { width:52px; height:auto; }
 
 /* ========== BUTTONS ========== */
 .btn {
