@@ -106,12 +106,17 @@ a { color:inherit; }
 .hero__bg {
   position:absolute; inset:0;
   background-size:cover; background-position:center;
-  opacity:.3;
+  opacity:1;
 }
 .hero__overlay {
   position:absolute; inset:0;
-  background:linear-gradient(135deg,rgba(26,26,46,.93),rgba(79,173,181,.65));
+  background:linear-gradient(100deg, rgba(26,26,46,.92) 0%, rgba(26,26,46,.72) 42%, rgba(26,26,46,.32) 75%, rgba(26,26,46,.18) 100%);
   pointer-events:none;
+}
+@media(max-width:960px){
+  .hero__overlay {
+    background:linear-gradient(180deg, rgba(26,26,46,.88) 0%, rgba(26,26,46,.62) 100%);
+  }
 }
 .hero__bg { pointer-events:none; }
 .hero__inner {
