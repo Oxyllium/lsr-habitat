@@ -138,7 +138,7 @@
     if (!dot || !txt) return;
     var now = new Date();
     var d = now.getDay(), hh = now.getHours();
-    var online = (d >= 1 && d <= 5 && hh >= 7 && hh < 20) || (d === 6 && hh >= 9 && hh < 18);
+    var online = (d >= 1 && d <= 5 && hh >= 7 && hh < 20);
     if (!online) {
       dot.classList.add('presence-dot--off');
       txt.textContent = "Grégory Quivy, gérant : laissez votre demande, il vous répond dès l'ouverture.";
