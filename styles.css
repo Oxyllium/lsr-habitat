@@ -726,3 +726,5 @@ a.zone-tag:hover { background:var(--teal-light); color:var(--teal-dark); }
 .info-table tbody tr:nth-child(even) td { background:rgba(0,0,0,.025); }
 .info-table td:last-child { font-weight:700; color:var(--dark); }
 .info-table-note { max-width:760px; margin:10px auto 0; font-size:.8rem; color:var(--gray-light); text-align:center; }
+
+.info-table-cta { text-align:center; margin-top:14px; }
