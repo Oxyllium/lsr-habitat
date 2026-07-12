@@ -711,3 +711,9 @@ a.zone-tag:hover { background:var(--teal-light); color:var(--teal-dark); }
   100% { box-shadow: 0 0 0 14px rgba(79,173,181,0); }
 }
 @media (prefers-reduced-motion: reduce) { .form-card--flash { animation: none; } }
+
+/* Étoiles/avis cliquables -> défilent vers la section avis (on garde le trafic on-page) */
+.hero__badge--link { cursor:pointer; text-decoration:none; transition:background var(--ease); }
+.hero__badge--link:hover { background:rgba(255,255,255,.22); }
+.sidebar-trust__stars--link { cursor:pointer; text-decoration:none; }
+.sidebar-trust__stars--link:hover { text-decoration:underline; }
