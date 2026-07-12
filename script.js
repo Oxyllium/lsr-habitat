@@ -73,10 +73,19 @@
     document.querySelectorAll('a[href^="#"]').forEach(function(link) {
       link.addEventListener('click', function(e) {
         var target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          var offset = 16;
-          var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        if (!target) return;
+        e.preventDefault();
+        var firstInput = target.querySelector('input:not([type="hidden"]), textarea');
+        if (firstInput) {
+          /* Zone devis : feedback fort. Focus ouvre le clavier mobile
+             et fait défiler le champ dans la vue ; flash sur la carte. */
+          var card = target.querySelector('.form-card') || target;
+          card.classList.remove('form-card--flash');
+          void card.offsetWidth;
+          card.classList.add('form-card--flash');
+          firstInput.focus();
+        } else {
+          var top = target.getBoundingClientRect().top + window.pageYOffset - 16;
           window.scrollTo({ top: top, behavior: 'smooth' });
         }
       });
