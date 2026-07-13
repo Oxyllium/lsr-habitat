@@ -574,6 +574,28 @@ a { color:inherit; }
   .hero__actions .btn--primary::after { animation:none; }
 }
 
+/* Sonnerie de l'icone telephone (barre CTA mobile) : secousse type appel entrant, avec pause */
+.cta-bar__call svg {
+  transform-origin:center;
+  animation:ctaCallRing 2.4s ease-in-out infinite;
+}
+@keyframes ctaCallRing {
+  0%, 62%, 100% { transform:rotate(0); }
+  4%  { transform:rotate(-19deg); }
+  8%  { transform:rotate(17deg); }
+  12% { transform:rotate(-15deg); }
+  16% { transform:rotate(13deg); }
+  20% { transform:rotate(-11deg); }
+  24% { transform:rotate(9deg); }
+  28% { transform:rotate(-7deg); }
+  32% { transform:rotate(5deg); }
+  36% { transform:rotate(-3deg); }
+  40% { transform:rotate(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-bar__call svg { animation:none; }
+}
+
 /* HERO TRUST */
 .hero__trust {
   display:flex; flex-wrap:wrap; justify-content:center; gap:6px 18px;
