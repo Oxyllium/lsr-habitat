@@ -122,6 +122,18 @@
     .presta-cta-link:hover { gap:10px; }
     .presta-cta-link svg { width:16px; height:16px; }
 
+    /* Pas de fausse affordance : seules les cartes-liens se soulèvent */
+    .presta-item:not(a):hover { transform:none; cursor:default; }
+    /* Trait de titre aligné sur la couleur du métier */
+    #toiture .presta-category__title::after { background:var(--teal); }
+    #humidite .presta-category__title::after { background:var(--orange); }
+    #nuisibles .presta-category__title::after { background:var(--red); }
+    /* Hiérarchie interne des cartes */
+    .presta-item__text strong { font-size:.92rem; }
+    /* Rangée d'actions en fin de catégorie (devis + lien découvrir) */
+    .presta-actions { display:flex; gap:18px; flex-wrap:wrap; align-items:center; margin-top:18px; }
+    .presta-actions .presta-cta-link { margin-top:0; }
+
     @media(max-width:600px){
       .presta-category__inner { padding:0 16px; }
       .presta-intro { padding:24px 16px; }
@@ -175,15 +187,28 @@
       07 62 39 78 96
     </a>
   </div>
+  <div style="margin-top:16px; display:flex; justify-content:center;">
+    <a href="#avis" class="hero__badge hero__badge--link"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5,0 / 5 - 19 avis Google</a>
+  </div>
+  <div class="hero__trust" style="justify-content:center;">
+    <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Entreprise familiale</span>
+    <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Réponse sous 24h</span>
+    <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Devis gratuit sans engagement</span>
+  </div>
+  <div class="zone-grid" style="justify-content:center; margin-top:18px;">
+    <a href="#toiture" class="zone-tag zone-tag--hl">Toiture</a>
+    <a href="#humidite" class="zone-tag zone-tag--hl">Humidité</a>
+    <a href="#nuisibles" class="zone-tag zone-tag--hl">Nuisibles</a>
+  </div>
 </section>
 
 <!-- INTRO -->
 <div class="presta-intro">
-  <p><strong>LSR HABITAT</strong> est votre entreprise de confiance pour tous vos <strong>travaux de rénovation de toiture au Bassin d'Arcachon</strong>. Nous mettons notre savoir-faire et notre expérience au service de la qualité et de la longévité de votre toiture et façade. Soucieux de répondre à tous vos besoins, nous vous proposons des prestations adaptées, réalisées avec des matériaux durables et des techniques modernes pour préserver et valoriser votre patrimoine immobilier.</p>
+  <p><strong>LSR HABITAT</strong>, entreprise familiale au Bassin d'Arcachon, intervient sur trois métiers de l'habitat : la <strong>toiture</strong>, le <strong>traitement de l'humidité</strong> et le <strong>traitement des nuisibles du bois</strong>. Savoir-faire local, matériaux durables, réponse sous 24h et devis gratuit sans engagement.</p>
 </div>
 
 <!-- TOITURE -->
-<section class="presta-category">
+<section class="presta-category" id="toiture">
   <div class="presta-category__inner">
     <h2 class="presta-category__title">Travaux de Toiture</h2>
     <p class="presta-category__desc">De l'entretien courant à la rénovation complète, nous intervenons sur tous les types de toitures en Gironde, Landes, Lot-et-Garonne et Dordogne (33, 40, 24, 47).</p>
@@ -234,12 +259,15 @@
         </div>
       </div>
     </div>
-    <a href="nettoyage-toiture.html" class="presta-cta-link">Découvrir nos services toiture <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <div class="presta-actions">
+      <a href="demande-de-devis.html" class="btn btn--primary btn--sm">Devis gratuit sous 24h</a>
+      <a href="nettoyage-toiture.html" class="presta-cta-link">Découvrir nos services toiture <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
   </div>
 </section>
 
 <!-- HUMIDITE -->
-<section class="presta-category">
+<section class="presta-category" id="humidite">
   <div class="presta-category__inner">
     <h2 class="presta-category__title">Traitement de l'Humidité</h2>
     <p class="presta-category__desc"><strong>LSR HABITAT</strong>, entreprise spécialisée dans le <strong>traitement de l'humidité au Bassin d'Arcachon</strong>, vous accompagne pour lutter efficacement contre les problèmes d'humidité, souvent à l'origine de nombreux désagréments. Nous proposons l'assèchement des murs, solution efficace pour éviter les dégradations et la prolifération de moisissures dans votre intérieur, tout en renforçant la structure de votre habitat.</p>
@@ -273,11 +301,14 @@
       </div>
     </div>
     <p class="presta-category__desc" style="margin-top:16px;">Grâce à des techniques d'injection et un matériel de pointe, nous assurons une protection durable de vos murs contre l'humidité. Avec <strong>LSR HABITAT</strong>, chaque intervention est pensée pour garantir un habitat sain et confortable au <strong>Bassin d'Arcachon</strong>.</p>
+    <div class="presta-actions">
+      <a href="demande-de-devis.html" class="btn btn--primary btn--sm">Devis gratuit sous 24h</a>
+    </div>
   </div>
 </section>
 
 <!-- NUISIBLES -->
-<section class="presta-category">
+<section class="presta-category" id="nuisibles">
   <div class="presta-category__inner">
     <h2 class="presta-category__title">Traitement des Nuisibles</h2>
     <p class="presta-category__desc">Avec <strong>LSR HABITAT, expert en traitement des nuisibles au Bassin d'Arcachon</strong>, bénéficiez de solutions ciblées et efficaces pour protéger votre maison. Les termites, capricornes et fourmis, nuisibles souvent discrets, peuvent causer des dégâts importants et invisibles dans les structures en bois, compromettant la solidité de votre habitation. Nous vous proposons des traitements spécifiques et performants pour éradiquer ces nuisibles et protéger durablement votre charpente et vos boiseries.</p>
@@ -329,7 +360,27 @@
       </a>
     </div>
     <p class="presta-category__desc" style="margin-top:16px;">Notre entreprise intervient avec des produits adaptés, respectueux de l'environnement et sans danger pour les occupants, garantissant une approche à la fois efficace et sécuritaire. En choisissant <strong>LSR HABITAT</strong>, vous optez pour la tranquillité, la pérennité de vos installations et une protection renforcée face aux nuisibles au <strong>Bassin d'Arcachon</strong>.</p>
-    <a href="entreprise-xylophages.html" class="presta-cta-link">Découvrir notre entreprise xylophages <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <div class="presta-actions">
+      <a href="demande-de-devis.html" class="btn btn--primary btn--sm">Devis gratuit sous 24h</a>
+      <a href="entreprise-xylophages.html" class="presta-cta-link">Découvrir notre entreprise xylophages <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section class="presta-category" id="avis">
+  <div class="presta-category__inner">
+    <h2 class="presta-category__title">Ils nous ont fait confiance</h2>
+    <div class="reviews-header" style="margin-top:18px;">
+      <span class="reviews-header__score">5,0</span>
+      <span class="reviews-header__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <span class="reviews-header__count">sur 19 avis Google</span>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card"><div class="review-card__top"><div class="review-card__avatar" style="background:#4FADB5;">L</div><div><div class="review-card__name">Léo C.</div><div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><div class="review-card__text">Nous avions plusieurs poutres attaquées par des insectes xylophages. L'équipe a réalisé un traitement complet avec beaucoup de sérieux. Très bon contact du début à la fin.</div></div>
+      <div class="review-card"><div class="review-card__top"><div class="review-card__avatar" style="background:#E8913A;">S</div><div><div class="review-card__name">Sophie M.</div><div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><div class="review-card__text">Entreprise réactive et compétente. Le diagnostic était précis et les explications très claires. Nous sommes désormais rassurés sur l'état de notre charpente.</div></div>
+      <div class="review-card"><div class="review-card__top"><div class="review-card__avatar" style="background:#7B61FF;">C</div><div><div class="review-card__name">Cap Ferret Home</div><div class="review-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div></div><div class="review-card__text">Excellent travail. Nous ne connaissions pas la différence entre les différents insectes qui attaquent le bois, mais le technicien nous a tout expliqué avant d'intervenir. Une entreprise de confiance que je recommande.</div></div>
+    </div>
   </div>
 </section>
 
