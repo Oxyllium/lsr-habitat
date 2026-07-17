@@ -83,7 +83,7 @@
       <label for="rdv-nom">Nom</label>
       <input type="text" id="rdv-nom" name="nom" required placeholder="Votre nom">
       <label for="rdv-tel">Numéro de téléphone</label>
-      <input type="tel" pattern="0[1-9][0-9]{8}" maxlength="10" inputmode="numeric" title="Numéro à 10 chiffres commençant par 0, sans espaces (ex: 0612345678)" id="rdv-tel" name="telephone" required placeholder="0612345678">
+      <input type="tel" pattern="0[1-9]([ .-]?[0-9]{2}){4}" inputmode="tel" title="Numéro français à 10 chiffres, ex : 0612345678 ou 06 12 34 56 78" id="rdv-tel" name="telephone" required placeholder="06 12 34 56 78">
       <label for="rdv-msg">Description rapide</label>
       <textarea id="rdv-msg" name="description" placeholder="Ex : démoussage toiture 100m², maison à Arcachon"></textarea>
       <button type="submit">Envoyer</button>
@@ -190,7 +190,7 @@
         </div>
         <div class="form-group">
           <label for="telephone">Téléphone</label>
-          <input type="tel" pattern="0[1-9][0-9]{8}" maxlength="10" inputmode="numeric" title="Numéro à 10 chiffres commençant par 0, sans espaces (ex: 0612345678)" id="telephone" name="telephone" required placeholder="0612345678">
+          <input type="tel" pattern="0[1-9]([ .-]?[0-9]{2}){4}" inputmode="tel" title="Numéro français à 10 chiffres, ex : 0612345678 ou 06 12 34 56 78" id="telephone" name="telephone" required placeholder="06 12 34 56 78">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
@@ -451,7 +451,7 @@
               <input type="text" id="zoom-nom" name="nom" required placeholder="Votre nom" style="width:100%;padding:9px 12px;border:2px solid #E0E0E0;border-radius:5px;font-family:inherit;font-size:.85rem;background:var(--white);">
             </div>
             <div style="flex:1;min-width:120px;">
-              <input type="tel" pattern="0[1-9][0-9]{8}" maxlength="10" inputmode="numeric" title="Numéro à 10 chiffres commençant par 0, sans espaces (ex: 0612345678)" id="zoom-tel" name="telephone" required placeholder="0612345678" style="width:100%;padding:9px 12px;border:2px solid #E0E0E0;border-radius:5px;font-family:inherit;font-size:.85rem;background:var(--white);">
+              <input type="tel" pattern="0[1-9]([ .-]?[0-9]{2}){4}" inputmode="tel" title="Numéro français à 10 chiffres, ex : 0612345678 ou 06 12 34 56 78" id="zoom-tel" name="telephone" required placeholder="06 12 34 56 78" style="width:100%;padding:9px 12px;border:2px solid #E0E0E0;border-radius:5px;font-family:inherit;font-size:.85rem;background:var(--white);">
             </div>
             <button type="submit" class="btn btn--primary" style="padding:9px 20px;font-size:.85rem;white-space:nowrap;">Rappel gratuit</button>
           </form>
