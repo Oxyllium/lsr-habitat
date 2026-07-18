@@ -566,8 +566,8 @@ a { color:inherit; }
 .cta-bar a svg { width:18px; height:18px; flex-shrink:0; }
 .cta-bar__call { background:var(--red); color:var(--white); }
 .cta-bar__call:active { background:var(--red-dark); }
-.cta-bar__devis { background:var(--dark); color:var(--white); }
-.cta-bar__devis:active { background:var(--dark-soft); }
+.cta-bar__devis { background:var(--red); color:var(--white); }
+.cta-bar__devis:active { background:var(--red-dark); }
 @media(max-width:960px){
   .cta-bar { display:flex; }
 }
@@ -742,6 +742,8 @@ a.zone-tag:hover { background:var(--teal-light); color:var(--teal-dark); }
 /* Hors horaires (tel masqué), le bouton Devis du hero prend toute la largeur sur mobile */
 @media(max-width:960px){
   .is-offline .hero__actions .btn--primary { flex:1 1 100%; justify-content:center; }
+  /* Badge avis Google centré sur sa ligne (aligné avec la réassurance dessous) */
+  .hero__actions .hero__badge--link { margin-left:auto; margin-right:auto; }
 }
 
 /* Flash du formulaire quand on clique un CTA "Devis gratuit" (feedback anti dead-click) */
