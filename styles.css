@@ -739,6 +739,10 @@ a.zone-tag:hover { background:var(--teal-light); color:var(--teal-dark); }
 .is-offline a[href^="tel:"] { display:none !important; }
 .is-offline .form-alt-call { display:none !important; }
 .is-offline .cta-bar__devis { flex:1 1 100%; }
+/* Hors horaires (tel masqué), le bouton Devis du hero prend toute la largeur sur mobile */
+@media(max-width:960px){
+  .is-offline .hero__actions .btn--primary { flex:1 1 100%; justify-content:center; }
+}
 
 /* Flash du formulaire quand on clique un CTA "Devis gratuit" (feedback anti dead-click) */
 .form-card--flash { animation: formFlash 1.1s ease; }
