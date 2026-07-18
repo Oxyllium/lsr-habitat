@@ -154,11 +154,38 @@
     }
   }
 
+  /* ---- Tags de zone : clic = retour au formulaire + préremplissage de la ville ---- */
+  function initZoneTags() {
+    var form = document.getElementById('devis');
+    if (!form) return;
+    var ville = form.querySelector('#ville, [name="ville"]');
+    document.querySelectorAll('.zone-grid .zone-tag').forEach(function(tag) {
+      var href = tag.getAttribute('href');
+      if (href && href.charAt(0) === '#') return; /* ancres de navigation : on ne touche pas */
+      tag.style.cursor = 'pointer';
+      tag.addEventListener('click', function(e) {
+        e.preventDefault();
+        var txt = tag.textContent.trim();
+        /* Villes uniquement : "Toute l'Aquitaine" / "Toute la Gironde" ne préremplissent rien */
+        if (ville && !/^toute\b/i.test(txt)) ville.value = txt;
+        var card = form.querySelector('.form-card') || form;
+        card.classList.remove('form-card--flash');
+        void card.offsetWidth;
+        card.classList.add('form-card--flash');
+        var fields = form.querySelectorAll('input:not([type="hidden"]), textarea');
+        for (var i = 0; i < fields.length; i++) {
+          if (!fields[i].value) { fields[i].focus(); break; }
+        }
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     initSliders();
     initScrollAnimations();
     initSmoothScroll();
     initCtaBar();
     initPresence();
+    initZoneTags();
   });
 })();
