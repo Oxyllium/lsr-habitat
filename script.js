@@ -68,6 +68,23 @@
     els.forEach(function(el) { observer.observe(el); });
   }
 
+  /* ---- Amène le formulaire à l'écran avec un feedback fort (mouvement + flash + focus) ---- */
+  function flashAndFocusForm(target) {
+    if (!target) return;
+    var card = target.querySelector('.form-card') || target;
+    /* Défilement : sur desktop le formulaire est à droite et le flash seul
+       passe inaperçu ; le mouvement de page rend l'action indéniable. */
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    card.classList.remove('form-card--flash');
+    void card.offsetWidth;
+    card.classList.add('form-card--flash');
+    var fields = target.querySelectorAll('input:not([type="hidden"]), textarea');
+    var toFocus = null;
+    for (var i = 0; i < fields.length; i++) { if (!fields[i].value) { toFocus = fields[i]; break; } }
+    /* Focus après le défilement pour ne pas le couper (preventScroll : pas de saut) */
+    if (toFocus) setTimeout(function() { toFocus.focus({ preventScroll: true }); }, 500);
+  }
+
   /* ---- Smooth scroll to form ---- */
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(function(link) {
@@ -75,18 +92,10 @@
         var target = document.querySelector(this.getAttribute('href'));
         if (!target) return;
         e.preventDefault();
-        var firstInput = target.querySelector('input:not([type="hidden"]), textarea');
-        if (firstInput) {
-          /* Zone devis : feedback fort. Focus ouvre le clavier mobile
-             et fait défiler le champ dans la vue ; flash sur la carte. */
-          var card = target.querySelector('.form-card') || target;
-          card.classList.remove('form-card--flash');
-          void card.offsetWidth;
-          card.classList.add('form-card--flash');
-          firstInput.focus();
+        if (target.querySelector('input:not([type="hidden"]), textarea')) {
+          flashAndFocusForm(target);
         } else {
-          var top = target.getBoundingClientRect().top + window.pageYOffset - 16;
-          window.scrollTo({ top: top, behavior: 'smooth' });
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
@@ -168,14 +177,7 @@
         var txt = tag.textContent.trim();
         /* Villes uniquement : "Toute l'Aquitaine" / "Toute la Gironde" ne préremplissent rien */
         if (ville && !/^toute\b/i.test(txt)) ville.value = txt;
-        var card = form.querySelector('.form-card') || form;
-        card.classList.remove('form-card--flash');
-        void card.offsetWidth;
-        card.classList.add('form-card--flash');
-        var fields = form.querySelectorAll('input:not([type="hidden"]), textarea');
-        for (var i = 0; i < fields.length; i++) {
-          if (!fields[i].value) { fields[i].focus(); break; }
-        }
+        flashAndFocusForm(form);
       });
     });
   }
