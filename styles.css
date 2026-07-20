@@ -557,8 +557,8 @@ a { color:inherit; }
   text-decoration:none; letter-spacing:.01em;
 }
 .cta-bar a svg { width:18px; height:18px; flex-shrink:0; }
-.cta-bar__call { background:var(--red); color:var(--white); }
-.cta-bar__call:active { background:var(--red-dark); }
+.cta-bar__call { background:#17A34A; color:var(--white); }
+.cta-bar__call:active { background:#12833B; }
 .cta-bar__devis { background:var(--red); color:var(--white); }
 .cta-bar__devis:active { background:var(--red-dark); }
 @media(max-width:960px){
