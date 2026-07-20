@@ -68,35 +68,14 @@
     els.forEach(function(el) { observer.observe(el); });
   }
 
-  /* ---- Amène le formulaire à l'écran avec un feedback fort (mouvement + flash + focus) ---- */
-  function flashAndFocusForm(target) {
-    if (!target) return;
-    var card = target.querySelector('.form-card') || target;
-    /* Défilement : sur desktop le formulaire est à droite et le flash seul
-       passe inaperçu ; le mouvement de page rend l'action indéniable. */
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    card.classList.remove('form-card--flash');
-    void card.offsetWidth;
-    card.classList.add('form-card--flash');
-    var fields = target.querySelectorAll('input:not([type="hidden"]), textarea');
-    var toFocus = null;
-    for (var i = 0; i < fields.length; i++) { if (!fields[i].value) { toFocus = fields[i]; break; } }
-    /* Focus après le défilement pour ne pas le couper (preventScroll : pas de saut) */
-    if (toFocus) setTimeout(function() { toFocus.focus({ preventScroll: true }); }, 500);
-  }
-
-  /* ---- Smooth scroll to form ---- */
+  /* ---- Ancres internes (ex : #avis) : simple défilement ---- */
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(function(link) {
       link.addEventListener('click', function(e) {
         var target = document.querySelector(this.getAttribute('href'));
         if (!target) return;
         e.preventDefault();
-        if (target.querySelector('input:not([type="hidden"]), textarea')) {
-          flashAndFocusForm(target);
-        } else {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
   }
@@ -163,21 +142,21 @@
     }
   }
 
-  /* ---- Tags de zone : clic = retour au formulaire + préremplissage de la ville ---- */
+  /* ---- Tags de zone : clic = page devis (ville pré-remplie via l'URL pour les villes) ---- */
   function initZoneTags() {
-    var form = document.getElementById('devis');
-    if (!form) return;
-    var ville = form.querySelector('#ville, [name="ville"]');
-    document.querySelectorAll('.zone-grid .zone-tag').forEach(function(tag) {
+    var grid = document.querySelector('.zone-grid');
+    if (!grid) return;
+    grid.querySelectorAll('.zone-tag').forEach(function(tag) {
       var href = tag.getAttribute('href');
       if (href && href.charAt(0) === '#') return; /* ancres de navigation : on ne touche pas */
       tag.style.cursor = 'pointer';
       tag.addEventListener('click', function(e) {
         e.preventDefault();
         var txt = tag.textContent.trim();
-        /* Villes uniquement : "Toute l'Aquitaine" / "Toute la Gironde" ne préremplissent rien */
-        if (ville && !/^toute\b/i.test(txt)) ville.value = txt;
-        flashAndFocusForm(form);
+        /* Villes uniquement : "Toute l'Aquitaine" / "Toute la Gironde" -> page devis sans ville */
+        var url = 'demande-de-devis.html';
+        if (!/^toute\b/i.test(txt)) url += '?ville=' + encodeURIComponent(txt);
+        window.location.href = url;
       });
     });
   }
