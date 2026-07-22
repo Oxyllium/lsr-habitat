@@ -806,7 +806,7 @@ a.zone-tag:hover { background:var(--teal-light); color:var(--teal-dark); }
 .chat-status::before { content:''; width:8px; height:8px; border-radius:50%; background:#8fffa8; }
 .is-offline .chat-status::before { background:#f0cf6a; }
 .chat-panel__close { margin-left:auto; background:none; border:none; color:var(--white); font-size:1.6rem; line-height:1; cursor:pointer; padding:0 4px; }
-.chat-panel__body { flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:9px; background:var(--bg); }
+.chat-panel__body { flex:1; min-height:0; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; padding:14px; display:flex; flex-direction:column; gap:9px; background:var(--bg); }
 .chat-msg { max-width:82%; padding:9px 13px; border-radius:14px; font-size:.88rem; line-height:1.42; word-wrap:break-word; }
 .chat-msg--bot { align-self:flex-start; background:var(--white); color:var(--dark); border:1px solid rgba(0,0,0,.06); border-bottom-left-radius:4px; }
 .chat-msg--user { align-self:flex-end; background:var(--teal); color:var(--white); border-bottom-right-radius:4px; }
@@ -820,7 +820,10 @@ a.zone-tag:hover { background:var(--teal-light); color:var(--teal-dark); }
 .chat-panel__input button { width:42px; height:42px; border-radius:50%; border:none; background:#17A34A; color:var(--white); cursor:pointer; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
 .chat-panel__input button svg { width:18px; height:18px; }
 @media(max-width:600px){
-  .chat-panel { right:10px; left:10px; width:auto; max-width:none; bottom:86px; height:calc(100vh - 140px); }
+  /* Plein écran fixé à la taille du téléphone : plus de débordement ni de fenêtre à faire glisser */
+  .chat-panel { top:0; left:0; right:0; bottom:0; width:100%; max-width:none; height:100vh; height:100dvh; max-height:100dvh; border-radius:0; box-shadow:none; }
+  .chat-panel__header { padding:14px 16px; padding-top:calc(14px + env(safe-area-inset-top)); }
+  .chat-panel__input { padding-bottom:calc(10px + env(safe-area-inset-bottom)); }
   .chat-fab { right:14px; bottom:14px; }
 }
 
