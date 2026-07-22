@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap">
   <link rel="preload" as="image" href="images/fourmis-charpentieres.jpg">
-  <link rel="stylesheet" href="styles.css?v=20260721e">
+  <link rel="stylesheet" href="styles.css?v=20260721f">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR71B09K4M"></script>
   <script>
@@ -443,8 +443,13 @@
       : "Bonjour, Grégory, votre spécialiste en xylophages. Je suis en ligne, je vous écoute.";
     botSay(greet, ask);
   }
-  function open(){ panel.hidden=false; fab.classList.add('chat-fab--hidden'); setTimeout(function(){input.focus();},120); start(); }
-  function close(){ panel.hidden=true; fab.classList.remove('chat-fab--hidden'); }
+  var vv=window.visualViewport;
+  function syncVV(){
+    if(!vv||window.innerWidth>600){ panel.style.top=''; panel.style.left=''; panel.style.bottom=''; panel.style.height=''; return; }
+    panel.style.top=vv.offsetTop+'px'; panel.style.left=vv.offsetLeft+'px'; panel.style.bottom='auto'; panel.style.height=vv.height+'px'; scroll();
+  }
+  function open(){ panel.hidden=false; fab.classList.add('chat-fab--hidden'); syncVV(); if(vv){vv.addEventListener('resize',syncVV);vv.addEventListener('scroll',syncVV);} setTimeout(function(){input.focus();scroll();},120); start(); }
+  function close(){ panel.hidden=true; fab.classList.remove('chat-fab--hidden'); if(vv){vv.removeEventListener('resize',syncVV);vv.removeEventListener('scroll',syncVV);} panel.style.top='';panel.style.left='';panel.style.bottom='';panel.style.height=''; }
   fab.addEventListener('click', open);
   closeBtn.addEventListener('click', close);
 
