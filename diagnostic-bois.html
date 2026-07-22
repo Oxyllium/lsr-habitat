@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap">
   <link rel="preload" as="image" href="images/sciure-vermoulure.jpg">
-  <link rel="stylesheet" href="styles.css?v=20260721c">
+  <link rel="stylesheet" href="styles.css?v=20260721d">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR71B09K4M"></script>
   <script>
@@ -85,10 +85,7 @@
 <body>
 
 <!-- CTA BAR MOBILE -->
-<div class="cta-bar">
-  <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta cta-bar__call"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>Appeler</a>
-  <a href="demande-de-devis.html" class="cta-bar__devis"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Devis gratuit</a>
-</div>
+<!-- Barre CTA fixe remplacee par le widget chat Gregory -->
 
 <!-- HERO -->
 <section class="hero">
@@ -372,6 +369,140 @@
     <a href="mentions-legales.html">Mentions légales</a>
   </div>
 </footer>
+
+<!-- ============ CHAT GRÉGORY ============ -->
+<!-- Formulaire caché détecté par Netlify (le chat le remplit puis le soumet) -->
+<form name="chat-diagnostic-bois" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/demande-envoyee.html" id="chatHiddenForm" hidden>
+  <input type="hidden" name="form-name" value="chat-diagnostic-bois">
+  <input type="hidden" name="service" value="Chat - Diagnostic bois">
+  <p hidden><label>Ne pas remplir : <input name="bot-field"></label></p>
+  <input type="text" name="nom">
+  <input type="text" name="prenom">
+  <input type="tel" name="telephone">
+  <input type="email" name="email">
+  <input type="text" name="ville">
+  <input type="text" name="rappel">
+  <textarea name="message"></textarea>
+</form>
+
+<button class="chat-fab" id="chatFab" type="button" aria-label="Discuter avec Grégory">
+  <img src="images/gregory-quivy.jpg" alt="Grégory Quivy">
+  <span class="chat-fab__dot"></span>
+</button>
+<div class="chat-panel" id="chatPanel" hidden>
+  <div class="chat-panel__header">
+    <img src="images/gregory-quivy.jpg" alt="Grégory Quivy">
+    <div><strong>Grégory Quivy</strong><br><span class="chat-status" data-chat-status>En ligne</span></div>
+    <button class="chat-panel__close" id="chatClose" type="button" aria-label="Fermer">&times;</button>
+  </div>
+  <div class="chat-panel__body" id="chatBody"></div>
+  <form class="chat-panel__input" id="chatInputForm" autocomplete="off">
+    <input type="text" id="chatInput" placeholder="Écrivez ici..." autocomplete="off" enterkeyhint="send">
+    <button type="submit" aria-label="Envoyer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+  </form>
+</div>
+<script>
+(function(){
+  var fab=document.getElementById('chatFab'), panel=document.getElementById('chatPanel'),
+      body=document.getElementById('chatBody'), inputForm=document.getElementById('chatInputForm'),
+      input=document.getElementById('chatInput'), closeBtn=document.getElementById('chatClose'),
+      hidden=document.getElementById('chatHiddenForm');
+  if(!fab||!panel||!hidden) return;
+  var offline=document.documentElement.classList.contains('is-offline');
+  var statusEl=document.querySelector('[data-chat-status]');
+  if(offline&&statusEl) statusEl.textContent="Répond dès l'ouverture";
+
+  // Chaque etape : q = question de Gregory, v = validation, e = relance HUMAINE si invalide
+  var steps=[
+    {key:'message', q:"Dites-moi tout : qu'est-ce que vous observez ? De la sciure, des petits trous, une poutre qui sonne creux, un doute avant un achat...", v:function(x){return x.trim().length>2;}, e:"Racontez-moi un peu, même en deux mots, que je comprenne votre situation."},
+    {key:'prenom', q:"Merci, je vois très bien le genre de situation, et rassurez-vous, ça se traite bien. Pour vous répondre précisément et vous donner une idée du budget, il me faut juste deux ou trois infos. D'abord, votre prénom ?", v:function(x){return /^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ '\-]+$/.test(x.trim());}, e:"Là je crois qu'il y a une coquille, vous me redonnez juste votre prénom ?"},
+    {key:'nom', q:"Enchanté {prenom}. Et votre nom de famille ?", v:function(x){return /^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ '\-]+$/.test(x.trim());}, e:"Votre nom de famille en toutes lettres, c'est pour vous retrouver facilement."},
+    {key:'telephone', q:"Le plus simple pour un cas comme le vôtre, c'est qu'on en parle de vive voix. Quel est votre numéro ?", v:function(x){return /^0[1-9]([ .\-]?[0-9]{2}){4}$/.test(x.trim());}, e:"Là je ne vais pas réussir à vous joindre avec ça. Vous me le remettez en entier ? (10 chiffres)"},
+    {key:'email', q:"Parfait. Et votre email, au cas où je vous envoie une proposition écrite ?", v:function(x){return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(x.trim());}, e:"Je crois qu'il y a une petite coquille dans l'adresse, vous me la réécrivez ?"},
+    {key:'ville', q:"Dernière chose : vous êtes dans quel coin ? (votre ville)", v:function(x){return x.trim().length>1;}, e:"Votre ville, juste pour savoir si vous êtes dans mon secteur ?"}
+  ];
+  var data={}, i=0, started=false, completed=false, beaconSent=false;
+
+  function scroll(){ body.scrollTop=body.scrollHeight; }
+  function fill(t){ return t.replace('{prenom}', data.prenom||''); }
+  function addMsg(text,who){ var d=document.createElement('div'); d.className='chat-msg chat-msg--'+who; d.textContent=text; body.appendChild(d); scroll(); }
+  function typing(cb){ var t=document.createElement('div'); t.className='chat-typing'; t.innerHTML='<span></span><span></span><span></span>'; body.appendChild(t); scroll(); setTimeout(function(){ t.parentNode&&t.parentNode.removeChild(t); cb(); },800); }
+  function botSay(text,cb){ typing(function(){ addMsg(fill(text),'bot'); if(cb)cb(); }); }
+  function ask(){ botSay(steps[i].q); }
+  function start(){
+    if(started) return; started=true;
+    var greet=offline
+      ? "Bonjour, Grégory, votre spécialiste en xylophages. Je ne suis pas en ligne juste là, mais expliquez-moi votre souci : je le lis dès l'ouverture et je reviens vers vous très vite."
+      : "Bonjour, Grégory, votre spécialiste en xylophages. Je suis en ligne, je vous écoute.";
+    botSay(greet, ask);
+  }
+  function open(){ panel.hidden=false; fab.classList.add('chat-fab--hidden'); setTimeout(function(){input.focus();},120); start(); }
+  function close(){ panel.hidden=true; fab.classList.remove('chat-fab--hidden'); }
+  fab.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+
+  inputForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var val=input.value.trim();
+    if(!val||i>=steps.length) return;
+    var step=steps[i];
+    addMsg(val,'user'); input.value='';
+    if(!step.v(val)){ botSay(step.e); return; }
+    data[step.key]=val; i++;
+    if(i<steps.length){ ask(); } else { askAvailability(); }
+  });
+
+  // Fin : on demande si la personne est dispo pour un appel MAINTENANT (reponses par boutons)
+  function askAvailability(){
+    input.disabled=true; input.placeholder="Choisissez une réponse ci-dessus...";
+    botSay("On y est "+data.prenom+". Votre cas mérite qu'on en parle directement, plutôt que par écrit. Je peux vous appeler maintenant, vous êtes disponible ?", function(){
+      var wrap=document.createElement('div'); wrap.className='chat-quick';
+      [["Oui, appelez-moi","Disponible maintenant"],["Pas tout de suite","A recontacter / envoyer une offre"]].forEach(function(opt){
+        var b=document.createElement('button'); b.type='button'; b.textContent=opt[0];
+        b.addEventListener('click', function(){ wrap.remove(); addMsg(opt[0],'user'); finish(opt[1]); });
+        wrap.appendChild(b);
+      });
+      body.appendChild(wrap); scroll();
+    });
+  }
+
+  function finish(rappel){
+    completed=true; data.rappel=rappel;
+    var msg = rappel==="Disponible maintenant"
+      ? "Parfait "+data.prenom+", je vous appelle d'ici quelques minutes au "+data.telephone+". À tout de suite."
+      : "Pas de souci "+data.prenom+". Je vous prépare une proposition et je vous l'envoie par email aujourd'hui, puis je vous rappelle quand ça vous arrange.";
+    botSay(msg, function(){
+      hidden.querySelector('[name=nom]').value=data.nom||'';
+      hidden.querySelector('[name=prenom]').value=data.prenom||'';
+      hidden.querySelector('[name=telephone]').value=data.telephone||'';
+      hidden.querySelector('[name=email]').value=data.email||'';
+      hidden.querySelector('[name=ville]').value=data.ville||'';
+      hidden.querySelector('[name=rappel]').value=rappel;
+      hidden.querySelector('[name=message]').value=data.message||'';
+      setTimeout(function(){ hidden.submit(); },2200);
+    });
+  }
+
+  // Capture PARTIELLE : si la personne a laissé de quoi la joindre puis abandonne, on récupère le lead
+  function partialCapture(){
+    if(completed||beaconSent) return;
+    if(!data.telephone && !data.email) return;
+    try{
+      var p=new URLSearchParams();
+      p.append('form-name', hidden.getAttribute('name'));
+      p.append('service', ((hidden.querySelector('[name=service]')||{}).value||'Chat')+' (INCOMPLET)');
+      p.append('nom',data.nom||''); p.append('prenom',data.prenom||'');
+      p.append('telephone',data.telephone||''); p.append('email',data.email||'');
+      p.append('ville',data.ville||''); p.append('rappel','Conversation abandonnée');
+      p.append('message','[CONVERSATION NON TERMINÉE] '+(data.message||''));
+      navigator.sendBeacon('/', new Blob([p.toString()],{type:'application/x-www-form-urlencoded'}));
+      beaconSent=true;
+    }catch(e){}
+  }
+  document.addEventListener('visibilitychange', function(){ if(document.visibilityState==='hidden') partialCapture(); });
+  window.addEventListener('pagehide', partialCapture);
+})();
+</script>
 
 <script src="script.js?v=20260720a"></script>
 

@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap">
   <link rel="preload" as="image" href="images/termites-galeries.jpg">
-  <link rel="stylesheet" href="styles.css?v=20260721c">
+  <link rel="stylesheet" href="styles.css?v=20260721d">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR71B09K4M"></script>
   <script>
@@ -521,8 +521,8 @@
   function start(){
     if(started) return; started=true;
     var greet=offline
-      ? "Bonjour, Grégory à l'appareil. Je ne suis pas en ligne juste là, mais expliquez-moi votre souci : je le lis dès l'ouverture et je reviens vers vous très vite."
-      : "Bonjour, Grégory à l'appareil, votre technicien. Je suis en ligne, je vous écoute.";
+      ? "Bonjour, Grégory, votre spécialiste en xylophages. Je ne suis pas en ligne juste là, mais expliquez-moi votre souci : je le lis dès l'ouverture et je reviens vers vous très vite."
+      : "Bonjour, Grégory, votre spécialiste en xylophages. Je suis en ligne, je vous écoute.";
     botSay(greet, ask);
   }
   function open(){ panel.hidden=false; fab.classList.add('chat-fab--hidden'); setTimeout(function(){input.focus();},120); start(); }
@@ -578,8 +578,8 @@
     if(!data.telephone && !data.email) return;
     try{
       var p=new URLSearchParams();
-      p.append('form-name','chat-bordeaux');
-      p.append('service','Chat Bordeaux (INCOMPLET)');
+      p.append('form-name', hidden.getAttribute('name'));
+      p.append('service', ((hidden.querySelector('[name=service]')||{}).value||'Chat')+' (INCOMPLET)');
       p.append('nom',data.nom||''); p.append('prenom',data.prenom||'');
       p.append('telephone',data.telephone||''); p.append('email',data.email||'');
       p.append('ville',data.ville||''); p.append('rappel','Conversation abandonnée');
