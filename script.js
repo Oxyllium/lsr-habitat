@@ -161,6 +161,21 @@
     });
   }
 
+  /* CTA devis des bandeaux : sur mobile le formulaire est en haut de page,
+     remonter est plus rapide que charger la page devis. Sur desktop le
+     formulaire est en sidebar a cote du texte, on garde la page devis. */
+  function initStripDevis() {
+    document.addEventListener('click', function(e) {
+      var a = e.target.closest ? e.target.closest('.expert-strip__devis') : null;
+      if (!a) return;
+      var form = document.getElementById('devis');
+      if (form && window.matchMedia('(max-width:960px)').matches) {
+        e.preventDefault();
+        form.scrollIntoView();
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function() {
     initSliders();
     initScrollAnimations();
@@ -168,5 +183,6 @@
     initCtaBar();
     initPresence();
     initZoneTags();
+    initStripDevis();
   });
 })();
