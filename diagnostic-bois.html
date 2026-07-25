@@ -67,6 +67,30 @@
       else{window.addEventListener('load',function(){setTimeout(loadClarity,2000);});}
     })();
   </script>
+  <!-- Audit trafic Ads (uniquement visites gclid) -->
+  <script>
+  (function(){
+    if(!/[?&](gclid|gbraid|wbraid|gad_source)=/.test(location.search)) return;
+    var id=Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+    function send(type,extra){
+      var d={id:id,type:type,page:location.pathname,q:location.search.slice(0,300),ref:document.referrer,
+        sw:screen.width,sh:screen.height,dpr:window.devicePixelRatio||1,
+        touch:('ontouchstart' in window),wd:navigator.webdriver===true,
+        lang:navigator.language||'',conc:navigator.hardwareConcurrency||0,
+        tz:(function(){try{return Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(e){return ''}})()};
+      for(var k in extra)d[k]=extra[k];
+      try{navigator.sendBeacon('/api/track',JSON.stringify(d));}catch(e){}
+    }
+    send('start',{});
+    var moves=0,scrolls=0,clics=0,t0=Date.now(),fini=false;
+    addEventListener('pointermove',function(){moves++},{passive:true});
+    addEventListener('scroll',function(){scrolls++},{passive:true});
+    addEventListener('pointerdown',function(){clics++},{passive:true});
+    function fin(){ if(fini)return; fini=true; send('end',{dwell:Date.now()-t0,moves:moves,scrolls:scrolls,clics:clics}); }
+    addEventListener('pagehide',fin);
+    document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')fin();});
+  })();
+  </script>
   <link rel="canonical" href="https://lsr-habitat.fr/diagnostic-bois.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="LSR Habitat">
