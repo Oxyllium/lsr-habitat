@@ -154,6 +154,8 @@
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
         })(window, document, "clarity", "script", "vwp8i1p1jt");
       }
+      /* Trafic Google Ads (gclid) : Clarity charge immediatement pour enregistrer chaque clic paye */
+      if(/[?&](gclid|gbraid|wbraid|gad_source)=/.test(location.search)){loadClarity();}
       ['scroll','pointerdown','keydown','touchstart'].forEach(function(e){window.addEventListener(e,loadClarity,{once:true,passive:true});});
       if(document.readyState==='complete'){setTimeout(loadClarity,2000);}
       else{window.addEventListener('load',function(){setTimeout(loadClarity,2000);});}
