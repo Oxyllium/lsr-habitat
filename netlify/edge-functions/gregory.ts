@@ -1,28 +1,67 @@
 // Reponses IA du chat Gregory (pilote) : proxy OpenRouter avec brief verrouille.
 // POST /api/gregory {question, probleme, etape, offline} -> {reponse}
-// Sans cle API configuree ou en cas d'erreur/lenteur : {reponse:""} -> le chat
+// Essais sequentiels multi-modeles a delai court : un modele lent ou sature ne
+// condamne pas la reponse. Sans cle / tous modeles KO : {reponse:""} -> le chat
 // retombe sur sa reponse scriptee, aucune conversation cassee.
 
 function env(k: string): string {
-  const nettoie = (brut: string): string => {
-    let txt = String(brut || "");
-    if (/\b(the user|we need to|persona|rules:|respond as)\b/i.test(txt) || /<think/i.test(txt)) return "";
-    txt = txt.replace(/[*#_`>|]/g, "").replace(/\s*\n+\s*/g, " ").replace(/\s{2,}/g, " ").trim();
-    const phrases = txt.match(/[^.!?]+[.!?]+/g);
-    if (phrases && phrases.length) txt = phrases.slice(0, 3).join(" ").trim();
-    return txt.length > 400 ? txt.slice(0, 400) : txt;
-  };
+  try {
+    const g = (globalThis as Record<string, unknown>).Netlify as
+      | { env?: { get?: (k: string) => string | undefined } } | undefined;
+    const v = g?.env?.get?.(k);
+    if (v) return v;
+  } catch (_e) { /* ignore */ }
+  try { return (globalThis as Record<string, any>).Deno?.env?.get?.(k) || ""; } catch (_e) { return ""; }
+}
 
-  // Essais sequentiels a delai court : un modele qui traine ne bloque plus la reponse
-  const MODELES = [model, "inclusionai/ling-3.0-flash:free", "google/gemma-4-31b-it:free"];
-  for (let n = 0; n < MODELES.length; n++) {
+const BRIEF = `Tu es Grégory Quivy, artisan et gérant de LSR Habitat à Salles, en Gironde. Ta spécialité : le traitement des bois attaqués par les termites, les capricornes des maisons et les fourmis charpentières. Tu réponds dans le chat de ton site à un client potentiel, comme tu écrirais un SMS.
+
+Règles absolues, aucune exception :
+- Une à deux phrases courtes maximum. Ton simple, direct, chaleureux. Tu vouvoies toujours.
+- Aucune mise en forme : pas de liste, pas d'astérisque, pas de titre, pas d'émoji, pas de tableau.
+- Tu ne donnes JAMAIS de conseil pour traiter soi-même et tu ne recommandes JAMAIS de produit. Ta réponse doit montrer ton expertise et donner envie de te confier l'intervention.
+- Prix : tu peux seulement dire "à partir de 1 000 euros" pour un traitement localisé et "à partir de 1 500 euros" pour une charpente ou un traitement termites complet. Jamais moins, jamais de fourchette précise, jamais de montant exact : le chiffrage précis vient après la visite technique.
+- Le devis est gratuit et sans engagement, tu réponds sous 24h. Tu ne promets JAMAIS de visite ou de diagnostic gratuit, ni un délai d'intervention précis.
+- Si la question sort de ta spécialité (rats, souris, cafards, punaises de lit, guêpes, frelons, mérule, vrillette, lyctus...), tu dis simplement que ce n'est pas ton métier et qu'une entreprise spécialisée dans ce domaine sera plus adaptée.
+- Tu ne demandes pas les coordonnées : le formulaire du chat s'en occupe juste après ta réponse.
+- Uniquement si on te demande explicitement si tu es un robot ou une IA : tu réponds que c'est l'assistant du site qui prend les demandes, et que Grégory rappelle personnellement chaque personne. Dans tous les autres cas, tu parles à la première personne, en tant que Grégory, et tu ne mentionnes jamais d'assistant.
+- Rassure quand la situation s'y prête : ces infestations se traitent bien quand on s'en occupe à temps.`;
+
+function nettoie(brut: unknown): string {
+  let txt = String(brut || "");
+  if (/\b(the user|we need to|persona|rules:|respond as)\b/i.test(txt) || /<think/i.test(txt)) return "";
+  txt = txt.replace(/[*#_`>|]/g, "").replace(/\s*\n+\s*/g, " ").replace(/\s{2,}/g, " ").trim();
+  const phrases = txt.match(/[^.!?]+[.!?]+/g);
+  if (phrases && phrases.length) txt = phrases.slice(0, 3).join(" ").trim();
+  return txt.length > 400 ? txt.slice(0, 400) : txt;
+}
+
+export default async (req: Request) => {
+  if (req.method !== "POST") return new Response("ok");
+  let b: Record<string, unknown> = {};
+  try { b = await req.json(); } catch (_e) { return Response.json({ reponse: "" }); }
+
+  const key = env("OPENROUTER_API_KEY");
+  if (!key) return Response.json({ reponse: "" });
+  const principal = env("GREGORY_MODEL") || "google/gemma-4-26b-a4b-it:free";
+
+  const contexte = b.offline
+    ? "Contexte : on est hors des horaires d'ouverture, tu n'es pas joignable par téléphone tout de suite, tu reviens vers les gens dès l'ouverture."
+    : "Contexte : on est aux horaires d'ouverture, tu peux rappeler rapidement.";
+  const user = `${contexte}
+Problème décrit par le visiteur : "${String(b.probleme || "").slice(0, 300)}"
+Dernier message du visiteur : "${String(b.question || "").slice(0, 300)}"
+Réponds-lui.`;
+
+  const modeles = [principal, "inclusionai/ling-3.0-flash:free", "google/gemma-4-31b-it:free"];
+  for (let n = 0; n < modeles.length; n++) {
     try {
       const r = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
         signal: AbortSignal.timeout(n === 0 ? 6000 : 5000),
         headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: MODELES[n],
+          model: modeles[n],
           messages: [{ role: "system", content: BRIEF }, { role: "user", content: user }],
           max_tokens: 160,
           temperature: 0.4,
