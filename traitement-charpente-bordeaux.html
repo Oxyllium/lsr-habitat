@@ -573,6 +573,12 @@
     if(!val||i>=steps.length) return;
     var step=steps[i];
     addMsg(val,'user'); input.value='';
+    /* Simple politesse (bonjour/bonsoir seul) : on salue en retour, on ne la prend pas pour la description */
+    if(step.key==='message' && /^(bonjour|bonsoir|salut|coucou|cc|hello|allo|bjr|slt|hey|yo)[\s!,.?]*$/i.test(val)){
+      var pol=val.trim().split(/[\s!,.?]/)[0];
+      botSay(pol.charAt(0).toUpperCase()+pol.slice(1).toLowerCase()+" ! Dites-moi ce qui vous amène : qu'est-ce que vous observez sur vos bois ?");
+      return;
+    }
     /* La personne pose une question au lieu de répondre : on la note, on ne l'avale pas comme un prénom */
     if(step.key!=='message' && (/\?\s*$/.test(val) || /\b(voudrais|voulez|pouvez|pourriez|savoir|pensez|combien|comment|pourquoi|est[- ]ce que)\b/i.test(val))){
       data.question=(data.question? data.question+' / ' : '')+val;
