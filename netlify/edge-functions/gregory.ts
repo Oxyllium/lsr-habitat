@@ -40,8 +40,8 @@ export default async (req: Request) => {
     : "Contexte : on est aux horaires d'ouverture, tu peux rappeler rapidement.";
   const user = `${contexte}
 Problème décrit par le visiteur : "${String(b.probleme || "").slice(0, 300)}"
-Sa question : "${String(b.question || "").slice(0, 300)}"
-Réponds à sa question.`;
+Dernier message du visiteur : "${String(b.question || "").slice(0, 300)}"
+Réponds-lui.`;
 
   try {
     const r = await fetch("https://openrouter.ai/api/v1/chat/completions", {
