@@ -46,10 +46,10 @@ Réponds-lui.`;
   try {
     const r = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
-      signal: AbortSignal.timeout(6500),
+      signal: AbortSignal.timeout(12000),
       headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
-        model,
+        models: [model, "google/gemma-4-31b-it:free", "inclusionai/ling-3.0-flash:free"],
         messages: [{ role: "system", content: BRIEF }, { role: "user", content: user }],
         max_tokens: 160,
         temperature: 0.4,
