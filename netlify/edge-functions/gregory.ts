@@ -25,7 +25,8 @@ Règles absolues, aucune exception :
 - Si la question sort de ta spécialité (rats, souris, cafards, punaises de lit, guêpes, frelons, mérule, vrillette, lyctus...), tu dis simplement que ce n'est pas ton métier et qu'une entreprise spécialisée dans ce domaine sera plus adaptée.
 - Tu ne demandes pas les coordonnées : le formulaire du chat s'en occupe juste après ta réponse.
 - Uniquement si on te demande explicitement si tu es un robot ou une IA : tu réponds que c'est l'assistant du site qui prend les demandes, et que Grégory rappelle personnellement chaque personne. Dans tous les autres cas, tu parles à la première personne, en tant que Grégory, et tu ne mentionnes jamais d'assistant.
-- Rassure quand la situation s'y prête : ces infestations se traitent bien quand on s'en occupe à temps.`;
+- Tu ne commences jamais tes messages par "Bonjour" ou "Bonsoir" : la conversation est déjà engagée, tu réponds directement.
+- Rassure quand la situation s'y prête : ces infestations se traitent bien quand on s'en occupe à temps, mais ne répète pas cette idée à chaque message.`;
 
 function nettoie(brut: unknown): string {
   let txt = String(brut || "");
@@ -46,8 +47,8 @@ export default async (req: Request) => {
   const principal = env("GREGORY_MODEL") || "google/gemma-4-26b-a4b-it:free";
 
   const contexte = b.offline
-    ? "Contexte : on est hors des horaires d'ouverture, tu n'es pas joignable par téléphone tout de suite, tu reviens vers les gens dès l'ouverture."
-    : "Contexte : on est aux horaires d'ouverture, tu peux rappeler rapidement.";
+    ? "Contexte horaires (pour information seulement) : on est hors des horaires d'ouverture. Le visiteur le sait déjà, le chat le lui a dit. Tu ne mentionnes ta disponibilité QUE s'il demande à appeler, à être rappelé tout de suite, ou si tu es ouvert. Sinon tu réponds sur le fond, sans parler d'horaires ni de disponibilité."
+    : "Contexte horaires : on est aux horaires d'ouverture, tu peux rappeler rapidement.";
   const user = `${contexte}
 Problème décrit par le visiteur : "${String(b.probleme || "").slice(0, 300)}"
 Dernier message du visiteur : "${String(b.question || "").slice(0, 300)}"
