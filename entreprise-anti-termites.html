@@ -546,16 +546,36 @@
     if(!val||i>=steps.length) return;
     var step=steps[i];
     addMsg(val,'user'); input.value='';
-    /* La personne pose une question au lieu de répondre : on la note, on ne l'avale pas comme un prénom */
+    /* La personne pose une question au lieu de répondre : réponse IA (pilote), sinon réponse scriptée */
     if(step.key!=='message' && (/\?\s*$/.test(val) || /\b(voudrais|voulez|pouvez|pourriez|savoir|pensez|combien|comment|pourquoi|est[- ]ce que)\b/i.test(val))){
       data.question=(data.question? data.question+' / ' : '')+val;
-      botSay("Bonne question, je la note et j'y réponds personnellement en revenant vers vous. "+(step.r||step.q));
+      iaReponse(val, step);
       return;
     }
     if(!step.v(val)){ botSay(step.e); return; }
     data[step.key]=val; i++; tk('etape',{etape:step.key});
     if(i<steps.length){ ask(); } else { askAvailability(); }
   });
+
+  /* Réponse IA avec filet : si /api/gregory ne répond pas vite et bien, réponse scriptée habituelle */
+  function iaReponse(q, step){
+    var relance = step.r||step.q;
+    var secours = function(){ botSay("Bonne question, je la note et j'y réponds personnellement en revenant vers vous. "+relance); };
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var tmo = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 5000);
+    fetch('/api/gregory', {method:'POST', headers:{'Content-Type':'application/json'},
+      signal: ctrl && ctrl.signal,
+      body: JSON.stringify({question:q, probleme:data.message||'', etape:step.key,
+        offline: document.documentElement.classList.contains('is-offline')})})
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(j){
+      clearTimeout(tmo);
+      var t=(j&&j.reponse||'').trim();
+      if(!t){ secours(); return; }
+      botSay(t, function(){ botSay(relance); });
+    })
+    .catch(function(){ clearTimeout(tmo); secours(); });
+  }
 
   // Fin : on demande si la personne est dispo pour un appel MAINTENANT (reponses par boutons)
   function askAvailability(){
