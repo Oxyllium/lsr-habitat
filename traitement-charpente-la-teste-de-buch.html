@@ -485,12 +485,12 @@
   if(offline&&statusEl) statusEl.textContent="Répond dès l'ouverture";
 
   // Chaque etape : q = question de Gregory, v = validation, e = relance HUMAINE si invalide
+  var MOTS_COURANTS=/^(r[ée]pondez|r[ée]ponds?|oui|non|ok|okay|dac|d'accord|merci|test|bonjour|bonsoir|salut|allo|quoi|comment|pourquoi|voil[àa]|rien|aide|help|stp|svp|mon nom|mon prenom|mon prénom)$/i;
   var steps=[
     {key:'message', q:"Dites-moi tout : qu'est-ce que vous observez ? De la sciure, des petits trous, une poutre qui sonne creux, un doute avant un achat...", v:function(x){return x.trim().length>2;}, e:"Racontez-moi un peu, même en deux mots, que je comprenne votre situation."},
-    {key:'prenom', q:"Merci, je vois très bien le genre de situation, et rassurez-vous, ça se traite bien. Pour vous répondre précisément et vous donner une idée du budget, il me faut juste deux ou trois infos. D'abord, votre prénom ?", v:function(x){x=x.trim();return x.length<=25 && /^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ'\-]*( [a-zA-ZÀ-ÿ'\-]+)?$/.test(x);}, e:"Juste votre prénom, tout simplement, et on continue.", r:"D'abord, votre prénom ?"},
-    {key:'nom', q:"Enchanté {prenom}. Et votre nom de famille ?", v:function(x){x=x.trim();return x.length<=30 && /^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ'\-]*( [a-zA-ZÀ-ÿ'\-]+){0,2}$/.test(x);}, e:"Votre nom de famille en toutes lettres, c'est pour vous retrouver facilement.", r:"Et votre nom de famille ?"},
+    {key:'prenom', q:"Merci, je vois très bien le genre de situation, et rassurez-vous, ça se traite bien. Pour vous répondre précisément et vous donner une idée du budget, il me faut juste deux ou trois infos. D'abord, votre prénom ?", v:function(x){x=x.trim();return x.length<=25 && !MOTS_COURANTS.test(x) && /^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ'\-]*( [a-zA-ZÀ-ÿ'\-]+)?$/.test(x);}, e:"Juste votre prénom, tout simplement, et on continue.", r:"D'abord, votre prénom ?"},
+    {key:'nom', q:"Enchanté {prenom}. Et votre nom de famille ?", v:function(x){x=x.trim();return x.length<=30 && !MOTS_COURANTS.test(x) && /^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ'\-]*( [a-zA-ZÀ-ÿ'\-]+){0,2}$/.test(x);}, e:"Votre nom de famille en toutes lettres, c'est pour vous retrouver facilement.", r:"Et votre nom de famille ?"},
     {key:'telephone', q:"Le plus simple pour un cas comme le vôtre, c'est qu'on en parle de vive voix. Quel est votre numéro ?", v:function(x){return /^0[1-9]([ .\-]?[0-9]{2}){4}$/.test(x.trim());}, e:"Là je ne vais pas réussir à vous joindre avec ça. Vous me le remettez en entier ? (10 chiffres)", r:"Votre numéro pour vous joindre ?"},
-    {key:'email', q:"Parfait. Et votre email, au cas où je vous envoie une proposition écrite ?", v:function(x){return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(x.trim());}, e:"Je crois qu'il y a une petite coquille dans l'adresse, vous me la réécrivez ?", r:"Votre email ?"},
     {key:'ville', q:"Dernière chose : vous êtes dans quel coin ? (votre ville)", v:function(x){return x.trim().length>1;}, e:"Votre ville, juste pour savoir si vous êtes dans mon secteur ?", r:"Et votre ville ?"}
   ];
   var data={}, i=0, started=false, completed=false, beaconSent=false;
@@ -536,16 +536,51 @@
       botSay(pol.charAt(0).toUpperCase()+pol.slice(1).toLowerCase()+" ! Dites-moi ce qui vous amène : qu'est-ce que vous observez sur vos bois ?");
       return;
     }
-    /* La personne pose une question au lieu de répondre : on la note, on ne l'avale pas comme un prénom */
+    /* La personne pose une question au lieu de répondre : réponse IA (pilote), sinon réponse scriptée */
     if(step.key!=='message' && (/\?\s*$/.test(val) || /\b(voudrais|voulez|pouvez|pourriez|savoir|pensez|combien|comment|pourquoi|est[- ]ce que)\b/i.test(val))){
       data.question=(data.question? data.question+' / ' : '')+val;
-      botSay("Bonne question, je la note et j'y réponds personnellement en revenant vers vous. "+(step.r||step.q));
+      iaReponse(val, step, "Bonne question, je la note et j'y réponds personnellement en revenant vers vous. "+(step.r||step.q));
       return;
     }
-    if(!step.v(val)){ botSay(step.e); return; }
+    if(!step.v(val)){ iaReponse(val, step, step.e); return; }
     data[step.key]=val; i++; tk('etape',{etape:step.key});
+    if(step.key==='message'){ iaAccueil(val); return; }
     if(i<steps.length){ ask(); } else { askAvailability(); }
   });
+
+  /* Appel IA générique avec filet : si /api/gregory est lent (>8s) ou muet, on utilise le texte de secours */
+  function iaCall(dernierMessage, onTexte, secours){
+    var ctrl = ('AbortController' in window) ? new AbortController() : null;
+    var tmo = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 13000);
+    var att=document.createElement('div'); att.className='chat-typing'; att.innerHTML='<span></span><span></span><span></span>';
+    body.appendChild(att); scroll();
+    var finAtt=function(){ if(att.parentNode) att.parentNode.removeChild(att); };
+    fetch('/api/gregory', {method:'POST', headers:{'Content-Type':'application/json'},
+      signal: ctrl && ctrl.signal,
+      body: JSON.stringify({question:dernierMessage, probleme:data.message||'', etape:(steps[i]||{}).key||'fin',
+        offline: document.documentElement.classList.contains('is-offline')})})
+    .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(j){
+      clearTimeout(tmo); finAtt();
+      var t=(j&&j.reponse||'').trim();
+      if(!t){ secours(); return; }
+      onTexte(t);
+    })
+    .catch(function(){ clearTimeout(tmo); finAtt(); secours(); });
+  }
+  /* Réponse IA à une question ou une saisie invalide, puis relance de l'étape en cours */
+  function iaReponse(q, step, secoursTexte){
+    var relance = step.r||step.q;
+    iaCall(q,
+      function(t){ botSay(t, function(){ botSay(relance); }); },
+      function(){ botSay(secoursTexte); });
+  }
+  /* Accueil IA : réaction à la description du problème, puis demande du prénom */
+  function iaAccueil(description){
+    iaCall(description,
+      function(t){ botSay(t, function(){ botSay("Pour vous répondre précisément, d'abord votre prénom ?"); }); },
+      function(){ ask(); });
+  }
 
   // Fin : on demande si la personne est dispo pour un appel MAINTENANT (reponses par boutons)
   function askAvailability(){
