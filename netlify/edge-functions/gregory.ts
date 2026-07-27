@@ -43,7 +43,6 @@ export default async (req: Request) => {
   try { b = await req.json(); } catch (_e) { return Response.json({ reponse: "" }); }
 
   const key = env("OPENROUTER_API_KEY");
-  if (!key) return Response.json({ reponse: "" });
   const principal = env("GREGORY_MODEL") || "google/gemma-4-26b-a4b-it:free";
 
   const contexte = b.offline
@@ -54,12 +53,41 @@ Problème décrit par le visiteur : "${String(b.probleme || "").slice(0, 300)}"
 Dernier message du visiteur : "${String(b.question || "").slice(0, 300)}"
 Réponds-lui.`;
 
+  // 1. Gemini d'abord (RPD illimite, rapide) : Flash Lite puis Flash
+  const gkey = env("GEMINI_API_KEY");
+  if (gkey) {
+    const gmodeles = ["gemini-2.5-flash-lite", "gemini-2.0-flash"];
+    for (let n = 0; n < gmodeles.length; n++) {
+      try {
+        const r = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${gmodeles[n]}:generateContent?key=${gkey}`,
+          {
+            method: "POST",
+            signal: AbortSignal.timeout(n === 0 ? 5000 : 4000),
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              system_instruction: { parts: [{ text: BRIEF }] },
+              contents: [{ role: "user", parts: [{ text: user }] }],
+              generationConfig: { maxOutputTokens: 300, temperature: 0.4 },
+            }),
+          },
+        );
+        if (!r.ok) continue;
+        const j = await r.json();
+        const parts = j?.candidates?.[0]?.content?.parts || [];
+        const txt = nettoie(parts.map((p: { text?: string }) => p.text || "").join(" "));
+        if (txt) return Response.json({ reponse: txt });
+      } catch (_e) { /* modele suivant */ }
+    }
+  }
+
+  // 2. Secours : cascade OpenRouter (modeles gratuits)
   const modeles = [principal, "inclusionai/ling-3.0-flash:free", "google/gemma-4-31b-it:free"];
   for (let n = 0; n < modeles.length; n++) {
     try {
       const r = await fetch("https://openrouter.ai/api/v1/chat/completions", {
         method: "POST",
-        signal: AbortSignal.timeout(n === 0 ? 6000 : 5000),
+        signal: AbortSignal.timeout(n === 0 ? 5000 : 4000),
         headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
         body: JSON.stringify({
           model: modeles[n],
