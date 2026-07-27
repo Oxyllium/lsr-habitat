@@ -56,7 +56,7 @@ Réponds-lui.`;
   // 1. Gemini d'abord (RPD illimite, rapide) : Flash Lite puis Flash
   const gkey = env("GEMINI_API_KEY");
   if (gkey) {
-    const gmodeles = ["gemini-2.5-flash-lite", "gemini-2.0-flash"];
+    const gmodeles = ["gemini-flash-lite-latest", "gemini-flash-latest"];
     for (let n = 0; n < gmodeles.length; n++) {
       try {
         const r = await fetch(
