@@ -562,19 +562,23 @@
     var relance = step.r||step.q;
     var secours = function(){ botSay("Bonne question, je la note et j'y réponds personnellement en revenant vers vous. "+relance); };
     var ctrl = ('AbortController' in window) ? new AbortController() : null;
-    var tmo = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 5000);
+    var tmo = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 8000);
+    /* Points de saisie visibles pendant que l'IA repond */
+    var att=document.createElement('div'); att.className='chat-typing'; att.innerHTML='<span></span><span></span><span></span>';
+    body.appendChild(att); scroll();
+    var finAtt=function(){ if(att.parentNode) att.parentNode.removeChild(att); };
     fetch('/api/gregory', {method:'POST', headers:{'Content-Type':'application/json'},
       signal: ctrl && ctrl.signal,
       body: JSON.stringify({question:q, probleme:data.message||'', etape:step.key,
         offline: document.documentElement.classList.contains('is-offline')})})
     .then(function(r){ if(!r.ok) throw 0; return r.json(); })
     .then(function(j){
-      clearTimeout(tmo);
+      clearTimeout(tmo); finAtt();
       var t=(j&&j.reponse||'').trim();
       if(!t){ secours(); return; }
       botSay(t, function(){ botSay(relance); });
     })
-    .catch(function(){ clearTimeout(tmo); secours(); });
+    .catch(function(){ clearTimeout(tmo); finAtt(); secours(); });
   }
 
   // Fin : on demande si la personne est dispo pour un appel MAINTENANT (reponses par boutons)

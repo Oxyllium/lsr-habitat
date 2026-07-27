@@ -33,7 +33,7 @@ export default async (req: Request) => {
 
   const key = env("OPENROUTER_API_KEY");
   if (!key) return Response.json({ reponse: "" });
-  const model = env("GREGORY_MODEL") || "nvidia/nemotron-3-ultra-550b-a55b:free";
+  const model = env("GREGORY_MODEL") || "google/gemma-4-26b-a4b-it:free";
 
   const contexte = b.offline
     ? "Contexte : on est hors des horaires d'ouverture, tu n'es pas joignable par téléphone tout de suite, tu reviens vers les gens dès l'ouverture."
@@ -46,7 +46,7 @@ Réponds à sa question.`;
   try {
     const r = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
-      signal: AbortSignal.timeout(4000),
+      signal: AbortSignal.timeout(6500),
       headers: { "Authorization": `Bearer ${key}`, "Content-Type": "application/json" },
       body: JSON.stringify({
         model,
@@ -58,11 +58,15 @@ Réponds à sa question.`;
     if (!r.ok) return Response.json({ reponse: "" });
     const j = await r.json();
     let txt = String(j?.choices?.[0]?.message?.content || "");
+    // Garde anti-fuite : un modele qui recite son brief ou raisonne en anglais est ecarte (fallback scripte)
+    if (/\b(the user|we need to|persona|rules:|respond as)\b/i.test(txt) || /<think/i.test(txt)) {
+      return Response.json({ reponse: "" });
+    }
     // Filet de securite anti-mise-en-forme : on nettoie ce que le modele n'aurait pas respecte
     txt = txt.replace(/[*#_`>|]/g, "").replace(/\s*\n+\s*/g, " ").replace(/\s{2,}/g, " ").trim();
-    // 3 phrases max
+    // 3 phrases max, et jamais de phrase coupee en plein mot
     const phrases = txt.match(/[^.!?]+[.!?]+/g);
-    if (phrases && phrases.length > 3) txt = phrases.slice(0, 3).join(" ").trim();
+    if (phrases && phrases.length) txt = phrases.slice(0, 3).join(" ").trim();
     if (txt.length > 400) txt = txt.slice(0, 400);
     return Response.json({ reponse: txt });
   } catch (_e) {
