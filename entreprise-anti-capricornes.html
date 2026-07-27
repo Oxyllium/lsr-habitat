@@ -509,6 +509,12 @@
     {key:'ville', q:"Dernière chose : vous êtes dans quel coin ? (votre ville)", v:function(x){return x.trim().length>1;}, e:"Votre ville, juste pour savoir si vous êtes dans mon secteur ?", r:"Et votre ville ?"}
   ];
   var data={}, i=0, started=false, completed=false, beaconSent=false;
+  var cid='chat_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  function tk(ev,extra){
+    var d={id:cid,type:'chat',ev:ev,page:location.pathname,q:location.search.slice(0,300)};
+    for(var k in extra)d[k]=extra[k];
+    try{navigator.sendBeacon('/api/track',JSON.stringify(d));}catch(e){}
+  }
 
   function scroll(){ body.scrollTop=body.scrollHeight; }
   function fill(t){ return t.replace('{prenom}', data.prenom||''); }
@@ -517,7 +523,7 @@
   function botSay(text,cb){ typing(function(){ addMsg(fill(text),'bot'); if(cb)cb(); }); }
   function ask(){ botSay(steps[i].q); }
   function start(){
-    if(started) return; started=true;
+    if(started) return; started=true; tk('open',{});
     var greet=offline
       ? "Bonjour, Grégory, votre spécialiste en xylophages. Je ne suis pas en ligne juste là, mais expliquez-moi votre souci : je le lis dès l'ouverture et je reviens vers vous très vite."
       : "Bonjour, Grégory, votre spécialiste en xylophages. Je suis en ligne, je vous écoute.";
@@ -546,7 +552,7 @@
       return;
     }
     if(!step.v(val)){ botSay(step.e); return; }
-    data[step.key]=val; i++;
+    data[step.key]=val; i++; tk('etape',{etape:step.key});
     if(i<steps.length){ ask(); } else { askAvailability(); }
   });
 
@@ -565,7 +571,7 @@
   }
 
   function finish(rappel){
-    completed=true; data.rappel=rappel;
+    completed=true; data.rappel=rappel; tk('envoi',{rappel:rappel});
     var msg = rappel==="Disponible maintenant"
       ? "Parfait "+data.prenom+", je vous appelle d'ici quelques minutes au "+data.telephone+". À tout de suite."
       : "Pas de souci "+data.prenom+". Je vous prépare une proposition et je vous l'envoie par email aujourd'hui, puis je vous rappelle quand ça vous arrange.";
@@ -597,8 +603,12 @@
       beaconSent=true;
     }catch(e){}
   }
-  document.addEventListener('visibilitychange', function(){ if(document.visibilityState==='hidden') partialCapture(); });
-  window.addEventListener('pagehide', partialCapture);
+  function abandonTk(){
+    if(!started||completed||window.__chatAbTk) return; window.__chatAbTk=1;
+    tk('abandon',{derniere_etape: i<steps.length? steps[i].key : 'dispo', probleme:(data.message||'').slice(0,180)});
+  }
+  document.addEventListener('visibilitychange', function(){ if(document.visibilityState==='hidden'){ partialCapture(); abandonTk(); } });
+  window.addEventListener('pagehide', function(){ partialCapture(); abandonTk(); });
 })();
 </script>
 
