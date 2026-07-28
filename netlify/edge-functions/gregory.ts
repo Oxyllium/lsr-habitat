@@ -23,7 +23,7 @@ Règles absolues, aucune exception :
 - Prix : tu peux seulement dire "à partir de 1 000 euros" pour un traitement localisé et "à partir de 1 500 euros" pour une charpente ou un traitement termites complet. Jamais moins, jamais de fourchette précise, jamais de montant exact : le chiffrage précis vient après la visite technique.
 - Le devis est gratuit et sans engagement, tu réponds sous 24h. Tu ne promets JAMAIS de visite ou de diagnostic gratuit, ni un délai d'intervention précis.
 - Si la question sort de ta spécialité (rats, souris, cafards, punaises de lit, guêpes, frelons, mérule, vrillette, lyctus...), tu dis simplement que ce n'est pas ton métier et qu'une entreprise spécialisée dans ce domaine sera plus adaptée.
-- Tu ne demandes pas les coordonnées : le formulaire du chat s'en occupe juste après ta réponse.
+- Les coordonnées : tu ne les demandes que si la consigne du message te l'indique, UNE seule information à la fois, en expliquant pourquoi : tu les prends pour pouvoir rappeler gratuitement, faire le point, conseiller, et voir si la situation nécessite une intervention. Jamais un ton d'interrogatoire.
 - Uniquement si on te demande explicitement si tu es un robot ou une IA : tu réponds que c'est l'assistant du site qui prend les demandes, et que Grégory rappelle personnellement chaque personne. Dans tous les autres cas, tu parles à la première personne, en tant que Grégory, et tu ne mentionnes jamais d'assistant.
 - Tu ne commences jamais tes messages par "Bonjour" ou "Bonsoir" : la conversation est déjà engagée, tu réponds directement.
 - Rassure quand la situation s'y prête : ces infestations se traitent bien quand on s'en occupe à temps, mais ne répète pas cette idée à chaque message.`;
@@ -33,8 +33,8 @@ function nettoie(brut: unknown): string {
   if (/\b(the user|we need to|persona|rules:|respond as)\b/i.test(txt) || /<think/i.test(txt)) return "";
   txt = txt.replace(/[*#_`>|]/g, "").replace(/\s*\n+\s*/g, " ").replace(/\s{2,}/g, " ").trim();
   const phrases = txt.match(/[^.!?]+[.!?]+/g);
-  if (phrases && phrases.length) txt = phrases.slice(0, 3).join(" ").trim();
-  return txt.length > 400 ? txt.slice(0, 400) : txt;
+  if (phrases && phrases.length) txt = phrases.slice(0, 4).join(" ").trim();
+  return txt.length > 500 ? txt.slice(0, 500) : txt;
 }
 
 export default async (req: Request) => {
@@ -48,10 +48,22 @@ export default async (req: Request) => {
   const contexte = b.offline
     ? "Contexte horaires (pour information seulement) : on est hors des horaires d'ouverture. Le visiteur le sait déjà, le chat le lui a dit. Tu ne mentionnes ta disponibilité QUE s'il demande à appeler, à être rappelé tout de suite, ou si tu es ouvert. Sinon tu réponds sur le fond, sans parler d'horaires ni de disponibilité."
     : "Contexte horaires : on est aux horaires d'ouverture, tu peux rappeler rapidement.";
+  const DEMANDES: Record<string, string> = {
+    prenom: "son prénom",
+    nom: "son nom de famille",
+    telephone: "son numéro de téléphone",
+    email: "son adresse email",
+    ville: "sa ville",
+  };
+  const demande = DEMANDES[String(b.etape || "")] || "";
+  const consigne = demande
+    ? `
+Après ta réponse, enchaîne naturellement DANS LE MÊME message en demandant ${demande}. Adapte le ton à son message : s'il veut clairement un devis, sois direct ; s'il hésite ou s'inquiète, rassure d'abord. Rappelle au passage, avec tes mots, que tu prends ses coordonnées pour le rappeler gratuitement, faire le point et le conseiller de vive voix.`
+    : "";
   const user = `${contexte}
 Problème décrit par le visiteur : "${String(b.probleme || "").slice(0, 300)}"
 Dernier message du visiteur : "${String(b.question || "").slice(0, 300)}"
-Réponds-lui.`;
+Réponds-lui.${consigne}`;
 
   // 1. Gemini d'abord (RPD illimite, rapide) : Flash Lite puis Flash
   const gkey = env("GEMINI_API_KEY");

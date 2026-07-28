@@ -502,7 +502,7 @@
   var MOTS_COURANTS=/^(r[ée]pondez|r[ée]ponds?|oui|non|ok|okay|dac|d'accord|merci|test|bonjour|bonsoir|salut|allo|quoi|comment|pourquoi|voil[àa]|rien|aide|help|stp|svp|mon nom|mon prenom|mon prénom)$/i;
   var steps=[
     {key:'message', q:"Dites-moi tout : qu'est-ce que vous observez ? De la sciure, des petits trous, une poutre qui sonne creux, un doute avant un achat...", v:function(x){return x.trim().length>2;}, e:"Racontez-moi un peu, même en deux mots, que je comprenne votre situation."},
-    {key:'prenom', q:"Merci, je vois très bien le genre de situation, et rassurez-vous, ça se traite bien. Pour vous répondre précisément et vous donner une idée du budget, il me faut juste deux ou trois infos. D'abord, votre prénom ?", v:function(x){x=x.trim();return x.length<=25 && !MOTS_COURANTS.test(x) && /^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ'\-]*( [a-zA-ZÀ-ÿ'\-]+)?$/.test(x);}, e:"Juste votre prénom, tout simplement, et on continue.", r:"D'abord, votre prénom ?"},
+    {key:'prenom', q:"Merci, je vois très bien le genre de situation, et rassurez-vous, ça se traite bien. Je prends vos coordonnées et je vous rappelle gratuitement pour faire le point et vous conseiller de vive voix. Votre prénom d'abord ?", v:function(x){x=x.trim();return x.length<=25 && !MOTS_COURANTS.test(x) && /^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ'\-]*( [a-zA-ZÀ-ÿ'\-]+)?$/.test(x);}, e:"Juste votre prénom, tout simplement, et on continue.", r:"Pour que je puisse vous rappeler, votre prénom d'abord ?"},
     {key:'nom', q:"Enchanté {prenom}. Et votre nom de famille ?", v:function(x){x=x.trim();return x.length<=30 && !MOTS_COURANTS.test(x) && /^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ'\-]*( [a-zA-ZÀ-ÿ'\-]+){0,2}$/.test(x);}, e:"Votre nom de famille en toutes lettres, c'est pour vous retrouver facilement.", r:"Et votre nom de famille ?"},
     {key:'telephone', q:"Le plus simple pour un cas comme le vôtre, c'est qu'on en parle de vive voix. Quel est votre numéro ?", v:function(x){return /^0[1-9]([ .\-]?[0-9]{2}){4}$/.test(x.trim());}, e:"Là je ne vais pas réussir à vous joindre avec ça. Vous me le remettez en entier ? (10 chiffres)", r:"Votre numéro pour vous joindre ?"},
     {key:'email', q:"Parfait. Et votre email, au cas où je vous envoie une proposition écrite ?", v:function(x){return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(x.trim());}, e:"Je crois qu'il y a une petite coquille dans l'adresse, vous me la réécrivez ?", r:"Votre email ?"},
@@ -583,17 +583,22 @@
     })
     .catch(function(){ clearTimeout(tmo); finAtt(); secours(); });
   }
-  /* Réponse IA à une question ou une saisie invalide, puis relance de l'étape en cours */
+  /* L'IA intègre la demande de coordonnées dans sa réponse ; on ne relance
+     par script QUE si elle a oublié de demander l'info de l'étape en cours */
+  var MOTS_ETAPE={prenom:/pr[ée]nom/i, nom:/famille|nom\s*\?/i, telephone:/(num[ée]ro|t[ée]l[ée]phone|joindre|rappeler au)/i, email:/mail/i, ville:/(ville|secteur|coin)/i};
+  function ditOuRelance(t, cle, relance){
+    var re=MOTS_ETAPE[cle];
+    if(re && re.test(t)){ botSay(t); } else { botSay(t, function(){ botSay(relance); }); }
+  }
   function iaReponse(q, step, secoursTexte){
-    var relance = step.r||step.q;
     iaCall(q,
-      function(t){ botSay(t, function(){ botSay(relance); }); },
+      function(t){ ditOuRelance(t, step.key, step.r||step.q); },
       function(){ botSay(secoursTexte); });
   }
-  /* Accueil IA : réaction à la description du problème, puis demande du prénom */
+  /* Accueil IA : réaction à la description du problème, transition douce vers le prénom */
   function iaAccueil(description){
     iaCall(description,
-      function(t){ botSay(t, function(){ botSay("Pour vous répondre précisément, d'abord votre prénom ?"); }); },
+      function(t){ ditOuRelance(t, 'prenom', "Je prends vos coordonnées et je vous rappelle gratuitement pour faire le point de vive voix. Votre prénom d'abord ?"); },
       function(){ ask(); });
   }
 
