@@ -166,7 +166,7 @@
      formulaire est en sidebar a cote du texte, on garde la page devis. */
   function initStripDevis() {
     document.addEventListener('click', function(e) {
-      var a = e.target.closest ? e.target.closest('.expert-strip__devis') : null;
+      var a = e.target.closest ? e.target.closest('.expert-strip__devis, a.symptom-check__note') : null;
       if (!a) return;
       var form = document.getElementById('devis');
       if (form && window.matchMedia('(max-width:960px)').matches) {
