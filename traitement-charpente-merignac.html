@@ -576,12 +576,9 @@
   }
   /* L'IA intègre la demande de coordonnées dans sa réponse ; on ne relance
      par script QUE si elle a oublié de demander l'info de l'étape en cours */
-  var MOTS_ETAPE={prenom:/pr[ée]nom/i, nom:/famille|nom\s*\?/i, telephone:/(num[ée]ro|t[ée]l[ée]phone|joindre|rappeler au)/i, email:/mail/i, ville:/(ville|secteur|coin)/i};
-  function ditOuRelance(t, cle, relance){
-    var re=MOTS_ETAPE[cle];
-    /* Si l'IA a posé une question (la bonne ou une autre), on la laisse respirer : pas de relance scriptée par-dessus */
-    if((re && re.test(t)) || /\?/.test(t)){ botSay(t); } else { botSay(t, function(){ botSay(relance); }); }
-  }
+  /* La réponse de l'IA est finale : on n'empile JAMAIS de relance scriptée par-dessus.
+     (L'IA gère elle-même quand demander les coordonnées ; le script ne parle qu'en panne d'IA.) */
+  function ditOuRelance(t, cle, relance){ botSay(t); }
   function iaReponse(q, step, secoursTexte){
     iaCall(q,
       function(t){ ditOuRelance(t, step.key, step.r||step.q); },
