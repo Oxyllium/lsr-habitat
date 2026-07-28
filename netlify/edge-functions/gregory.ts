@@ -83,26 +83,26 @@ Réponds-lui.${consigne}`;
   // 1. Gemini d'abord (RPD illimite, rapide) : Flash Lite puis Flash
   const gkey = env("GEMINI_API_KEY");
   if (gkey) {
-    const gmodeles = ["gemini-flash-latest", "gemini-flash-lite-latest"];
+    const gmodeles = ["gemini-flash-lite-latest", "gemini-flash-latest"];
     for (let n = 0; n < gmodeles.length; n++) {
       try {
         const r = await fetch(
           `https://generativelanguage.googleapis.com/v1beta/models/${gmodeles[n]}:generateContent?key=${gkey}`,
           {
             method: "POST",
-            signal: AbortSignal.timeout(n === 0 ? 5000 : 4000),
+            signal: AbortSignal.timeout(n === 0 ? 4500 : 7000),
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               system_instruction: { parts: [{ text: BRIEF }] },
               contents: [{ role: "user", parts: [{ text: user }] }],
-              generationConfig: { maxOutputTokens: 1000, temperature: 0.55, thinkingConfig: { thinkingBudget: 0 } },
+              generationConfig: { maxOutputTokens: 1000, temperature: 0.55 },
             }),
           },
         );
         if (!r.ok) continue;
         const j = await r.json();
         const parts = j?.candidates?.[0]?.content?.parts || [];
-        const txt = nettoie(parts.map((p: { text?: string }) => p.text || "").join(" "));
+        const txt = nettoie(parts.filter((p: { text?: string; thought?: boolean }) => !p.thought).map((p: { text?: string }) => p.text || "").join(" "));
         if (txt) return Response.json({ reponse: txt });
       } catch (_e) { /* modele suivant */ }
     }
