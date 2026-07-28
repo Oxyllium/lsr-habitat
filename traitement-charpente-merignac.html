@@ -618,7 +618,7 @@
       ? "Parfait "+data.prenom+", je vous appelle d'ici quelques minutes au "+data.telephone+". À tout de suite."
       : (rappel==="Contact par email uniquement"
         ? "C'est noté "+data.prenom+", je vous réponds par écrit à "+data.email+" très rapidement."
-        : "Pas de souci "+data.prenom+". Je vous prépare une proposition et je vous l'envoie par email aujourd'hui, puis je vous rappelle quand ça vous arrange.");
+        : "Pas de souci "+data.prenom+". Je vous envoie d'abord quelques informations par SMS, et on se cale un moment pour s'appeler à tête reposée.");
     botSay(msg, function(){
       hidden.querySelector('[name=nom]').value=data.nom||'';
       hidden.querySelector('[name=prenom]').value=data.prenom||'';
