@@ -590,7 +590,8 @@
   var MOTS_ETAPE={prenom:/pr[ée]nom/i, nom:/famille|nom\s*\?/i, telephone:/(num[ée]ro|t[ée]l[ée]phone|joindre|rappeler au)/i, email:/mail/i, ville:/(ville|secteur|coin)/i};
   function ditOuRelance(t, cle, relance){
     var re=MOTS_ETAPE[cle];
-    if(re && re.test(t)){ botSay(t); } else { botSay(t, function(){ botSay(relance); }); }
+    /* Si l'IA a posé une question (la bonne ou une autre), on la laisse respirer : pas de relance scriptée par-dessus */
+    if((re && re.test(t)) || /\?/.test(t)){ botSay(t); } else { botSay(t, function(){ botSay(relance); }); }
   }
   function iaReponse(q, step, secoursTexte){
     iaCall(q,
