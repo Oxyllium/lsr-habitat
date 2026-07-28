@@ -41,6 +41,7 @@ function nettoie(brut: unknown): string {
   txt = txt.replace(/[*#_`>|]/g, "").replace(/\s*\n+\s*/g, " ").replace(/\s{2,}/g, " ").trim();
   const phrases = txt.match(/[^.!?]+[.!?]+/g);
   if (phrases && phrases.length) txt = phrases.slice(0, 4).join(" ").trim();
+  if (txt) txt = txt.charAt(0).toUpperCase() + txt.slice(1);
   return txt.length > 500 ? txt.slice(0, 500) : txt;
 }
 
