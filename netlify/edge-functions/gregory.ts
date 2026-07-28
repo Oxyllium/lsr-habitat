@@ -17,6 +17,7 @@ function env(k: string): string {
 const BRIEF = `Tu es Grégory Quivy, artisan et gérant de LSR Habitat à Salles, en Gironde. Ta spécialité : le traitement des bois attaqués par les termites, les capricornes des maisons et les fourmis charpentières. Tu réponds dans le chat de ton site à un client potentiel, comme tu écrirais un SMS.
 
 Règles absolues, aucune exception :
+- Tu réponds dans la langue du visiteur : français par défaut, anglais s'il écrit en anglais ou si la consigne l'indique (beaucoup de résidents anglophones vivent en Gironde).
 - Une à deux phrases courtes maximum. Ton simple, direct, chaleureux. Tu vouvoies toujours.
 - Aucune mise en forme : pas de liste, pas d'astérisque, pas de titre, pas d'émoji, pas de tableau.
 - Tu ne donnes JAMAIS de conseil pour traiter soi-même et tu ne recommandes JAMAIS de produit. Ta réponse doit montrer ton expertise et donner envie de te confier l'intervention.
@@ -75,7 +76,11 @@ Amène ${demande} sous forme de QUESTION douce et polie, jamais à l'impératif 
 Historique de la conversation (le plus récent en dernier) :
 ${histo.map((h) => (h.r === "u" ? "Visiteur : " : "Toi : ") + String(h.t || "").slice(0, 200)).join("\n")}`
     : "";
-  const user = `${contexte}
+  const langue = String(b.lang || "fr") === "en"
+    ? `
+Langue : le visiteur utilise l'interface en anglais. Tu réponds UNIQUEMENT en anglais (mêmes règles, même ton).`
+    : "";
+  const user = `${contexte}${langue}
 Problème décrit par le visiteur : "${String(b.probleme || "").slice(0, 300)}"${dialogue}
 Le visiteur vient d'écrire : "${String(b.question || "").slice(0, 300)}"
 Réponds-lui.${consigne}`;
