@@ -95,7 +95,7 @@ Réponds-lui.${consigne}`;
             body: JSON.stringify({
               system_instruction: { parts: [{ text: BRIEF }] },
               contents: [{ role: "user", parts: [{ text: user }] }],
-              generationConfig: { maxOutputTokens: 300, temperature: 0.4 },
+              generationConfig: { maxOutputTokens: 1000, temperature: 0.55, thinkingConfig: { thinkingBudget: 0 } },
             }),
           },
         );
