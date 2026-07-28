@@ -28,6 +28,9 @@ Règles absolues, aucune exception :
 - Uniquement si on te demande explicitement si tu es un robot ou une IA : tu réponds que c'est l'assistant du site qui prend les demandes, et que Grégory rappelle personnellement chaque personne. Dans tous les autres cas, tu parles à la première personne, en tant que Grégory, et tu ne mentionnes jamais d'assistant.
 - Tu ne commences jamais tes messages par "Bonjour" ou "Bonsoir" : la conversation est déjà engagée, tu réponds directement.
 - Rassure quand la situation s'y prête : ces infestations se traitent bien quand on s'en occupe à temps, mais ne répète pas cette idée à chaque message.
+- Tu tiens compte de l'historique : ne répète JAMAIS une tournure, une explication ou une formule déjà employée. Chaque message doit sonner différemment du précédent.
+- La justification de la prise de coordonnées (rappel gratuit, faire le point, conseiller) ne se donne qu'UNE SEULE fois par conversation. Ensuite tu demandes l'info simplement et brièvement, l'air de rien, comme dans une vraie discussion.
+- Si la personne exprime une émotion (peur, inquiétude, agacement, découragement), tu y réponds d'abord en humain, avec une phrase pour elle, avant de parler métier ou coordonnées.
 - Objections, blocages, demandes annexes : tu ne polémiques JAMAIS. Tu valides le ressenti en une phrase, puis tu ramènes doucement vers l'appel gratuit avec Grégory, le meilleur moyen d'avoir une réponse fiable pour SA situation précise. Repères : refus de donner le numéro, tu rassures (il ne sert qu'à ce rappel, aucun démarchage) ; c'est trop cher, le chiffre exact vient de la visite et c'est souvent moins lourd qu'on l'imagine, l'appel ne coûte rien ; je veux juste un renseignement, justement deux minutes au téléphone valent mieux qu'un long écrit ; envoyez-moi un mail ou de la doc, c'est possible mais un appel rapide permet de cerner le vrai besoin d'abord. Quelle que soit la digression, ta réponse se termine en ramenant vers la prise de coordonnées.`;
 
 function nettoie(brut: unknown): string {
@@ -60,11 +63,17 @@ export default async (req: Request) => {
   const demande = DEMANDES[String(b.etape || "")] || "";
   const consigne = demande
     ? `
-Après ta réponse, enchaîne naturellement DANS LE MÊME message en demandant ${demande}. Adapte le ton à son message : s'il veut clairement un devis, sois direct ; s'il hésite ou s'inquiète, rassure d'abord. Rappelle au passage, avec tes mots, que tu prends ses coordonnées pour le rappeler gratuitement, faire le point et le conseiller de vive voix.`
+Termine ton message en demandant ${demande}. Si l'historique montre que tu l'as déjà demandé ou que tu as déjà expliqué pourquoi, redemande en une formule TRÈS courte et différente, sans redonner la justification. Si c'est la première demande de la conversation, explique en une demi-phrase pourquoi (pour rappeler gratuitement, faire le point et conseiller). Direct si la personne veut un devis, rassurant si elle hésite.`
+    : "";
+  const histo = Array.isArray(b.histo) ? (b.histo as Array<{ r?: string; t?: string }>).slice(-10) : [];
+  const dialogue = histo.length
+    ? `
+Historique de la conversation (le plus récent en dernier) :
+${histo.map((h) => (h.r === "u" ? "Visiteur : " : "Toi : ") + String(h.t || "").slice(0, 200)).join("\n")}`
     : "";
   const user = `${contexte}
-Problème décrit par le visiteur : "${String(b.probleme || "").slice(0, 300)}"
-Dernier message du visiteur : "${String(b.question || "").slice(0, 300)}"
+Problème décrit par le visiteur : "${String(b.probleme || "").slice(0, 300)}"${dialogue}
+Le visiteur vient d'écrire : "${String(b.question || "").slice(0, 300)}"
 Réponds-lui.${consigne}`;
 
   // 1. Gemini d'abord (RPD illimite, rapide) : Flash Lite puis Flash
@@ -107,7 +116,7 @@ Réponds-lui.${consigne}`;
           model: modeles[n],
           messages: [{ role: "system", content: BRIEF }, { role: "user", content: user }],
           max_tokens: 160,
-          temperature: 0.4,
+          temperature: 0.55,
         }),
       });
       if (!r.ok) continue;

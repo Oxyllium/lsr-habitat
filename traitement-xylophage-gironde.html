@@ -479,7 +479,7 @@
     {key:'email', q:"Parfait. Et votre email, au cas où je vous envoie une proposition écrite ?", v:function(x){return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(x.trim());}, e:"Je crois qu'il y a une petite coquille dans l'adresse, vous me la réécrivez ?", r:"Votre email ?"},
     {key:'ville', q:"Dernière chose : vous êtes dans quel coin ? (votre ville)", v:function(x){return x.trim().length>1;}, e:"Votre ville, juste pour savoir si vous êtes dans mon secteur ?", r:"Et votre ville ?"}
   ];
-  var data={}, i=0, started=false, completed=false, beaconSent=false;
+  var data={}, i=0, started=false, completed=false, beaconSent=false, histo=[];
   var cid='chat_'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
   function tk(ev,extra){
     var d={id:cid,type:'chat',ev:ev,page:location.pathname,q:location.search.slice(0,300)};
@@ -489,7 +489,8 @@
 
   function scroll(){ body.scrollTop=body.scrollHeight; }
   function fill(t){ return t.replace('{prenom}', data.prenom||''); }
-  function addMsg(text,who){ var d=document.createElement('div'); d.className='chat-msg chat-msg--'+who; d.textContent=text; body.appendChild(d); scroll(); }
+  function addMsg(text,who){ var d=document.createElement('div'); d.className='chat-msg chat-msg--'+who; d.textContent=text; body.appendChild(d); scroll();
+    histo.push({r: who==='user'?'u':'b', t:String(text).slice(0,250)}); if(histo.length>12) histo.shift(); }
   function typing(cb){ var t=document.createElement('div'); t.className='chat-typing'; t.innerHTML='<span></span><span></span><span></span>'; body.appendChild(t); scroll(); setTimeout(function(){ t.parentNode&&t.parentNode.removeChild(t); cb(); },800); }
   function botSay(text,cb){ typing(function(){ addMsg(fill(text),'bot'); if(cb)cb(); }); }
   function ask(){ botSay(steps[i].q); }
@@ -544,6 +545,7 @@
     fetch('/api/gregory', {method:'POST', headers:{'Content-Type':'application/json'},
       signal: ctrl && ctrl.signal,
       body: JSON.stringify({question:dernierMessage, probleme:data.message||'', etape:(steps[i]||{}).key||'fin',
+        histo: histo.slice(0,-1),
         offline: document.documentElement.classList.contains('is-offline')})})
     .then(function(r){ if(!r.ok) throw 0; return r.json(); })
     .then(function(j){
