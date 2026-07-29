@@ -183,7 +183,9 @@
     var moves=0,scrolls=0,clics=0,telC=0,devC=0,t0=Date.now(),fini=false;
     addEventListener('pointermove',function(){moves++},{passive:true});
     addEventListener('scroll',function(){scrolls++},{passive:true});
-    addEventListener('pointerdown',function(e){clics++;
+    /* 'click' et non 'pointerdown' : sur mobile, chaque defilement commence par un toucher
+       qui gonflait les compteurs (et comptait des faux clics tel/devis). Le vrai clic seul compte. */
+    addEventListener('click',function(e){clics++;
       var a=e.target&&e.target.closest?e.target.closest('a'):null;
       if(a){var h=a.getAttribute('href')||'';
         if(h.indexOf('tel:')===0){telC++;}
