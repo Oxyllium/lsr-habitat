@@ -822,8 +822,8 @@ a.zone-tag:hover { background:var(--teal-light); color:var(--teal-dark); }
 /* ========== Termites : reflow mobile (scope page) + barre CTA coexistant avec le chat ========== */
 @media(max-width:960px){
   .page-body--formlast .sidebar { order:0; }        /* form APRES la reassurance sur mobile (termites) */
-  .cta-bar ~ .chat-fab { bottom:80px; }             /* remonte la bulle chat au-dessus de la barre */
-  body:has(.cta-bar) { padding-bottom:58px; }       /* la barre fixe ne masque pas le bas de page */
+  .cta-bar ~ .chat-fab { bottom:calc(74px + env(safe-area-inset-bottom)); } /* au-dessus de la barre + safe area */
+  body:has(.cta-bar) { padding-bottom:calc(54px + env(safe-area-inset-bottom)); } /* barre fixe + safe area, pas de masquage */
 }
 .is-offline .cta-bar__call { display:none; }        /* hors horaires : on n'affiche que Devis (plein largeur via regle existante) */
 
