@@ -226,7 +226,11 @@
             <option value="Traitement d'humidité">Traitement d'humidité</option>
             <option value="Assèchement des murs">Assèchement des murs</option>
             <option value="Ventilation VMI / VMC">Ventilation VMI / VMC</option>
-            <option value="Traitement nuisibles">Traitement nuisibles (termites, capricornes, fourmis)</option>
+            <option value="Traitement termites" data-svc="termites">Traitement termites</option>
+            <option value="Traitement capricornes des maisons" data-svc="capricornes">Traitement capricornes des maisons</option>
+            <option value="Traitement fourmis charpentières" data-svc="fourmis">Traitement fourmis charpentières</option>
+            <option value="Traitement charpente / xylophages" data-svc="charpente">Traitement de charpente / xylophages</option>
+            <option value="Traitement nuisibles">Autre traitement du bois</option>
             <option value="Autre">Autre</option>
           </select>
         </div>
@@ -283,5 +287,6 @@
 
 
 <script>(function(){try{var v=new URLSearchParams(location.search).get('ville');if(v){var f=document.getElementById('ville');if(f)f.value=v;}}catch(e){}})();</script>
+<script>(function(){try{var s=new URLSearchParams(location.search).get('svc');if(s){s=s.replace(/[^a-z]/gi,'');var o=document.querySelector('#service option[data-svc="'+s+'"]');if(o)o.selected=true;}}catch(e){}})();</script>
 </body>
 </html>
