@@ -843,3 +843,8 @@ a.zone-tag:hover { background:var(--teal-light); color:var(--teal-dark); }
   .call-mobonly { display:inline; }
   .call-desk { display:none; }
 }
+
+/* ========== Hero : boutons appel/devis en pleine largeur sur mobile (egaux, empiles) ========== */
+@media(max-width:960px){
+  .hero__actions .btn { flex:1 1 100%; justify-content:center; }
+}
