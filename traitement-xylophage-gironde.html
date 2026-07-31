@@ -2,15 +2,15 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Traitement Xylophage en Gironde (33) | LSR Habitat - Devis Gratuit</title>
-  <meta name="description" content="Traitement des insectes xylophages en Gironde : termites, capricornes, fourmis charpentières. Devis gratuit à Bordeaux, Arcachon et dans tout le 33.">
+  <meta name="description" content="Traitement xylophage en Gironde : on identifie l'insecte (termites, capricorne, fourmis) et on traite juste. Artisan à Salles (33), devis gratuit à Bordeaux, Arcachon. LSR Habitat.">
   <link rel="icon" type="image/png" href="images/logo-lsr-habitat.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap">
   <link rel="preload" as="image" href="images/hydrofugation-toiture.jpg">
-  <link rel="stylesheet" href="styles.css?v=20260730a">
+  <link rel="stylesheet" href="styles.css?v=20260731e">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QR71B09K4M"></script>
   <script>
@@ -117,8 +117,11 @@
 </head>
 <body>
 
-<!-- CTA BAR MOBILE -->
-<!-- Barre CTA fixe remplacee par le widget chat Gregory -->
+<!-- CTA BAR MOBILE (persistante, coexiste avec le chat) -->
+<div class="cta-bar" id="ctaBar">
+  <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta cta-bar__call"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>Appeler Grégory</a>
+  <a href="demande-de-devis.html?svc=charpente" class="cta-bar__devis">Devis gratuit</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -129,11 +132,15 @@
       <img src="images/logo-lsr-habitat.png" alt="LSR Habitat" class="hero__logo" fetchpriority="high">
       <img src="images/certibiocide.png" alt="Certification Certibiocide" class="hero__cert" width="64" height="64">
     </div>
-    <h1>Traitement <span>Xylophage</span> en Gironde</h1>
-    <p class="hero__sub">Du Bassin d'Arcachon au Libournais, nous protégeons les charpentes girondines des termites, capricornes et fourmis charpentières.</p>
+    <h1>Traitement xylophage en Gironde : <span>on identifie l'insecte, on traite juste.</span></h1>
+    <p class="hero__sub">Trous, sciure, bois qui sonne creux ? Termites, capricorne, fourmis charpentières... En Gironde, le pin maritime et l'humidité rendent les bois vulnérables. Grégory identifie précisément l'insecte et traite juste ce qu'il faut. Réponse le jour même.</p>
+    <div class="hero__person">
+      <img src="images/gregory-quivy.jpg" alt="Grégory Quivy, artisan LSR Habitat" width="40" height="40">
+      <span><b>Grégory Quivy</b>Artisan certifié, il vous répond en personne</span>
+    </div>
     <div class="hero__actions">
-      <a href="demande-de-devis.html?svc=charpente" class="btn btn--primary">Devis gratuit</a>
-      <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta btn btn--outline">07 62 39 78 96</a>
+      <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta btn btn--call"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg><span class="call-desk">07 62 39 78 96</span><span class="call-mobonly">Appeler Grégory</span></a>
+      <a href="demande-de-devis.html?svc=charpente" class="btn btn--primary">Faire identifier l'insecte</a>
       <a href="#avis" class="hero__badge hero__badge--link"><span class="google-g"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48"><path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59A14.5 14.5 0 019.5 24c0-1.59.28-3.14.77-4.59l-7.98-6.19A23.99 23.99 0 000 24c0 3.77.9 7.35 2.56 10.53l7.97-5.94z"/><path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 5.94C6.51 42.62 14.62 48 24 48z"/></svg></span> <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5/5 - 28 avis</a>
     </div>
     <div class="hero__trust">
@@ -145,7 +152,7 @@
 </section>
 
 <!-- CORPS 2 COLONNES -->
-<div class="page-body page-body--landing">
+<div class="page-body page-body--landing page-body--formlast">
   <div class="main-content">
 
 <!-- AUTO-DIAGNOSTIC -->
@@ -160,21 +167,24 @@
       </ul>
       <a class="symptom-check__note" href="demande-de-devis.html?svc=charpente">Un seul de ces signes suffit pour nous contacter : décrivez ce que vous voyez, le devis est gratuit et sans engagement.</a>
     </div>
-      <div class="expert-strip">
-        <span class="expert-strip__avatar-wrap">
-          <img class="expert-strip__avatar" src="images/gregory-quivy.jpg" alt="Grégory Quivy, gérant de LSR Habitat" width="60" height="60" loading="lazy">
-          <span class="expert-strip__dot"></span>
-        </span>
-        <div class="expert-strip__text">
-          <strong>Rien ne vaut l'œil d'un expert</strong>
-          <span class="q-on">« Appelez-moi : au téléphone, je vous dis tout de suite ce que vous avez et ce que ça peut coûter. Je suis à moins d'une heure de chez vous. »</span><span class="q-off">« Décrivez ce que vous voyez dans la demande de devis : je vous dis ce que vous avez et ce que ça peut coûter dès l'ouverture. »</span>
-        </div>
-        <div class="expert-strip__actions">
-          <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta btn btn--call"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>Appeler Grégory</a>
-          <a href="demande-de-devis.html?svc=charpente" class="btn btn--primary expert-strip__devis">Devis gratuit</a>
-        </div>
-      </div>
 
+<!-- QUOI FAIRE MAINTENANT -->
+    <div class="now-steps">
+      <p class="now-steps__title">Un insecte dans le bois ? Voici quoi faire</p>
+      <p class="now-steps__sub">Pas de panique : identifié tôt, un insecte du bois se traite bien. Trois étapes simples.</p>
+      <div class="now-grid">
+        <div class="now-card"><div class="now-card__num">1</div><strong>Ne traitez pas au hasard</strong><span>Chaque espèce (capricorne, termites, fourmis) se traite autrement. Un produit générique rate souvent la cible.</span></div>
+        <div class="now-card"><div class="now-card__num">2</div><strong>Décrivez ou photographiez ce que vous voyez</strong><span>Trous, sciure, insectes... Ces indices permettent à Grégory d'orienter le diagnostic avant même la visite.</span></div>
+        <div class="now-card"><div class="now-card__num">3</div><strong>On identifie l'espèce et on traite juste</strong><span>La visite dit précisément quel insecte, jusqu'où c'est allé et le traitement adapté. Gratuit et sans engagement.</span></div>
+      </div>
+    </div>
+<!-- BLOC DECLENCHEUR : expertise locale -->
+      <div class="zone-vente">
+        <span class="zone-vente__tag">Vous êtes en Gironde ?</span>
+        <h3>Le département le plus exposé de France, on connaît</h3>
+        <p>Pin maritime, humidité atlantique, communes classées termites : la Gironde cumule les facteurs de risque pour vos bois. Implanté à Salles, au coeur du 33, Grégory intervient vite partout dans le département et identifie précisément l'insecte avant de traiter. On ne traite jamais au hasard.</p>
+        <a href="demande-de-devis.html?svc=charpente" class="btn btn--primary btn--sm">Faire identifier l'insecte</a>
+      </div>
 
 <!-- CONTENU -->
     <div class="section service-detail fade-in">
@@ -204,7 +214,7 @@
           <span class="q-on">« Tant que ce n'est pas traité, les larves continuent de creuser vos bois. Un appel et je vous dis quoi faire, tout de suite. »</span><span class="q-off">« Tant que ce n'est pas traité, les larves continuent de creuser vos bois. Décrivez votre situation dans la demande de devis, je vous dis quoi faire dès l'ouverture. »</span>
         </div>
         <div class="expert-strip__actions">
-          <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta btn btn--call"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>Appeler Grégory</a>
+          <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta btn btn--call"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg><span class="call-desk">07 62 39 78 96</span><span class="call-mobonly">Appeler Grégory</span></a>
           <a href="demande-de-devis.html?svc=charpente" class="btn btn--primary expert-strip__devis">Devis gratuit</a>
         </div>
       </div>
@@ -220,6 +230,7 @@
       <p>Un traitement de bois localisé démarre à partir de 1 000 € ; un traitement de charpente par injection démarre à partir de 1 500 €. <a href="demande-de-devis.html?svc=charpente">Devis gratuit, précis et sans engagement</a>.</p>
 
       <p>LSR Habitat est une société familiale spécialiste du traitement des insectes xylophages en Gironde : capricorne des maisons, termites et fourmis charpentières. Artisan certifié Certibiocide, notre expert applique un traitement professionnel par injection, au prix posé noir sur blanc : chaque tarif est détaillé ligne par ligne dans le devis gratuit.</p>
+      <p>La plupart de nos chantiers nous arrivent par le bouche-à-oreille. Des mairies du secteur font elles aussi appel à Grégory pour la qualité et la propreté de son travail : la même exigence, que ce soit pour un bâtiment public ou pour votre maison.</p>
 
       <h3>Nos services de traitement du bois</h3>
       <div class="cross-links">
@@ -283,6 +294,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             Vos données restent confidentielles, jamais partagées
           </div>
+          <div class="form-card__trust">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            On ne traite que le nécessaire, prix posé avant : pas de surprise
+          </div>
           <p class="form-alt-call js-phone-cta">Vous préférez en parler de vive voix ? <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');">07 62 39 78 96</a></p>
 
         </form>
@@ -290,6 +305,7 @@
     </div>
     <div class="sidebar-trust">
       <a href="#avis" class="sidebar-trust__stars sidebar-trust__stars--link"><span class="reviews-header__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5,0/5 - 28 avis Google</a>
+      <div class="sidebar-review">« Intervention rapide en Gironde, insecte identifié tout de suite, prix cohérent. »<b>Nico, Le Teich</b></div>
       <div class="sidebar-trust__item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Entreprise familiale, sans sous-traitance</div>
       <div class="sidebar-trust__badge"><img src="images/certibiocide.png" alt="Certification Certibiocide" width="66" height="42" loading="lazy"> Professionnel certifié Certibiocide</div>
       <div class="sidebar-trust__item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Garantie de résultat</div>
@@ -297,47 +313,6 @@
     </div>
   </aside>
 </div>
-
-<!-- ZONE D'INTERVENTION -->
-<section class="full-width-section section--gray">
-  <div class="section-wrap fade-in">
-    <h2 class="section__title">Zone d'intervention</h2>
-    <p style="color:var(--gray);font-size:.88rem;margin:4px 0 0;">Nous intervenons sur tout le Bassin d'Arcachon et l'Aquitaine.</p>
-    <div class="zone-grid">
-      <span class="zone-tag zone-tag--hl">Bassin d'Arcachon</span>
-      <span class="zone-tag">Bordeaux</span>
-      <span class="zone-tag">Mérignac</span>
-      <span class="zone-tag">Pessac</span>
-      <span class="zone-tag">Libourne</span>
-      <span class="zone-tag">Arcachon</span>
-      <span class="zone-tag">La Teste-de-Buch</span>
-      <span class="zone-tag">Gujan-Mestras</span>
-      <span class="zone-tag">Biganos</span>
-      <span class="zone-tag">Audenge</span>
-      <span class="zone-tag">Lanton</span>
-      <span class="zone-tag">Salles</span>
-      <span class="zone-tag">La Brède</span>
-      <span class="zone-tag">Médoc</span>
-      <span class="zone-tag zone-tag--hl">Toute l'Aquitaine</span>
-    </div>
-  </div>
-</section>
-
-
-      <div class="expert-strip">
-        <span class="expert-strip__avatar-wrap">
-          <img class="expert-strip__avatar" src="images/gregory-quivy.jpg" alt="Grégory Quivy, gérant de LSR Habitat" width="60" height="60" loading="lazy">
-          <span class="expert-strip__dot"></span>
-        </span>
-        <div class="expert-strip__text">
-          <strong>J'interviens tout près de chez vous</strong>
-          <span class="q-on">« Je suis à moins d'une heure de chez vous et j'interviens vite. Appelez-moi, je vous dis quand je peux passer. »</span><span class="q-off">« Je suis à moins d'une heure de chez vous et j'interviens vite. Demandez votre devis, je vous réponds dès l'ouverture. »</span>
-        </div>
-        <div class="expert-strip__actions">
-          <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta btn btn--call"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>Appeler Grégory</a>
-          <a href="demande-de-devis.html?svc=charpente" class="btn btn--primary expert-strip__devis">Devis gratuit</a>
-        </div>
-      </div>
 
 <!-- TABLEAUX ENRICHISSEMENT -->
 <section class="full-width-section section--gray">
@@ -381,6 +356,21 @@
     <div class="info-table-cta"><a href="demande-de-devis.html?svc=charpente" class="btn btn--primary btn--sm">Recevoir mon devis gratuit</a></div>
   </div>
 </section>
+<!-- ENGAGEMENT HONNETETE -->
+<section class="full-width-section">
+  <div class="section-wrap fade-in">
+    <div class="honesty">
+      <p class="honesty__title">Notre engagement : on ne vous vend que le nécessaire</p>
+      <p class="honesty__sub">Le doute le plus légitime face à un devis, c'est de craindre qu'on vous force un traitement lourd et inutile. Voici comment on l'écarte.</p>
+      <div class="honesty__list">
+        <div class="honesty__item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>On ne traite que ce qui doit l'être</strong><span>Si un traitement localisé suffit, on ne vous vendra jamais un traitement de toute la maison. Notre intérêt, c'est un client satisfait qui nous recommande, pas une grosse facture ponctuelle.</span></span></div>
+        <div class="honesty__item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>Le prix est posé avant, détaillé ligne par ligne</strong><span>Vous savez exactement à quoi vous vous engagez avant que le moindre produit soit appliqué. Pas de rallonge, pas de surprise en fin de chantier.</span></span></div>
+        <div class="honesty__item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>Celui qui diagnostique est celui qui traite</strong><span>Pas de commercial payé à la commission pour gonfler le devis. Grégory identifie, chiffre et traite lui-même, sans sous-traitance.</span></span></div>
+        <div class="honesty__item"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span><strong>Un artisan du coin, pas une enseigne anonyme</strong><span>Grégory est connu dans le secteur : réputation locale, références sur place, y compris des mairies. Ici, un voisin peut vous parler de nous.</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
       <div class="expert-strip">
         <span class="expert-strip__avatar-wrap">
@@ -392,7 +382,7 @@
           <span class="q-on">« Un coup de fil suffit : je vous donne un tarif clair et précis en cinq minutes, sans surprise. »</span><span class="q-off">« Décrivez votre situation dans la demande de devis : je vous donne un tarif clair et précis, sans surprise. »</span>
         </div>
         <div class="expert-strip__actions">
-          <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta btn btn--call"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>Appeler Grégory</a>
+          <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta btn btn--call"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg><span class="call-desk">07 62 39 78 96</span><span class="call-mobonly">Appeler Grégory</span></a>
           <a href="demande-de-devis.html?svc=charpente" class="btn btn--primary expert-strip__devis">Devis gratuit</a>
         </div>
       </div>
@@ -419,16 +409,42 @@
           <span class="q-on">« Posez-la-moi directement, c'est moi qui réponds. Je regarde votre situation et je vous conseille. »</span><span class="q-off">« Posez-la dans votre demande de devis, c'est moi qui réponds : je vous conseille dès l'ouverture. »</span>
         </div>
         <div class="expert-strip__actions">
-          <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta btn btn--call"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>Appeler Grégory</a>
+          <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta btn btn--call"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg><span class="call-desk">07 62 39 78 96</span><span class="call-mobonly">Appeler Grégory</span></a>
           <a href="demande-de-devis.html?svc=charpente" class="btn btn--primary expert-strip__devis">Devis gratuit</a>
         </div>
       </div>
+
+<!-- ZONE D'INTERVENTION (descendue : faible intention, SEO) -->
+<section class="full-width-section section--gray">
+  <div class="section-wrap fade-in">
+    <h2 class="section__title">Zone d'intervention</h2>
+    <p style="color:var(--gray);font-size:.88rem;margin:4px 0 0;">Nous intervenons dans toute l'Aquitaine.</p>
+    <div class="zone-grid">
+      <span class="zone-tag zone-tag--hl">Toute l'Aquitaine</span>
+      <a class="zone-tag zone-tag--hl" href="traitement-xylophage-gironde.html">Toute la Gironde</a>
+      <span class="zone-tag">Bassin d'Arcachon</span>
+      <a class="zone-tag" href="traitement-charpente-bordeaux.html">Bordeaux</a>
+      <a class="zone-tag" href="traitement-charpente-merignac.html">Mérignac</a>
+      <a class="zone-tag" href="traitement-charpente-pessac.html">Pessac</a>
+      <a class="zone-tag" href="traitement-charpente-libourne.html">Libourne</a>
+      <a class="zone-tag" href="traitement-charpente-arcachon.html">Arcachon</a>
+      <a class="zone-tag" href="traitement-charpente-la-teste-de-buch.html">La Teste-de-Buch</a>
+      <span class="zone-tag">Gujan-Mestras</span>
+      <span class="zone-tag">Biganos</span>
+      <span class="zone-tag">Audenge</span>
+      <span class="zone-tag">Lanton</span>
+      <span class="zone-tag">Salles</span>
+      <span class="zone-tag">La Brède</span>
+      <span class="zone-tag">Médoc</span>
+    </div>
+  </div>
+</section>
 
 <!-- CTA FINAL -->
 <section class="cta-section">
   <h2>Protégez votre maison, où que vous soyez en Gironde</h2>
   <p>Obtenez un devis gratuit pour votre habitation en Aquitaine.</p>
-  <a href="demande-de-devis.html?svc=charpente" class="btn btn--primary">Demander un devis</a>
+  <a href="demande-de-devis.html?svc=charpente" class="btn btn--primary">Faire identifier l'insecte</a>
   <br>
   <a href="tel:0762397896" onclick="return gtag_report_conversion('tel:0762397896');" class="js-phone-cta cta-phone">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.24 1.01l-2.2 2.2z"/></svg>

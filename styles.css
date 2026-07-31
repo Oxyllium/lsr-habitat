@@ -498,12 +498,12 @@ a { color:inherit; }
 }
 .cta-bar--hidden { transform:translateY(130%); }
 .cta-bar a {
-  flex:1; display:flex; align-items:center; justify-content:center; gap:8px;
-  padding:14px 10px;
-  font-weight:700; font-size:.95rem;
-  text-decoration:none; letter-spacing:.01em;
+  flex:1; display:flex; align-items:center; justify-content:center; gap:7px;
+  padding:14px 8px;
+  font-weight:700; font-size:clamp(.82rem,3.6vw,.95rem); white-space:nowrap;
+  text-decoration:none; letter-spacing:0;
 }
-.cta-bar a svg { width:18px; height:18px; flex-shrink:0; }
+.cta-bar a svg { width:17px; height:17px; flex-shrink:0; }
 .cta-bar__call { background:#17A34A; color:var(--white); }
 .cta-bar__call:active { background:#12833B; }
 .cta-bar__devis { background:var(--red); color:var(--white); }
