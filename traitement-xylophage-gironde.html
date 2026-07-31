@@ -685,5 +685,21 @@
 
 <script src="script.js?v=20260728a"></script>
 
+<!-- Cliquer la tete ou le nom de Gregory ouvre le chat -->
+<script>
+(function(){
+  var fab=document.getElementById('chatFab');
+  if(!fab) return;
+  var els=document.querySelectorAll('.hero__person, .expert-strip__avatar-wrap, .form-card__avatar-wrap');
+  els.forEach(function(el){
+    el.style.cursor='pointer';
+    el.setAttribute('role','button');
+    el.setAttribute('tabindex','0');
+    el.setAttribute('aria-label','Discuter avec Gregory');
+    el.addEventListener('click', function(e){ e.preventDefault(); fab.click(); });
+    el.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); fab.click(); } });
+  });
+})();
+</script>
 </body>
 </html>
