@@ -851,3 +851,17 @@ a.zone-tag:hover { background:var(--teal-light); color:var(--teal-dark); }
 @media(max-width:960px){
   .hero__actions .btn { flex:1 1 100%; justify-content:center; }
 }
+
+/* ========== Bandeau d'urgence (sous le hero) ========== */
+.urgency-bar { background:linear-gradient(90deg,var(--red-dark),var(--red)); color:#fff; }
+.urgency-bar__inner { max-width:1100px; margin:0 auto; padding:13px 18px; display:flex; gap:12px; align-items:center; font-size:.92rem; line-height:1.5; }
+.urgency-bar svg { flex:0 0 auto; width:22px; height:22px; }
+.urgency-bar b { font-weight:800; }
+@media(max-width:600px){ .urgency-bar__inner { font-size:.84rem; gap:10px; padding:12px 15px; align-items:flex-start; } }
+/* colonne "oui" mise en avant dans les tableaux comparatifs */
+.info-table td.yes { color:var(--teal-dark); font-weight:700; }
+.info-table td.no { color:var(--gray-light); }
+
+/* Bouton blanc plein (secondaire visible sur hero sombre, sans ajouter de rouge) */
+.btn--white { background:var(--white); color:var(--dark); box-shadow:0 4px 15px rgba(0,0,0,.18); }
+.btn--white:hover { background:#f1f1f4; transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.24); }
