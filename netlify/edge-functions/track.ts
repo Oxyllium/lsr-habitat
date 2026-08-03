@@ -28,11 +28,20 @@ export default async (req: Request, context: { ip?: string; geo?: { country?: { 
     if (!expected || url.searchParams.get("key") !== expected) {
       return new Response("forbidden", { status: 403 });
     }
-    const out: unknown[] = [];
+    // Les evenements sont un blob chacun. Les lire en serie faisait depasser le
+    // temps imparti a la fonction edge : la reponse etait tronquee, et pas au
+    // meme endroit d'un appel a l'autre (des sessions disparaissaient du rapport).
+    // On lit donc par lots en parallele.
     const { blobs } = await store.list({ prefix: dump });
-    for (const b of blobs) {
-      const v = await store.get(b.key, { type: "json" });
-      if (v) out.push(v);
+    const out: unknown[] = [];
+    const LOT = 60;
+    for (let i = 0; i < blobs.length; i += LOT) {
+      const lot = await Promise.all(
+        blobs.slice(i, i + LOT).map((b) =>
+          store.get(b.key, { type: "json" }).catch(() => null)
+        ),
+      );
+      for (const v of lot) if (v) out.push(v);
     }
     return Response.json(out);
   }
